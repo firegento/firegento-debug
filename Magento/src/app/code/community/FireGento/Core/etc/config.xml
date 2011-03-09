@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <FireGento_Core>
+            <version>1.0.0</version>
+        </FireGento_Core>
+    </modules>
+</config>
