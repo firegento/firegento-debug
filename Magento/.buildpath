@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<buildpath>
-	<buildpathentry combineaccessrules="false" kind="prj" path="/1501-mage-latest"/>
-	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
-	<buildpathentry kind="src" path=""/>
-</buildpath>
