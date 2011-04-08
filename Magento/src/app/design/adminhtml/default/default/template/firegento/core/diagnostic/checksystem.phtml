@@ -1,0 +1,114 @@
+<div id="page:main-container">
+	<div class="content-header">
+		<table cellspacing="0">
+			<tr>
+				<td style="width: 50%;">
+					<h3 class="icon-head head-check"><?php echo $this->__('Check System'); ?></h3>
+				</td>
+				<td class="form-buttons"></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="entry-edit">
+		<div class="entry-edit-head">
+	    	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Config Settings') ?></h4>
+		</div>
+
+		<div class="fieldset " id="base_fieldset">
+		    <div class="hor-scroll">
+				<table class="form-list" cellspacing="0">
+					<colgroup class="label"></colgroup>
+					<colgroup class="value"></colgroup>
+					<tbody>
+						<tr id="row_current_magento_version">
+							<td class="label"><label for=""><?php echo $this->__('Current Magento Version')?></label></td>
+							<td class="value"><?php echo Mage::getVersion(); ?></td>
+						</tr>
+						<tr id="row_use_flat_catalog_category">
+							<td class="label"><label for=""><?php echo $this->__('Use Flat Catalog Category')?></label></td>
+							<td class="value"><?php echo (Mage::getStoreConfig('catalog/frontend/flat_catalog_category')) ? $this->__('Enabled') : $this->__('Disabled'); ?></td>
+						</tr>
+						<tr id="row_use_flat_catalog_product">
+							<td class="label"><label for=""><?php echo $this->__('Use Flat Catalog Product')?></label></td>
+							<td class="value"><?php echo (Mage::getStoreConfig('catalog/frontend/flat_catalog_product')) ? $this->__('Enabled') : $this->__('Disabled'); ?></td>
+						</tr>
+						<tr id="row_use_flat_catalog_product">
+							<td class="label"><label for=""><?php echo $this->__('Caches active?')?></label></td>
+							<td class="value"><?php echo $this->checkCaches(); ?></td>
+						</tr>
+						<tr id="row_use_flat_catalog_product">
+							<td class="label"><label for=""><?php echo $this->__('All Indizes up-to-date?')?></label></td>
+							<td class="value"><?php echo $this->checkIndizes(); ?></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="entry-edit">
+		<div class="entry-edit-head">
+	    	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('System Check') ?></h4>
+		</div>
+
+		<div class="fieldset " id="base_fieldset">
+		    <div class="hor-scroll">
+		    	<table class="form-list" cellspacing="0">
+					<colgroup class="label"></colgroup>
+					<colgroup class="value"></colgroup>
+					<tbody>
+						<tr id="row_current_magento_version">
+							<td class="label"><label for=""><?php echo $this->__('Maximum Execution Time')?></label></td>
+							<td class="value">
+							    <p><?php echo ini_get('max_execution_time')?> <?php echo $this->__('Seconds')?></p>
+							    <p class="note"><span><?php echo $this->__('Recommended is a execution time of min. %s seconds', '180')?></span></p>
+							</td>
+						</tr>
+						<tr id="row_use_flat_catalog_category">
+							<td class="label"><label for=""><?php echo $this->__('Memory Limit')?></label></td>
+							<td class="value">
+						        <p><?php echo ini_get('memory_limit')?></p>
+								<p class="note"><span><?php echo $this->__('Recommended is a memory limit of %s', '128M')?></span></p>
+							</td>
+						</tr>
+					</tbody>
+				</table> 
+		    	<p>&nbsp</p>
+				<?php $checkResult = $this->checkSystem(); ?>
+				
+				<?php if(count($checkResult['fail']) > 0): ?>
+					<p><?php echo $this->__('<strong>Your server does not meet the following requirements in order to install Magento.</strong>'); ?></p>
+					<p><?php echo $this->__('The following requirements failed, please contact your hosting provider in order to receive assistance with meeting the system requirements for Magento:'); ?></p>
+					
+					<ul>
+						<?php
+						foreach($checkResult['fail'] as $fail) {
+							echo '<li>'.$fail.'</li>';
+						}
+						?>
+					</ul>
+					<p>&nbsp;</p>
+					<p><?php echo $this->__('The following requirements were successfully met:'); ?></p>
+					<ul>
+						<?php
+						foreach($checkResult['pass'] as $pass) {
+							echo '<li>'.$pass.'</li>';
+						}
+						?>
+					</ul>
+				<?php else: ?>
+					<p><?php echo $this->__('<strong>Congratulations!</strong> Your server meets the requirements for Magento.'); ?></p>
+					<ul>
+						<?php
+						foreach($checkResult['pass'] as $pass) {
+							echo '<li>'.$pass.'</li>';
+						}
+						?>
+					</ul>
+					<p>&nbsp;</p>
+				<?php endif; ?>
+			</div>
+		</div>
+	</div>
+</div>

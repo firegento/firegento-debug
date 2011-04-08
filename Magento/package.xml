@@ -1,114 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+<package packagerversion="1.9.1" version="2.0"
+	xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
     http://pear.php.net/dtd/tasks-1.0.xsd
     http://pear.php.net/dtd/package-2.0
     http://pear.php.net/dtd/package-2.0.xsd">
- <name>Itabs_Diagnostic</name>
- <channel>connect.magentocommerce.com/community</channel>
- <summary>Checking class overrides / clashes in Magento</summary>
- <description>Magento Interface</description>
- <lead>
-  <name>Rouven Rieker</name>
-  <user>therouv</user>
-  <email>rouven.rieker@itabs.de</email>
-  <active>yes</active>
- </lead>
- <date>2011-01-27</date>
- <time>07:51:03</time>
- <version>
-  <release>0.1.1</release>
-  <api>0.1.1</api>
- </version>
- <stability>
-  <release>stable</release>
-  <api>stable</api>
- </stability>
- <license>todo</license>
- <notes>
+	<name>FireGento_Core</name>
+	<channel>connect.magentocommerce.com/community</channel>
+	<summary>Debug Extension for Magento</summary>
+	<description>Debug Extension for Magento</description>
+	<lead>
+		<name>Rouven Rieker</name>
+		<user>therouv</user>
+		<email>rouven.rieker@itabs.de</email>
+		<active>yes</active>
+	</lead>
+	<lead>
+		<name>Joerg Weller</name>
+		<user>hackwell</user>
+		<email>weller@flagbit.de</email>
+		<active>yes</active>
+	</lead>
+	<date>2011-01-27</date>
+	<time>07:51:03</time>
+	<version>
+		<release>0.1.1</release>
+		<api>0.1.1</api>
+	</version>
+	<stability>
+		<release>stable</release>
+		<api>stable</api>
+	</stability>
+	<license>todo</license>
+	<notes>
 Stable Release
  </notes>
- <contents>
-  <dir name="/">
-   <dir name="adminhtml">
-    <dir name="default">
-     <dir name="default">
-      <dir name="layout">
-       <file md5sum="3d79990db277cd6064e4051a691118ad" name="itabs_diagnostic.xml" role="magedesign" />
-      </dir> <!-- /adminhtml/default/default/layout -->
-      <dir name="template">
-       <dir name="itabs">
-        <dir name="diagnostic">
-         <file md5sum="da33c78d0e976493c74f00f1658675ab" name="checksystem.phtml" role="magedesign" />
-         <file md5sum="1e3d61f8b442c11751f81deb6b037e73" name="phpinfo.phtml" role="magedesign" />
-        </dir> <!-- /adminhtml/default/default/template/itabs/diagnostic -->
-       </dir> <!-- /adminhtml/default/default/template/itabs -->
-      </dir> <!-- /adminhtml/default/default/template -->
-     </dir> <!-- /adminhtml/default/default -->
-    </dir> <!-- /adminhtml/default -->
-   </dir> <!-- /adminhtml -->
-   <dir name="de_DE">
-    <file md5sum="17502f8a7a72cbc98775cc8c4e41f8fe" name="Itabs_Diagnostic.csv" role="magelocale" />
-   </dir> <!-- /de_DE -->
-   <dir name="en_US">
-    <file md5sum="90204b3a470e5f605646b9bd40de421c" name="Itabs_Diagnostic.csv" role="magelocale" />
-   </dir> <!-- /en_US -->
-   <dir name="Itabs">
-    <dir name="Diagnostic">
-     <dir name="Block">
-      <dir name="CheckEvents">
-       <file md5sum="776fc0101a4c575f23e95a6af1e15a50" name="Grid.php" role="magecommunity" />
-      </dir> <!-- /Itabs/Diagnostic/Block/CheckEvents -->
-      <dir name="CheckRewrites">
-       <file md5sum="57d34a8ffbb8a50c93086dd6adfcaf98" name="Grid.php" role="magecommunity" />
-      </dir> <!-- /Itabs/Diagnostic/Block/CheckRewrites -->
-      <file md5sum="1d6a6b8e3303616d022078323fe0ece9" name="CheckEvents.php" role="magecommunity" />
-      <file md5sum="abf41f91989c191b4876576e94fd948d" name="CheckRewrites.php" role="magecommunity" />
-      <file md5sum="f32333167403fc06b010627639916608" name="CheckSystem.php" role="magecommunity" />
-     </dir> <!-- /Itabs/Diagnostic/Block -->
-     <dir name="controllers">
-      <file md5sum="c00aa5308caf51e6600810304e286019" name="DiagnosticController.php" role="magecommunity" />
-      <file md5sum="e65b2dd7fa8506f69cbb19964f15d7f9" name="IndexController.php" role="magecommunity" />
-     </dir> <!-- /Itabs/Diagnostic/controllers -->
-     <dir name="etc">
-      <file md5sum="057f38e33eb4245a5c1a6183cde1832e" name="config.xml" role="magecommunity" />
-     </dir> <!-- /Itabs/Diagnostic/etc -->
-     <dir name="Helper">
-      <file md5sum="618dc3602ad9b0dea0b1c0fcdf5c4245" name="Data.php" role="magecommunity" />
-     </dir> <!-- /Itabs/Diagnostic/Helper -->
-    </dir> <!-- /Itabs/Diagnostic -->
-   </dir> <!-- /Itabs -->
-   <dir name="modules">
-    <file md5sum="d30adab6789b8dbbd80533da6f12e8ad" name="Itabs_Diagnostic.xml" role="mageetc" />
-   </dir> <!-- /modules -->
-  </dir> <!-- / -->
- </contents>
- <dependencies>
-  <required>
-   <php>
-    <min>5.2.0</min>
-    <max>6.0.0</max>
-   </php>
-   <pearinstaller>
-    <min>1.6.2</min>
-   </pearinstaller>
-  </required>
- </dependencies>
- <phprelease />
- <changelog>
-  <release>
-   <version>
-    <release>0.1.1</release>
-    <api>0.1.1</api>
-   </version>
-   <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <date>2011-01-27</date>
-   <license>todo</license>
-   <notes>
+	<contents>
+	</contents>
+	<dependencies>
+		<required>
+			<php>
+				<min>5.2.0</min>
+				<max>6.0.0</max>
+			</php>
+			<pearinstaller>
+				<min>1.6.2</min>
+			</pearinstaller>
+		</required>
+	</dependencies>
+	<phprelease />
+	<changelog>
+		<release>
+			<version>
+				<release>0.1.1</release>
+				<api>0.1.1</api>
+			</version>
+			<stability>
+				<release>stable</release>
+				<api>stable</api>
+			</stability>
+			<date>2011-01-27</date>
+			<license>todo</license>
+			<notes>
 Stable Release
    </notes>
-  </release>
- </changelog>
+		</release>
+	</changelog>
 </package>
