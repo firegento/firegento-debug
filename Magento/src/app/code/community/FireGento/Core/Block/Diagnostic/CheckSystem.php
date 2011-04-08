@@ -49,7 +49,6 @@ class FireGento_Core_Block_Diagnostic_CheckSystem
                 $inactive++;
             }
         }
-
         return $this->__(
             '%s caches active, %s caches inactive',
             $active,
