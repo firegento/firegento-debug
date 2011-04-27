@@ -37,7 +37,7 @@ class FireGento_Core_Block_Diagnostic_CheckEvents
      */
     public function __construct()
     {
-        $this->_controller = 'diagnostic_checkevents';
+        $this->_controller = 'diagnostic_checkEvents';
         $this->_blockGroup = 'firegento_core';
         $this->_headerText = $this->__('Check Events');
         parent::__construct();

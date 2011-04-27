@@ -37,7 +37,7 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites
      */
     public function __construct()
     {
-        $this->_controller = 'diagnostic_checkrewrites';
+        $this->_controller = 'diagnostic_checkRewrites';
         $this->_blockGroup = 'firegento_core';
         $this->_headerText = $this->__('Check Rewrites');
         parent::__construct();

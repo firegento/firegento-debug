@@ -8,19 +8,19 @@
 
     <firegento_core_diagnostic_checkrewrites>
         <reference name="content">
-            <block type="firegento_core/diagnostic_checkrewrites" name="firegento.diagnostic.checkrewrites" />
+            <block type="firegento_core/diagnostic_checkRewrites" name="firegento.diagnostic.checkrewrites" />
         </reference>
     </firegento_core_diagnostic_checkrewrites>
 
     <firegento_core_diagnostic_checkevents>
         <reference name="content">
-            <block type="firegento_core/diagnostic_checkevents" name="firegento.diagnostic.checkevents" />
+            <block type="firegento_core/diagnostic_checkEvents" name="firegento.diagnostic.checkevents" />
         </reference>
     </firegento_core_diagnostic_checkevents>
 
     <firegento_core_diagnostic_checksystem>
         <reference name="content">
-            <block type="firegento_core/diagnostic_checksystem" name="firegento.diagnostic.checksystem" template="firegento/core/diagnostic/checksystem.phtml" />
+            <block type="firegento_core/diagnostic_checkSystem" name="firegento.diagnostic.checksystem" template="firegento/core/diagnostic/checksystem.phtml" />
         </reference>
     </firegento_core_diagnostic_checksystem>
 
