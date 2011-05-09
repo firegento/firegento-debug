@@ -96,7 +96,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
                 'header'   => $this->__('Code Pool'),
                 'align'    => 'left',
                 'index'    => 'code_pool',
-                'width'    => '100px',
+                'width'    => '80px',
                 'sortable' => true
             )
         );
@@ -105,7 +105,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
             array(
                 'header'         => $this->__('Active'),
                 'align'          => 'left',
-                'width'          => '125px',
+                'width'          => '100px',
                 'index'          => 'active',
                 'type'           => 'options',
                 'options'        => array(0 => $this->__('False'), 1 => $this->__('True')),
@@ -126,7 +126,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
             array(
                 'header'         => $this->__('Path exists'),
                 'align'          => 'left',
-                'width'          => '125px',
+                'width'          => '100px',
                 'index'          => 'path_exists',
                 'type'           => 'options',
                 'options'        => array(0 => $this->__('No'), 1 => $this->__('Yes')),
@@ -138,11 +138,21 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
             array(
                 'header'         => $this->__('config.xml exists'),
                 'align'          => 'left',
-                'width'          => '125px',
+                'width'          => '100px',
                 'index'          => 'config_exists',
                 'type'           => 'options',
                 'options'        => array(0 => $this->__('No'), 1 => $this->__('Yes')),
                 'frame_callback' => array($this, 'decorateConfigExists')
+            )
+        );
+        $this->addColumn(
+            'dependencies',
+            array(
+                'header'   => $this->__('Module Dependencies'),
+                'align'    => 'left',
+                'index'    => 'dependencies',
+                'width'    => '350px',
+                'sortable' => false
             )
         );
         return parent::_prepareColumns();
@@ -227,7 +237,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
     {
         $modules = array();
         $config = Mage::getConfig();
-		foreach ($config->getNode('modules')->children() as $item) {
+		foreach ($config->getNode('modules')->children() as $moduleName => $item) {
 		    $active       = ($item->active == 'true') ? true : false;
             $codePool     = (string) $config->getModuleConfig($item->getName())->codePool;
 			$path         = $config->getOptions()->getCodeDir() . DS . $codePool . DS . uc_words($item->getName(), DS);
@@ -236,13 +246,25 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
 			$configExists = file_exists($path . '/etc/config.xml');
 			$configExists = $configExists ? true : false;
 
+			$dependencies = '-';
+            if ($item->depends) {
+		        $depends = array();
+                foreach ($item->depends->children() as $depend) {
+                    $depends[] = $depend->getName();
+                }
+                if (is_array($depends) && count($depends) > 0) {
+                    $dependencies = implode(', ', $depends);
+                }
+            }
+
 			$modules[$item->getName()] = array(
 			    'name'          => $item->getName(),
 			    'active'        => $active,
 			    'code_pool'     => $codePool,
 			    'path'          => $path,
 			    'path_exists'   => $pathExists,
-			    'config_exists' => $configExists
+			    'config_exists' => $configExists,
+			    'dependencies'  => $dependencies
 			);
 		}
 		return $modules;
