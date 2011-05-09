@@ -39,6 +39,8 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
     {
         parent::__construct();
         $this->setId('check_events_grid');
+        $this->setDefaultSort('event');
+        $this->setDefaultDir('ASC');
         $this->_filterVisibility = false;
         $this->_pagerVisibility  = false;
     }

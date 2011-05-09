@@ -39,6 +39,8 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
     {
         parent::__construct();
         $this->setId('check_modules_grid');
+        $this->setDefaultSort('name');
+        $this->setDefaultDir('ASC');
         $this->_filterVisibility = false;
         $this->_pagerVisibility  = false;
     }
