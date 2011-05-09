@@ -6,6 +6,12 @@
         </reference>
     </firegento_core_index_about>
 
+    <firegento_core_diagnostic_checkmodules>
+        <reference name="content">
+            <block type="firegento_core/diagnostic_checkModules" name="firegento.diagnostic.checkmodules" />
+        </reference>
+    </firegento_core_diagnostic_checkmodules>
+
     <firegento_core_diagnostic_checkrewrites>
         <reference name="content">
             <block type="firegento_core/diagnostic_checkRewrites" name="firegento.diagnostic.checkrewrites" />

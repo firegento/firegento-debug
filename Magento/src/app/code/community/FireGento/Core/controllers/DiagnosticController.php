@@ -43,6 +43,23 @@ class FireGento_Core_DiagnosticController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento_core');
+        $this->_title($this->__('Index') . ' / '. 'FIREGENTO');
+        $this->renderLayout();
+    }
+
+    /**
+     * checkModulesAction
+     * 
+     * Checks all modules in the Magento system and display them
+     * in a grid.
+     * 
+     * @return void
+     */
+    public function checkModulesAction()
+    {
+        $this->loadLayout();
+        $this->_setActiveMenu('firegento_core');
+        $this->_title($this->__('Check Modules') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
 
@@ -58,6 +75,7 @@ class FireGento_Core_DiagnosticController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento_core');
+        $this->_title($this->__('Check Rewrites') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
 
@@ -73,6 +91,7 @@ class FireGento_Core_DiagnosticController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento_core');
+        $this->_title($this->__('Check Events') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
 
@@ -88,6 +107,7 @@ class FireGento_Core_DiagnosticController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento_core');
+        $this->_title($this->__('Check System') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
 
@@ -102,6 +122,7 @@ class FireGento_Core_DiagnosticController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento_core');
+        $this->_title($this->__('phpinfo') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
 }

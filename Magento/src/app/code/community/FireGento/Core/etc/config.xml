@@ -52,25 +52,30 @@
                         <title>Diagnostic</title>
                         <sort_order>10</sort_order>
                         <children>
+                            <check_modules translate="title" module="firegento_core">
+                                <title>Check Modules</title>
+                                <action>firegento/diagnostic/checkModules</action>
+                                <sort_order>10</sort_order>
+                            </check_modules>
 		                    <check_rewrites translate="title" module="firegento_core">
 		                        <title>Check Rewrites</title>
 		                        <action>firegento/diagnostic/checkRewrites</action>
-		                        <sort_order>10</sort_order>
+		                        <sort_order>20</sort_order>
 		                    </check_rewrites>
 		                    <check_events translate="title" module="firegento_core">
 		                        <title>Check Events</title>
 		                        <action>firegento/diagnostic/checkEvents</action>
-		                        <sort_order>20</sort_order>
+		                        <sort_order>30</sort_order>
 		                    </check_events>
 		                    <check_system translate="title" module="firegento_core">
 		                        <title>Check System</title>
 		                        <action>firegento/diagnostic/checkSystem</action>
-		                        <sort_order>30</sort_order>
+		                        <sort_order>40</sort_order>
 		                    </check_system>
 		                    <phpinfo translate="title" module="firegento_core">
 		                        <title>phpinfo()</title>
 		                        <action>firegento/diagnostic/phpinfo</action>
-		                        <sort_order>40</sort_order>
+		                        <sort_order>50</sort_order>
 		                    </phpinfo>
                         </children>
                     </diagnostic>

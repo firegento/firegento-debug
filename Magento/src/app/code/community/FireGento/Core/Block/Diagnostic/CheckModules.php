@@ -20,7 +20,7 @@
  * @version   $Id:$
  */
 /**
- * Index Controller
+ * CheckModules Grid Container
  *
  * @category  FireGento
  * @package   FireGento_Core
@@ -29,21 +29,18 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   $Id:$
  */
-class FireGento_Core_IndexController
-    extends Mage_Adminhtml_Controller_Action
+class FireGento_Core_Block_Diagnostic_CheckModules
+    extends Mage_Adminhtml_Block_Widget_Grid_Container
 {
     /**
-     * aboutAction
-     * 
-     * Renders the About FireGento page..
-     * 
-     * @return void
+     * Class constructor
      */
-    public function aboutAction()
+    public function __construct()
     {
-        $this->loadLayout();
-        $this->_setActiveMenu('firegento_core');
-        $this->_title($this->__('About FireGento') . ' / '. 'FIREGENTO');
-        $this->renderLayout();
+        $this->_controller = 'diagnostic_checkModules';
+        $this->_blockGroup = 'firegento_core';
+        $this->_headerText = $this->__('Check Modules');
+        parent::__construct();
+        $this->_removeButton('add');
     }
 }
