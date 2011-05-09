@@ -59,8 +59,8 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
         $sortDir   = strtoupper($sortDir);
 
         // Get modules and sort them
-        $modules = $this->_getModules();
-        $modules = $this->_sortValues($modules, $sortValue, $sortDir);
+        $modules = $this->_loadModules();
+        $modules = Mage::helper('firegento_core')->sortMultiDimArr($modules, $sortValue, $sortDir);
 
         // Add all modules to the collection
         $collection = new Varien_Data_Collection();        
@@ -223,7 +223,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
      * 
      * @return array Modules
      */
-    private function _getModules()
+    private function _loadModules()
     {
         $modules = array();
         $config = Mage::getConfig();
@@ -246,32 +246,5 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
 			);
 		}
 		return $modules;
-    }
-
-    /**
-     * Sorts a multi-dimensional array with the given values
-     * 
-     * Seen and modified from: http://www.firsttube.com/read/sorting-a-multi-dimensional-array-with-php/
-     * 
-     * @param array  $arr Array to sort
-     * @param string $key Field to sort
-     * @param string $dir Direction to sort
-     * 
-     * @return array Sorted array
-     */
-    private function _sortValues($arr, $key, $dir='ASC')
-    {
-        foreach ($arr as $k => $v) {
-		    $b[$k] = strtolower($v[$key]);
-    	}
-    	if ($dir == 'ASC') {
-    	    asort($b);
-    	} else {
-    	    arsort($b);
-    	}
-    	foreach ($b as $key => $val) {
-    		$c[] = $arr[$key];
-    	}
-    	return $c;
     }
 }
