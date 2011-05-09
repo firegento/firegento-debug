@@ -50,34 +50,26 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
      */
     protected function _prepareCollection()
     {
-        $collection = new Varien_Data_Collection();
-        $rewrites = $this->_loadModules();
+        // Get the value to sort
+        $sortValue = $this->getRequest()->getParam('sort', 'event');
+        $sortValue = strtolower($sortValue);
 
-        foreach ($rewrites as $rewriteNodes) {
-            foreach ($rewriteNodes as $n) {
-                $nParent = $n->xpath('..');
-                $module = (string) $nParent[0]->getName();
-                $nParent2 = $nParent[0]->xpath('..');
-                $component = (string) $nParent2[0]->getName();
-                $pathNodes = $n->children();
+        // Get the direction to sort
+        $sortDir   = $this->getRequest()->getParam('dir', 'ASC');
+        $sortDir   = strtoupper($sortDir);
 
-                foreach ($pathNodes as $pathNode) {
-                    $eventName = (string) $pathNode->getName();
-                    $instance = $pathNode->xpath('observers/node()/class');
-                    $instance = (string)current($instance);
-                    $instance = Mage::getConfig()->getModelClassName($instance);
-                    
-                    $collection->addItem(
-                        new Varien_Object(
-                            array(
-                                'event' => $eventName,
-                                'location' => $instance
-                            )
-                        )
-                    );
-                }
-            }
+        // Get events and sort them
+        $events = $this->_loadModules();
+        $events = Mage::helper('firegento_core')->sortMultiDimArr($events, $sortValue, $sortDir);
+
+        // Add all modules to the collection
+        $collection = new Varien_Data_Collection();        
+        foreach ($events as $key => $val) {
+            $item = new Varien_Object($val);
+            $collection->addItem($item);
         }
+
+        // Set the collection in the grid and return :-)
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -97,7 +89,7 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
                 'align'     => 'left',
                 'index'     => 'event',
                 'width'     => '50%',
-                'sortable'  => false,
+                'sortable'  => true,
             )
         );
         $this->addColumn(
@@ -107,7 +99,7 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
                 'align'     => 'left',
                 'index'     => 'location',
                 'width'     => '50%',
-                'sortable'  => false,
+                'sortable'  => true,
             )
         );
         return parent::_prepareColumns();
@@ -135,7 +127,7 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
         $fileName = 'config.xml';
         $modules = Mage::getConfig()->getNode('modules')->children();
 
-        $return = array();
+        $rewrites = array();
         foreach ($modules as $modName=>$module) {
             if ($module->is('active')) {
                 $configFile = Mage::getConfig()->getModuleDir('etc', $modName).DS.$fileName;
@@ -144,10 +136,34 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
                 $xml = simplexml_load_string($xml);
                                 
                 if ($xml instanceof SimpleXMLElement) {
-                    $return[$modName] = $xml->xpath('//events');
+                    $rewrites[$modName] = $xml->xpath('//events');
                 }
             }
         }
+
+        $return = array();
+        foreach ($rewrites as $rewriteNodes) {
+            foreach ($rewriteNodes as $n) {
+                $nParent = $n->xpath('..');
+                $module = (string) $nParent[0]->getName();
+                $nParent2 = $nParent[0]->xpath('..');
+                $component = (string) $nParent2[0]->getName();
+                $pathNodes = $n->children();
+
+                foreach ($pathNodes as $pathNode) {
+                    $eventName = (string) $pathNode->getName();
+                    $instance = $pathNode->xpath('observers/node()/class');
+                    $instance = (string)current($instance);
+                    $instance = Mage::getConfig()->getModelClassName($instance);
+
+                    $return[uniqid()] = array(
+						'event'    => $eventName,
+                        'location' => $instance
+                    );
+                }
+            }
+        }
+
         return $return;
     }
 }
