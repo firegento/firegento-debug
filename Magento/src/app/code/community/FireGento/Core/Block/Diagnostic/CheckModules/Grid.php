@@ -120,7 +120,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
                 'header'   => $this->__('Path'),
                 'align'    => 'left',
                 'index'    => 'path',
-                'sortable' => false
+                'sortable' => true
             )
         );
         $this->addColumn(

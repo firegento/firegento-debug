@@ -32,7 +32,7 @@
 
     <firegento_core_diagnostic_phpinfo>
         <reference name="content">
-            <block type="core/template" name="firegento.diagnostic.phpinfo" template="firegento/core/diagnostic/phpinfo.phtml" />
+            <block type="firegento_core/diagnostic_phpinfo" name="firegento.diagnostic.phpinfo" template="firegento/core/diagnostic/phpinfo.phtml" />
         </reference>
     </firegento_core_diagnostic_phpinfo>
 </layout>
