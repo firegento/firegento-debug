@@ -33,3 +33,6 @@
 "Module Name","Modulname"
 "Check Modules","Überprüfe Module"
 "Module Dependencies","Modul Abhängigkeiten"
+"Select Log File","Log-Datei auswählen"
+"Please Select","Bitte wählen"
+"There are no log files available yet. Please make sure that logging is enabled.","Es sind bis jetzt keine Log-Dateien vorhanden. Bitte stellen Sie sicher, dass das Logging aktiviert ist."

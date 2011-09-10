@@ -1,0 +1,116 @@
+<?php 
+/** @var $this FireGento_Core_Block_Log_Console */
+
+$logFiles = $this->getLogFiles();
+?>
+
+<div id="page:main-container">
+	<div class="content-header">
+		<table cellspacing="0">
+			<tr>
+				<td style="width:50%;"><h3><?php echo $this->__('Magento Logs'); ?></h3></td>
+				<td class="form-buttons"></td>
+			</tr>
+		</table>
+	</div>
+<?php if (count($logFiles) == 0): ?>
+	<div class="entry-edit">
+		<div class="fieldset" id="base_fieldset">
+		    <div class="hor-scroll">
+				<p><?php echo $this->__('There are no log files available yet. Please make sure that logging is enabled.')?></p>
+			</div>
+		</div>
+	</div>
+
+<?php else: ?>
+	<?php $currentFile = Mage::app()->getRequest()->getParam('file');?>
+	<div class="entry-edit">
+		<div class="fieldset" id="base_fieldset">
+		    <div class="hor-scroll">
+				<table class="form-list" cellspacing="0">
+					<colgroup class="label"></colgroup>
+					<colgroup class="value"></colgroup>
+					<tbody>
+						<tr id="row_current_log_file">
+							<td class="label"><label for=""><?php echo $this->__('Select Log File')?></label></td>
+							<td class="value">
+								<select onchange="setLocation(this.value)">
+									<option value="<?php echo $this->getSecureUrl()?>"><?php echo $this->__('Please Select')?></option>
+    							    <?php foreach ($logFiles as $logFile): ?>
+    									<option value="<?php echo $this->getSecureUrl($logFile['text'])?>" <?php if ($logFile['text'] == $currentFile):?>selected="selected"<?php endif;?>><?php echo $logFile['text']?></option>
+    							    <?php endforeach;?>
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<?php if ($currentFile): ?>
+    <div id="log_output" style="width:100%;height:500px;overflow:auto;margin:0px;padding:3px;background:black;color:#2EC029;font:normal 11px Lucida Console, Courier New, serif;"></div>
+
+    <script type="text/javascript">
+    //<![CDATA[
+    if (parent && parent.disableInputs) {
+        parent.disableInputs(true);
+    }
+    if (typeof auto_scroll == 'undefined') {
+        var auto_scroll = window.setInterval(console_scroll, 1);
+    }
+
+    function console_scroll()
+    {
+        if (typeof top.$!='function') {
+            return;
+        }
+
+        dh = $("log_output").scrollHeight
+        ch = $("log_output").clientHeight
+        if (dh > ch) {
+    	    moveme = dh - ch
+    	    $("log_output").scrollTop = moveme;
+        }
+    }
+
+    var position = 0;
+
+    function getUpdates() {
+    	new Ajax.Request('<?php echo $this->getUrl('*/*/tail', array('_secure' => Mage::app()->getRequest()->isSecure())) ?>',
+    	{
+    		method: 'get',
+    		parameters: { position:position, file:'<?php echo $currentFile?>' },
+    		loaderArea: false,
+    		onSuccess: function(response) { 
+    			var output = $("log_output");
+    			var result = response.responseText.evalJSON(); 
+
+    			logText = result.text.replace(/\n/g, "<br />")
+    			if (logText != "<br />") {
+    				output.innerHTML += logText;
+    			}
+
+    			position = result.position;
+    		},
+    	});
+    }
+
+    getUpdates();
+
+    var pe = new PeriodicalExecuter(
+    	function(pe) {
+    		getUpdates();
+    	},
+    	2
+    );
+
+    if (parent && parent.disableInputs) {
+        parent.disableInputs(false);
+    }
+
+    //]]>
+    </script>
+    <?php endif;?>
+<?php endif;?>
+</div>

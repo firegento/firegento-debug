@@ -5,21 +5,18 @@
             <version>1.0.0</version>
         </FireGento_Core>
     </modules>
-    
     <global>
         <blocks>
             <firegento_core>
                 <class>FireGento_Core_Block</class>
             </firegento_core>
         </blocks>
-        
         <helpers>
             <firegento_core>
                 <class>FireGento_Core_Helper</class>
             </firegento_core>
         </helpers>
     </global>
-    
     <admin>
         <routers>
             <firegento_core>
@@ -31,7 +28,6 @@
             </firegento_core>
         </routers>
     </admin>
-    
     <adminhtml>
         <translate>
             <modules>
@@ -42,52 +38,6 @@
                 </mage_adminhtml>
             </modules>
         </translate>
-
-        <menu>
-            <firegento_core translate="title" module="firegento_core">
-                <title>FIREGENTO</title>
-                <sort_order>500</sort_order>
-                <children>
-                    <diagnostic translate="title" module="firegento_core">
-                        <title>Diagnostic</title>
-                        <sort_order>10</sort_order>
-                        <children>
-                            <check_modules translate="title" module="firegento_core">
-                                <title>Check Modules</title>
-                                <action>firegento/diagnostic/checkModules</action>
-                                <sort_order>10</sort_order>
-                            </check_modules>
-		                    <check_rewrites translate="title" module="firegento_core">
-		                        <title>Check Rewrites</title>
-		                        <action>firegento/diagnostic/checkRewrites</action>
-		                        <sort_order>20</sort_order>
-		                    </check_rewrites>
-		                    <check_events translate="title" module="firegento_core">
-		                        <title>Check Events</title>
-		                        <action>firegento/diagnostic/checkEvents</action>
-		                        <sort_order>30</sort_order>
-		                    </check_events>
-		                    <check_system translate="title" module="firegento_core">
-		                        <title>Check System</title>
-		                        <action>firegento/diagnostic/checkSystem</action>
-		                        <sort_order>40</sort_order>
-		                    </check_system>
-		                    <phpinfo translate="title" module="firegento_core">
-		                        <title>phpinfo()</title>
-		                        <action>firegento/diagnostic/phpinfo</action>
-		                        <sort_order>50</sort_order>
-		                    </phpinfo>
-                        </children>
-                    </diagnostic>
-                    <about_firegento translate="title" module="firegento_core">
-                        <title>About FireGento</title>
-                        <action>firegento/index/about</action>
-                        <sort_order>20</sort_order>
-                    </about_firegento>
-                </children>
-            </firegento_core>
-        </menu>
-
         <acl>
             <resources>
                 <admin>
@@ -112,7 +62,6 @@
                 </admin>
             </resources>
         </acl>
-
         <layout>
             <updates>
                 <firegento_core>
