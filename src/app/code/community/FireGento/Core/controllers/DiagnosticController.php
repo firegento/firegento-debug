@@ -42,7 +42,7 @@ class FireGento_Core_DiagnosticController
     public function indexAction()
     {
         $this->loadLayout();
-        $this->_setActiveMenu('firegento_core');
+        $this->_setActiveMenu('firegento');
         $this->_title($this->__('Index') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
@@ -58,7 +58,7 @@ class FireGento_Core_DiagnosticController
     public function checkModulesAction()
     {
         $this->loadLayout();
-        $this->_setActiveMenu('firegento_core');
+        $this->_setActiveMenu('firegento');
         $this->_title($this->__('Check Modules') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
@@ -74,7 +74,7 @@ class FireGento_Core_DiagnosticController
     public function checkRewritesAction()
     {
         $this->loadLayout();
-        $this->_setActiveMenu('firegento_core');
+        $this->_setActiveMenu('firegento');
         $this->_title($this->__('Check Rewrites') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
@@ -90,7 +90,7 @@ class FireGento_Core_DiagnosticController
     public function checkEventsAction()
     {
         $this->loadLayout();
-        $this->_setActiveMenu('firegento_core');
+        $this->_setActiveMenu('firegento');
         $this->_title($this->__('Check Events') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
@@ -106,7 +106,7 @@ class FireGento_Core_DiagnosticController
     public function checkSystemAction()
     {
         $this->loadLayout();
-        $this->_setActiveMenu('firegento_core');
+        $this->_setActiveMenu('firegento');
         $this->_title($this->__('Check System') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
@@ -121,7 +121,7 @@ class FireGento_Core_DiagnosticController
     public function phpinfoAction()
     {
         $this->loadLayout();
-        $this->_setActiveMenu('firegento_core');
+        $this->_setActiveMenu('firegento');
         $this->_title($this->__('phpinfo') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }

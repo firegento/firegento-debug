@@ -10,8 +10,8 @@ class FireGento_Core_Block_Log_Console extends Mage_Core_Block_Template
 	public function __construct()
 	{
 		$this->_controller = 'log_console';
-		$this->_blockGroup = 'firegento_core';
-		$this->_headerText = Mage::helper('firegento_core')->__('Log Console');
+		$this->_blockGroup = 'firegento';
+		$this->_headerText = Mage::helper('firegento')->__('Log Console');
 		$this->setTemplate('firegento/core/log/console.phtml');    
 	}
 

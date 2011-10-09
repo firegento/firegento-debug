@@ -1,35 +1,35 @@
 <?xml version="1.0"?>
 <config>
 	<menu>
-	    <firegento_core translate="title" module="firegento_core">
+	    <firegento translate="title" module="firegento">
 	        <title>FIREGENTO</title>
 	        <sort_order>500</sort_order>
 	        <children>
-	            <diagnostic translate="title" module="firegento_core">
+	            <diagnostic translate="title" module="firegento">
 	                <title>Diagnostic</title>
 	                <sort_order>10</sort_order>
 	                <children>
-	                    <check_modules translate="title" module="firegento_core">
+	                    <check_modules translate="title" module="firegento">
 	                        <title>Check Modules</title>
 	                        <action>firegento/diagnostic/checkModules</action>
 	                        <sort_order>10</sort_order>
 	                    </check_modules>
-	                    <check_rewrites translate="title" module="firegento_core">
+	                    <check_rewrites translate="title" module="firegento">
 	                        <title>Check Rewrites</title>
 	                        <action>firegento/diagnostic/checkRewrites</action>
 	                        <sort_order>20</sort_order>
 	                    </check_rewrites>
-	                    <check_events translate="title" module="firegento_core">
+	                    <check_events translate="title" module="firegento">
 	                        <title>Check Events</title>
 	                        <action>firegento/diagnostic/checkEvents</action>
 	                        <sort_order>30</sort_order>
 	                    </check_events>
-	                    <check_system translate="title" module="firegento_core">
+	                    <check_system translate="title" module="firegento">
 	                        <title>Check System</title>
 	                        <action>firegento/diagnostic/checkSystem</action>
 	                        <sort_order>40</sort_order>
 	                    </check_system>
-	                    <phpinfo translate="title" module="firegento_core">
+	                    <phpinfo translate="title" module="firegento">
 	                        <title>phpinfo()</title>
 	                        <action>firegento/diagnostic/phpinfo</action>
 	                        <sort_order>50</sort_order>
@@ -41,12 +41,12 @@
 	                <action>firegento/log/index</action>
 	                <sort_order>20</sort_order>
 	            </logs>
-	            <about_firegento translate="title" module="firegento_core">
+	            <about_firegento translate="title" module="firegento">
 	                <title>About FireGento</title>
 	                <action>firegento/index/about</action>
 	                <sort_order>30</sort_order>
 	            </about_firegento>
 	        </children>
-	    </firegento_core>
+	    </firegento>
 	</menu>
 </config>

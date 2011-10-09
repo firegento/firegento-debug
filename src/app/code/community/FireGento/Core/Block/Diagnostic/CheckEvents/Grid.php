@@ -62,7 +62,7 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
 
         // Get events and sort them
         $events = $this->_loadModules();
-        $events = Mage::helper('firegento_core')->sortMultiDimArr($events, $sortValue, $sortDir);
+        $events = Mage::helper('firegento')->sortMultiDimArr($events, $sortValue, $sortDir);
 
         // Add all modules to the collection
         $collection = new Varien_Data_Collection();        

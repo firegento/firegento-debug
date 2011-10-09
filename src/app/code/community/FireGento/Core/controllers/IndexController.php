@@ -42,7 +42,7 @@ class FireGento_Core_IndexController
     public function aboutAction()
     {
         $this->loadLayout();
-        $this->_setActiveMenu('firegento_core');
+        $this->_setActiveMenu('firegento');
         $this->_title($this->__('About FireGento') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }

@@ -7,25 +7,25 @@
     </modules>
     <global>
         <blocks>
-            <firegento_core>
+            <firegento>
                 <class>FireGento_Core_Block</class>
-            </firegento_core>
+            </firegento>
         </blocks>
         <helpers>
-            <firegento_core>
+            <firegento>
                 <class>FireGento_Core_Helper</class>
-            </firegento_core>
+            </firegento>
         </helpers>
     </global>
     <admin>
         <routers>
-            <firegento_core>
+            <firegento>
                 <use>admin</use>
                 <args>
                     <module>FireGento_Core</module>
                     <frontName>firegento</frontName>
                 </args>
-            </firegento_core>
+            </firegento>
         </routers>
     </admin>
     <adminhtml>
@@ -33,7 +33,7 @@
             <modules>
                 <mage_adminhtml>
                     <files>
-                        <firegento_core>FireGento_Core.csv</firegento_core>
+                        <firegento>FireGento_Core.csv</firegento>
                     </files>
                 </mage_adminhtml>
             </modules>
@@ -42,7 +42,7 @@
             <resources>
                 <admin>
                     <children>
-                        <firegento_core>
+                        <firegento>
                             <children>
                                 <check_rewrites>
                                     <title>Check Rewrites</title>
@@ -57,16 +57,16 @@
                                     <title>phpinfo()</title>
                                 </phpinfo>
                             </children>
-                        </firegento_core>
+                        </firegento>
                     </children>
                 </admin>
             </resources>
         </acl>
         <layout>
             <updates>
-                <firegento_core>
+                <firegento>
                     <file>firegento_core.xml</file>
-                </firegento_core>
+                </firegento>
             </updates>
         </layout>
     </adminhtml>

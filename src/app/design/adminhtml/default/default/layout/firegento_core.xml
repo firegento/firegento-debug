@@ -1,38 +1,38 @@
 <?xml version="1.0"?>
 <layout>
-    <firegento_core_index_about>
+    <firegento_index_about>
         <reference name="content">
             <block type="core/template" name="firegento.index.about" template="firegento/core/index/about.phtml" />
         </reference>
-    </firegento_core_index_about>
+    </firegento_index_about>
 
-    <firegento_core_diagnostic_checkmodules>
+    <firegento_diagnostic_checkmodules>
         <reference name="content">
-            <block type="firegento_core/diagnostic_checkModules" name="firegento.diagnostic.checkmodules" />
+            <block type="firegento/diagnostic_checkModules" name="firegento.diagnostic.checkmodules" />
         </reference>
-    </firegento_core_diagnostic_checkmodules>
+    </firegento_diagnostic_checkmodules>
 
-    <firegento_core_diagnostic_checkrewrites>
+    <firegento_diagnostic_checkrewrites>
         <reference name="content">
-            <block type="firegento_core/diagnostic_checkRewrites" name="firegento.diagnostic.checkrewrites" />
+            <block type="firegento/diagnostic_checkRewrites" name="firegento.diagnostic.checkrewrites" />
         </reference>
-    </firegento_core_diagnostic_checkrewrites>
+    </firegento_diagnostic_checkrewrites>
 
-    <firegento_core_diagnostic_checkevents>
+    <firegento_diagnostic_checkevents>
         <reference name="content">
-            <block type="firegento_core/diagnostic_checkEvents" name="firegento.diagnostic.checkevents" />
+            <block type="firegento/diagnostic_checkEvents" name="firegento.diagnostic.checkevents" />
         </reference>
-    </firegento_core_diagnostic_checkevents>
+    </firegento_diagnostic_checkevents>
 
-    <firegento_core_diagnostic_checksystem>
+    <firegento_diagnostic_checksystem>
         <reference name="content">
-            <block type="firegento_core/diagnostic_checkSystem" name="firegento.diagnostic.checksystem" template="firegento/core/diagnostic/checksystem.phtml" />
+            <block type="firegento/diagnostic_checkSystem" name="firegento.diagnostic.checksystem" template="firegento/core/diagnostic/checksystem.phtml" />
         </reference>
-    </firegento_core_diagnostic_checksystem>
+    </firegento_diagnostic_checksystem>
 
-    <firegento_core_diagnostic_phpinfo>
+    <firegento_diagnostic_phpinfo>
         <reference name="content">
-            <block type="firegento_core/diagnostic_phpinfo" name="firegento.diagnostic.phpinfo" template="firegento/core/diagnostic/phpinfo.phtml" />
+            <block type="firegento/diagnostic_phpinfo" name="firegento.diagnostic.phpinfo" template="firegento/core/diagnostic/phpinfo.phtml" />
         </reference>
-    </firegento_core_diagnostic_phpinfo>
+    </firegento_diagnostic_phpinfo>
 </layout>

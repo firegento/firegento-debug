@@ -62,7 +62,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
 
         // Get modules and sort them
         $modules = $this->_loadModules();
-        $modules = Mage::helper('firegento_core')->sortMultiDimArr($modules, $sortValue, $sortDir);
+        $modules = Mage::helper('firegento')->sortMultiDimArr($modules, $sortValue, $sortDir);
 
         // Add all modules to the collection
         $collection = new Varien_Data_Collection();        

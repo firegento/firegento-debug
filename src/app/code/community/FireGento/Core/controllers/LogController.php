@@ -89,9 +89,9 @@ class FireGento_Core_LogController extends Mage_Adminhtml_Controller_Action
     public function indexAction()
     {
         $this->loadLayout();
-        $this->_setActiveMenu('firegento_core');
-        $this->_title($this->__('Index') . ' / '. 'FIREGENTO');
-        $this->_addContent($this->getLayout()->createBlock('firegento_core/log_console'));
+        $this->_setActiveMenu('firegento');
+        $this->_title($this->__('Log') . ' / '. 'FIREGENTO');
+        $this->_addContent($this->getLayout()->createBlock('firegento/log_console'));
         $this->renderLayout();
     }
 
