@@ -58,6 +58,17 @@
                                 </phpinfo>
                             </children>
                         </firegento>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <firegento>
+                                            <title>FIREGENTO</title>
+                                        </firegento>                                            
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
                     </children>
                 </admin>
             </resources>
@@ -70,4 +81,13 @@
             </updates>
         </layout>
     </adminhtml>
+    <default>
+        <firegento>
+            <log>
+                <log_file>firegento.log</log_file>
+                <force_log>1</force_log>
+                <firelogger>0</firelogger>
+            </log>
+        </firegento>
+    </default>  
 </config>
