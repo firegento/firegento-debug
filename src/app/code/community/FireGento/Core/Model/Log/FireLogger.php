@@ -36,8 +36,17 @@ if (!defined('FIRELOGGER_NO_DEFAULT_LOGGER')) define('FIRELOGGER_NO_DEFAULT_LOGG
  */
 class FireGento_Core_Model_Log_Firelogger extends FireLogger
 {
+    /**
+     * Class Constructor
+     * 
+     * @return void
+     */
 	public function __construct()
 	{
-		parent::__construct('php', 'background-color: #9998d1');
+	    $flag = Mage::helper('firegento')->isFireloggerAllowed();
+	    FireLogger::$enabled = $flag;
+	    if ($flag) {
+		    parent::__construct('php', 'background-color: #9998d1');
+	    }
 	}
 }

@@ -83,11 +83,21 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
      */
     public function firelogger($message)
     {
-        $flagFirelogger = Mage::getStoreConfigFlag(self::XML_PATH_FIREGENTO_FIRELOGGER);
-        $flagPhpVersion = version_compare(phpversion(), '5.2.0', '>');
+        $flagFirelogger = $this->isFireloggerAllowed();
+        $flagPhpVersion = version_compare(phpversion(), '5.3.0', '>');
         if ($flagFirelogger && $flagPhpVersion) {
-            Mage::getSingleton('firegento/log_firelogger', array('enabled' => $flagFirelogger))->log($message);
+            Mage::getSingleton('firegento/log_firelogger')->log($message);
         }
         return $this;
+    }
+
+    /**
+     * Checks if firelogger is allowed
+     * 
+     * @return bool Allowed/Not allowed
+     */
+    public function isFireloggerAllowed()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_FIREGENTO_FIRELOGGER);
     }
 }
