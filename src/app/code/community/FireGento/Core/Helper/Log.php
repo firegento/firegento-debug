@@ -34,6 +34,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
     const XML_PATH_FIREGENTO_LOG_FILE   = 'firegento/log/log_file';
     const XML_PATH_FIREGENTO_FORCE_LOG  = 'firegento/log/force_log';
     const XML_PATH_FIREGENTO_FIRELOGGER = 'firegento/log/firelogger';
+    const XML_PATH_FIREGENTO_FIREPHP    = 'firegento/log/firephp';
 
     /**
      * Logs the given message in the specified log file..
@@ -88,6 +89,23 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * Logs the message in the Firefox addon..
+     * 
+     * @param mixed $message Log Message
+     * 
+     * @return FireGento_Core_Helper_Log Self.
+     */
+    public function firephp($message)
+    {
+        $flagFirePhp    = $this->isFirephpAllowed();
+        $flagPhpVersion = version_compare(phpversion(), '5.0.0', '>');
+        if (isFirephpAllowed && $flagPhpVersion) {
+            Mage::getSingleton('firegento/log_firephp')->log($message);
+        }
+        return $this;
+    }
+
+    /**
      * Checks if firelogger is allowed
      * 
      * @return bool Allowed/Not allowed
@@ -95,5 +113,15 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
     public function isFireloggerAllowed()
     {
         return Mage::getStoreConfigFlag(self::XML_PATH_FIREGENTO_FIRELOGGER);
+    }
+
+    /**
+     * Checks if firephp is allowed
+     * 
+     * @return bool Allowed/Not allowed
+     */
+    public function isFirephpAllowed()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_FIREGENTO_FIREPHP);
     }
 }

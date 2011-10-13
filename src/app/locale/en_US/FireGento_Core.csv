@@ -44,3 +44,5 @@
 "Force logging even if the Magento setting is "no"?","Force logging even if the Magento setting is "no"?"
 "Enable FireLogger","Enable FireLogger"
 "<strong>Important:</strong> Requires PHP 5.3 or higher!<br />Firefox-Addon: http://firelogger.binaryage.com/#php","<strong>Wichtig:</strong> Benötigt PHP 5.3 oder höher!<br />Firefox-Addon: http://firelogger.binaryage.com/#php"
+"Enable FirePHP","Enable FirePHP"
+"<strong>Important:</strong> Requires PHP 5.0 or higher!<br />Firefox-Addon: https://addons.mozilla.org/en-US/firefox/addon/firephp/","<strong>Important:</strong> Requires PHP 5.0 or higher!<br />Firefox-Addon: https://addons.mozilla.org/en-US/firefox/addon/firephp/"
