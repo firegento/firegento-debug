@@ -36,8 +36,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
     const XML_PATH_FIREGENTO_FIRELOGGER = 'firegento/log/firelogger';
 
     /**
-     * Logs the given message in the specified log file and calls the method
-     * "firelogger" to log it in the Firefox addon.
+     * Logs the given message in the specified log file..
      * 
      * @param mixed $message Log Message
      * 
@@ -45,14 +44,11 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
      */
     public function log($message)
     {
-        // Log in log file with Mage::log()
         $logFile  = Mage::getStoreConfig(self::XML_PATH_FIREGENTO_LOG_FILE);
         $forceLog = Mage::getStoreConfigFlag(self::XML_PATH_FIREGENTO_FORCE_LOG);
         if ($logFile && strlen($logFile) > 0) {
             Mage::log($message, Zend_Log::DEBUG, $logFile, $forceLog);
         }
-        // Log message with FireLogger
-        $this->firelogger($message);
         return $this;
     }
 

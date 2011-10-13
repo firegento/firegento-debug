@@ -44,8 +44,13 @@
 	            <about_firegento translate="title" module="firegento">
 	                <title>About FireGento</title>
 	                <action>firegento/index/about</action>
-	                <sort_order>30</sort_order>
+	                <sort_order>999</sort_order>
 	            </about_firegento>
+	            <configuration translate="title" module="firegento">
+	               <title>Configuration</title>
+	               <action>adminhtml/system_config/edit/section/firegento</action>
+	               <sort_order>1000</sort_order>
+	            </configuration>
 	        </children>
 	    </firegento>
 	</menu>

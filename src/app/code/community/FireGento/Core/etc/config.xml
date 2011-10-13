@@ -16,6 +16,11 @@
                 <class>FireGento_Core_Helper</class>
             </firegento>
         </helpers>
+        <models>
+            <firegento>
+                <class>FireGento_Core_Model</class>
+            </firegento>
+        </models>
     </global>
     <admin>
         <routers>

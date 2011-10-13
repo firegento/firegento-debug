@@ -19,6 +19,8 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   $Id:$
  */
+require_once 'FireLogger/FireLogger.php';
+
 if (!defined('FIRELOGGER_NO_CONFLICT')) define('FIRELOGGER_NO_CONFLICT', true);
 if (!defined('FIRELOGGER_NO_EXCEPTION_HANDLER')) define('FIRELOGGER_NO_EXCEPTION_HANDLER', true);
 if (!defined('FIRELOGGER_NO_ERROR_HANDLER')) define('FIRELOGGER_NO_ERROR_HANDLER', true);
@@ -43,7 +45,7 @@ class FireGento_Core_Model_Log_Firelogger extends FireLogger
      */
 	public function __construct()
 	{
-	    $flag = Mage::helper('firegento')->isFireloggerAllowed();
+	    $flag = Mage::helper('firegento/log')->isFireloggerAllowed();
 	    FireLogger::$enabled = $flag;
 	    if ($flag) {
 		    parent::__construct('php', 'background-color: #9998d1');
