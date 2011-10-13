@@ -1,35 +1,47 @@
 <?xml version="1.0"?>
+<!-- 
+/**                                                                       
+ * This file is part of the FIREGENTO project.
+ * 
+ * FireGento_Core is free software; you can redistribute it and/or 
+ * modify it under the terms of the GNU General Public License version 3 as 
+ * published by the Free Software Foundation.
+ * 
+ * This script is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * @author    FireGento Team <team@firegento.com>
+ * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
+ * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
+ */
+ -->
 <layout>
     <firegento_index_about>
         <reference name="content">
             <block type="core/template" name="firegento.index.about" template="firegento/core/index/about.phtml" />
         </reference>
     </firegento_index_about>
-
     <firegento_diagnostic_checkmodules>
         <reference name="content">
             <block type="firegento/diagnostic_checkModules" name="firegento.diagnostic.checkmodules" />
         </reference>
     </firegento_diagnostic_checkmodules>
-
     <firegento_diagnostic_checkrewrites>
         <reference name="content">
             <block type="firegento/diagnostic_checkRewrites" name="firegento.diagnostic.checkrewrites" />
         </reference>
     </firegento_diagnostic_checkrewrites>
-
     <firegento_diagnostic_checkevents>
         <reference name="content">
             <block type="firegento/diagnostic_checkEvents" name="firegento.diagnostic.checkevents" />
         </reference>
     </firegento_diagnostic_checkevents>
-
     <firegento_diagnostic_checksystem>
         <reference name="content">
             <block type="firegento/diagnostic_checkSystem" name="firegento.diagnostic.checksystem" template="firegento/core/diagnostic/checksystem.phtml" />
         </reference>
     </firegento_diagnostic_checksystem>
-
     <firegento_diagnostic_phpinfo>
         <reference name="content">
             <block type="firegento/diagnostic_phpinfo" name="firegento.diagnostic.phpinfo" template="firegento/core/diagnostic/phpinfo.phtml" />

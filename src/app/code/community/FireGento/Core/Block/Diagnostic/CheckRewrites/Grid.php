@@ -17,7 +17,7 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 /**
  * CheckRewrites Grid
@@ -27,13 +27,15 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
     extends Mage_Adminhtml_Block_Widget_Grid
 {
     /**
      * Class constructor
+     * 
+     * @return void
      */
     public function __construct()
     {
@@ -51,15 +53,15 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
     protected function _prepareCollection()
     {
         $collection = new Varien_Data_Collection();        
-        $rewrites = $this->_loadModules();
+        $rewrites   = $this->_loadModules();
 
         foreach ($rewrites as $rewriteNodes) {
             foreach ($rewriteNodes as $n) {
-                $nParent = $n->xpath('..');
-                $module = (string) $nParent[0]->getName();
-                $nParent2 = $nParent[0]->xpath('..');
+                $nParent   = $n->xpath('..');
+                $module    = (string) $nParent[0]->getName();
+                $nParent2  = $nParent[0]->xpath('..');
                 $component = (string) $nParent2[0]->getName();
-                
+
                 if (!in_array($component, array('blocks', 'helpers', 'models'))) {
                     continue;
                 }
@@ -70,19 +72,19 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
                     $completePath = $module.'/'.$path;
 
                     $rewriteClassName = (string) $pathNode;
-                        
+
                     $instance = Mage::getConfig()->getGroupedClassName(
                         substr($component, 0, -1),
                         $completePath
                     );
-                    
+
                     $collection->addItem(
                         new Varien_Object(
                             array(
-                                'path' => $completePath,
+                                'path'          => $completePath,
                                 'rewrite_class' => $rewriteClassName,
-                                'active_class' => $instance,
-                                'status' => ($instance == $rewriteClassName)
+                                'active_class'  => $instance,
+                                'status'        => ($instance == $rewriteClassName)
                             )
                         )
                     );
@@ -104,41 +106,41 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
         $this->addColumn(
             'path',
             array(
-                'header'    => $this->__('Path'),
-                'align'     => 'left',
-                'index'     => 'path',
-                'sortable'  => false,
+                'header'   => $this->__('Path'),
+                'align'    => 'left',
+                'index'    => 'path',
+                'sortable' => false,
             )
         );
         $this->addColumn(
             'rewrite_class',
             array(
-                'header'    => $this->__('Rewrite Class'),
-                'width'     => '200',
-                'align'     => 'left',
-                'index'     => 'rewrite_class',
-                'sortable'  => false,
+                'header'   => $this->__('Rewrite Class'),
+                'width'    => '200',
+                'align'    => 'left',
+                'index'    => 'rewrite_class',
+                'sortable' => false,
             )
         );
         $this->addColumn(
             'active_class',
             array(
-                'header'    => $this->__('Active Class'),
-                'width'     => '200',
-                'align'     => 'left',
-                'index'     => 'active_class',
-                'sortable'  => false,
+                'header'   => $this->__('Active Class'),
+                'width'    => '200',
+                'align'    => 'left',
+                'index'    => 'active_class',
+                'sortable' => false,
             )
         );
         $this->addColumn(
             'status',
             array(
-                'header'    => $this->__('Status'),
-                'width'     => '120',
-                'align'     => 'left',
-                'index'     => 'status',
-                'type'      => 'options',
-                'options'   => array(0 => $this->__('Not Ok'), 1 => $this->__('Ok')),
+                'header'         => $this->__('Status'),
+                'width'          => '120',
+                'align'          => 'left',
+                'index'          => 'status',
+                'type'           => 'options',
+                'options'        => array(0 => $this->__('Not Ok'), 1 => $this->__('Ok')),
                 'frame_callback' => array($this, 'decorateStatus')
             )
         );
@@ -184,16 +186,16 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
     private function _loadModules()
     {        
         $fileName = 'config.xml';
-        $modules = Mage::getConfig()->getNode('modules')->children();
+        $modules  = Mage::getConfig()->getNode('modules')->children();
 
         $return = array();
-        foreach ($modules as $modName=>$module) {
+        foreach ($modules as $modName => $module) {
             if ($module->is('active')) {
                 $configFile = Mage::getConfig()->getModuleDir('etc', $modName).DS.$fileName;
-                                
+
                 $xml = file_get_contents($configFile);
                 $xml = simplexml_load_string($xml);
-                                
+
                 if ($xml instanceof SimpleXMLElement) {
                     $return[$modName] = $xml->xpath('//rewrite');
                 }

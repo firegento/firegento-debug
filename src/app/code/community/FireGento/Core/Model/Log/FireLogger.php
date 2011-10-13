@@ -17,7 +17,7 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 require_once 'FireLogger/FireLogger.php';
 
@@ -34,7 +34,7 @@ if (!defined('FIRELOGGER_NO_DEFAULT_LOGGER')) define('FIRELOGGER_NO_DEFAULT_LOGG
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 class FireGento_Core_Model_Log_Firelogger extends FireLogger
 {
@@ -43,12 +43,12 @@ class FireGento_Core_Model_Log_Firelogger extends FireLogger
      * 
      * @return void
      */
-	public function __construct()
-	{
-	    $flag = Mage::helper('firegento/log')->isFireloggerAllowed();
-	    FireLogger::$enabled = $flag;
-	    if ($flag) {
-		    parent::__construct('php', 'background-color: #9998d1');
-	    }
-	}
+    public function __construct()
+    {
+        $flag = Mage::helper('firegento/log')->isFireloggerAllowed();
+        FireLogger::$enabled = $flag;
+        if ($flag) {
+            parent::__construct('php', 'background-color: #9998d1');
+        }
+    }
 }

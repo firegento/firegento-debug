@@ -17,7 +17,7 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 /**
  * Data Helper for different helper functionalities
@@ -27,11 +27,11 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 class FireGento_Core_Helper_Data extends Mage_Core_Helper_Abstract
 {
-	/**
+    /**
      * Sorts a multi-dimensional array with the given values
      * 
      * Seen and modified from: http://www.firsttube.com/read/sorting-a-multi-dimensional-array-with-php/
@@ -45,16 +45,16 @@ class FireGento_Core_Helper_Data extends Mage_Core_Helper_Abstract
     public function sortMultiDimArr($arr, $key, $dir='ASC')
     {
         foreach ($arr as $k => $v) {
-		    $b[$k] = strtolower($v[$key]);
-    	}
-    	if ($dir == 'ASC') {
-    	    asort($b);
-    	} else {
-    	    arsort($b);
-    	}
-    	foreach ($b as $key => $val) {
-    		$c[] = $arr[$key];
-    	}
-    	return $c;
+            $b[$k] = strtolower($v[$key]);
+        }
+        if ($dir == 'ASC') {
+            asort($b);
+        } else {
+            arsort($b);
+        }
+        foreach ($b as $key => $val) {
+            $c[] = $arr[$key];
+        }
+        return $c;
     }
 }

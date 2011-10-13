@@ -17,7 +17,7 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 /**
  * CheckRewrites Grid
@@ -27,13 +27,15 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 class FireGento_Core_Block_Diagnostic_CheckModules_Grid
     extends Mage_Adminhtml_Block_Widget_Grid
 {   
     /**
      * Class constructor
+     * 
+     * @return void
      */
     public function __construct()
     {
@@ -57,8 +59,8 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
         $sortValue = strtolower($sortValue);
 
         // Get the direction to sort
-        $sortDir   = $this->getRequest()->getParam('dir', 'ASC');
-        $sortDir   = strtoupper($sortDir);
+        $sortDir = $this->getRequest()->getParam('dir', 'ASC');
+        $sortDir = strtoupper($sortDir);
 
         // Get modules and sort them
         $modules = $this->_loadModules();
@@ -179,7 +181,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
         return $cell;
     }
 
-	/**
+    /**
      * Decorate the path_exists column values
      *
      * @param string                                   $value Check result
@@ -198,7 +200,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
         return $cell;
     }
 
-	/**
+    /**
      * Decorate the config_exists column values
      *
      * @param string                                   $value Check result
@@ -238,19 +240,19 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
     private function _loadModules()
     {
         $modules = array();
-        $config = Mage::getConfig();
-		foreach ($config->getNode('modules')->children() as $moduleName => $item) {
-		    $active       = ($item->active == 'true') ? true : false;
+        $config  = Mage::getConfig();
+        foreach ($config->getNode('modules')->children() as $moduleName => $item) {
+            $active       = ($item->active == 'true') ? true : false;
             $codePool     = (string) $config->getModuleConfig($item->getName())->codePool;
-			$path         = $config->getOptions()->getCodeDir() . DS . $codePool . DS . uc_words($item->getName(), DS);
-			$pathExists   = file_exists($path);
-			$pathExists   = $pathExists ? true : false;
-			$configExists = file_exists($path . '/etc/config.xml');
-			$configExists = $configExists ? true : false;
+            $path         = $config->getOptions()->getCodeDir() . DS . $codePool . DS . uc_words($item->getName(), DS);
+            $pathExists   = file_exists($path);
+            $pathExists   = $pathExists ? true : false;
+            $configExists = file_exists($path . '/etc/config.xml');
+            $configExists = $configExists ? true : false;
 
-			$dependencies = '-';
+            $dependencies = '-';
             if ($item->depends) {
-		        $depends = array();
+                $depends = array();
                 foreach ($item->depends->children() as $depend) {
                     $depends[] = $depend->getName();
                 }
@@ -259,16 +261,16 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
                 }
             }
 
-			$modules[$item->getName()] = array(
-			    'name'          => $item->getName(),
-			    'active'        => $active,
-			    'code_pool'     => $codePool,
-			    'path'          => $path,
-			    'path_exists'   => $pathExists,
-			    'config_exists' => $configExists,
-			    'dependencies'  => $dependencies
-			);
-		}
-		return $modules;
+            $modules[$item->getName()] = array(
+                'name'          => $item->getName(),
+                'active'        => $active,
+                'code_pool'     => $codePool,
+                'path'          => $path,
+                'path_exists'   => $pathExists,
+                'config_exists' => $configExists,
+                'dependencies'  => $dependencies
+            );
+        }
+        return $modules;
     }
 }

@@ -17,7 +17,7 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 /**
  * CheckSystem Grid Container
@@ -27,7 +27,7 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 class FireGento_Core_Block_Diagnostic_CheckSystem
     extends Mage_Adminhtml_Block_Template
@@ -35,11 +35,11 @@ class FireGento_Core_Block_Diagnostic_CheckSystem
     /**
      * Checks if one or more caches are active
      * 
-     * @return boolean
+     * @return string Cache Message
      */
     public function checkCaches()
     {
-        $active = 0;
+        $active   = 0;
         $inactive = 0;
         foreach (Mage::app()->getCacheInstance()->getTypes() as $type) {
             $tmp = $type->getData();
@@ -57,16 +57,16 @@ class FireGento_Core_Block_Diagnostic_CheckSystem
     }
 
     /**
-     * Checks if all indizes are up-to-date
+     * Checks if all indexes are up-to-date
      * 
-     * @return boolean
+     * @return string Indexes Message
      */
     public function checkIndizes()
     {
-        $ready = 0;
+        $ready      = 0;
         $processing = 0;
-        $reindex = 0;
-        
+        $reindex    = 0;
+
         $collection = Mage::getResourceModel('index/process_collection');
         foreach ($collection as $item) {
             $tmp = $item->getData();
@@ -78,7 +78,7 @@ class FireGento_Core_Block_Diagnostic_CheckSystem
                 $reindex++;
             }
         }
-            
+
         return $this->__(
             '%s indexes are ready, %s indexes are working, %s indexes need reindex',
             $ready,
@@ -90,11 +90,11 @@ class FireGento_Core_Block_Diagnostic_CheckSystem
     /**
      * Returns a small system check report with some essential properties
      * 
-     * @return string
+     * @return array Extension Check Result
      */
     public function checkSystem()
     {
-        return $this->extensionCheck(
+        return $this->_extensionCheck(
             array(
                 'curl',
                 'dom',
@@ -117,21 +117,21 @@ class FireGento_Core_Block_Diagnostic_CheckSystem
      * 
      * @return array Array with failed and passed checks
      */
-    protected function extensionCheck($extensions)
+    protected function _extensionCheck($extensions)
     {
         $fail = array();
         $pass = array();
-    
+
         if (version_compare(phpversion(), '5.2.0', '<')) {
             $fail[] = 'You need <strong>PHP 5.2.0</strong> (or greater)';
         } else {
             $pass[] = 'You have <strong>PHP 5.2.0</strong> (or greater)';
         }
-    
+
         if (!ini_get('safe_mode')) {
             $pass[] = 'Safe Mode is <strong>off</strong>';
 
-            $con = Mage::getSingleton('core/resource')->getConnection('core_read');
+            $con     = Mage::getSingleton('core/resource')->getConnection('core_read');
             $version = $con->getServerVersion();
 
             if (version_compare($version, '4.1.20', '<')) {

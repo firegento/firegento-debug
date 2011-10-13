@@ -17,7 +17,7 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 /**
  * CheckEvents Grid
@@ -27,13 +27,15 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $Id:$
+ * @version   $$Id$$
  */
 class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
     extends Mage_Adminhtml_Block_Widget_Grid
 {
     /**
      * Class constructor
+     * 
+     * @return void
      */
     public function __construct()
     {
@@ -57,8 +59,8 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
         $sortValue = strtolower($sortValue);
 
         // Get the direction to sort
-        $sortDir   = $this->getRequest()->getParam('dir', 'ASC');
-        $sortDir   = strtoupper($sortDir);
+        $sortDir = $this->getRequest()->getParam('dir', 'ASC');
+        $sortDir = strtoupper($sortDir);
 
         // Get events and sort them
         $events = $this->_loadModules();
@@ -87,21 +89,21 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
         $this->addColumn(
             'event',
             array(
-                'header'    => $this->__('Event'),
-                'align'     => 'left',
-                'index'     => 'event',
-                'width'     => '50%',
-                'sortable'  => true,
+                'header'   => $this->__('Event'),
+                'align'    => 'left',
+                'index'    => 'event',
+                'width'    => '50%',
+                'sortable' => true,
             )
         );
         $this->addColumn(
             'location',
             array(
-                'header'    => $this->__('Location'),
-                'align'     => 'left',
-                'index'     => 'location',
-                'width'     => '50%',
-                'sortable'  => true,
+                'header'   => $this->__('Location'),
+                'align'    => 'left',
+                'index'    => 'location',
+                'width'    => '50%',
+                'sortable' => true,
             )
         );
         return parent::_prepareColumns();
@@ -127,16 +129,16 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
     private function _loadModules()
     {        
         $fileName = 'config.xml';
-        $modules = Mage::getConfig()->getNode('modules')->children();
+        $modules  = Mage::getConfig()->getNode('modules')->children();
 
         $rewrites = array();
-        foreach ($modules as $modName=>$module) {
+        foreach ($modules as $modName => $module) {
             if ($module->is('active')) {
                 $configFile = Mage::getConfig()->getModuleDir('etc', $modName).DS.$fileName;
-                                
+
                 $xml = file_get_contents($configFile);
                 $xml = simplexml_load_string($xml);
-                                
+
                 if ($xml instanceof SimpleXMLElement) {
                     $rewrites[$modName] = $xml->xpath('//events');
                 }
@@ -146,26 +148,25 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
         $return = array();
         foreach ($rewrites as $rewriteNodes) {
             foreach ($rewriteNodes as $n) {
-                $nParent = $n->xpath('..');
-                $module = (string) $nParent[0]->getName();
-                $nParent2 = $nParent[0]->xpath('..');
+                $nParent   = $n->xpath('..');
+                $module    = (string) $nParent[0]->getName();
+                $nParent2  = $nParent[0]->xpath('..');
                 $component = (string) $nParent2[0]->getName();
                 $pathNodes = $n->children();
 
                 foreach ($pathNodes as $pathNode) {
                     $eventName = (string) $pathNode->getName();
-                    $instance = $pathNode->xpath('observers/node()/class');
-                    $instance = (string)current($instance);
-                    $instance = Mage::getConfig()->getModelClassName($instance);
+                    $instance  = $pathNode->xpath('observers/node()/class');
+                    $instance  = (string)current($instance);
+                    $instance  = Mage::getConfig()->getModelClassName($instance);
 
                     $return[uniqid()] = array(
-						'event'    => $eventName,
+                        'event'    => $eventName,
                         'location' => $instance
                     );
                 }
             }
         }
-
         return $return;
     }
 }

@@ -1,9 +1,22 @@
 <?php 
-/** @var $this FireGento_Core_Block_Log_Console */
-
-$logFiles = $this->getLogFiles();
+/**                                                                       
+ * This file is part of the FIREGENTO project.
+ * 
+ * FireGento_Core is free software; you can redistribute it and/or 
+ * modify it under the terms of the GNU General Public License version 3 as 
+ * published by the Free Software Foundation.
+ * 
+ * This script is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * @author    FireGento Team <team@firegento.com>
+ * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
+ * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
+ */
 ?>
-
+<?php /** @var $this FireGento_Core_Block_Log_Console */ ?>
+<?php $logFiles = $this->getLogFiles(); ?>
 <div id="page:main-container">
 	<div class="content-header">
 		<table cellspacing="0">
@@ -21,7 +34,6 @@ $logFiles = $this->getLogFiles();
 			</div>
 		</div>
 	</div>
-
 <?php else: ?>
 	<?php $currentFile = Mage::app()->getRequest()->getParam('file');?>
 	<div class="entry-edit">
