@@ -64,7 +64,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
      */
     public function debug($message)
     {
-        if ($message instanceof Varien_Object){
+        if ($message instanceof Varien_Object) {
             $message = $message->debug();
         }
         $this->log($message);
