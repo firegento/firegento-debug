@@ -3,11 +3,12 @@ require_once 'app/Mage.php';
 umask(0);
 Mage::app('admin');
 
+
 $fileName = 'config.xml';
 $modules  = Mage::getConfig()->getNode('modules')->children();
 
 $return = array();
-foreach ($modules as $modName=>$module) {
+foreach ($modules as $modName => $module) {
     if ($module->is('active')) {
         $configFile = Mage::getConfig()->getModuleDir('etc', $modName).DS.$fileName;
 
@@ -19,7 +20,7 @@ foreach ($modules as $modName=>$module) {
         }
     }
 }
-        
+
 $collection = new Varien_Data_Collection();        
 foreach ($return as $rewriteNodes) {
     foreach ($rewriteNodes as $n) {
@@ -60,9 +61,9 @@ $i = 1;
 foreach ($collection as $item) {
     $status = $item->getData('status');
     if ($status) {
-        $status = 'OK';
+        $status = '<span style="color:green">OK</span>';
     } else {
-        $status = 'NOT OK';
+        $status = '<span style="color:red">NOT OK</span>';
     }
 
     echo '<tr>
