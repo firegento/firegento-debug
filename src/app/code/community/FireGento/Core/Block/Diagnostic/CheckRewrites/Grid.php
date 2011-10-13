@@ -59,8 +59,12 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
                 $module = (string) $nParent[0]->getName();
                 $nParent2 = $nParent[0]->xpath('..');
                 $component = (string) $nParent2[0]->getName();
-                $pathNodes = $n->children();
                 
+                if (!in_array($component, array('blocks', 'helpers', 'models'))) {
+                    continue;
+                }
+
+                $pathNodes = $n->children();
                 foreach ($pathNodes as $pathNode) {
                     $path = (string) $pathNode->getName();
                     $completePath = $module.'/'.$path;
