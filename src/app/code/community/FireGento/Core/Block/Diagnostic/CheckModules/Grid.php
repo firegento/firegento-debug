@@ -54,26 +54,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
      */
     protected function _prepareCollection()
     {
-        // Get the value to sort
-        $sortValue = $this->getRequest()->getParam('sort', 'name');
-        $sortValue = strtolower($sortValue);
-
-        // Get the direction to sort
-        $sortDir = $this->getRequest()->getParam('dir', 'ASC');
-        $sortDir = strtoupper($sortDir);
-
-        // Get modules and sort them
-        $modules = $this->_loadModules();
-        $modules = Mage::helper('firegento')->sortMultiDimArr($modules, $sortValue, $sortDir);
-
-        // Add all modules to the collection
-        $collection = new Varien_Data_Collection();        
-        foreach ($modules as $key => $val) {
-            $item = new Varien_Object($val);
-            $collection->addItem($item);
-        }
-
-        // Set the collection in the grid and return :-)
+        $collection = Mage::helper('firegento/firegento')->getModulesCollection();
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -229,48 +210,5 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
     public function getRowUrl($row)
     {
         return false;
-    }
-
-    /**
-     * Loads the module configurations and checks for some criteria and 
-     * returns an array with the current modules in the Magento instance.
-     * 
-     * @return array Modules
-     */
-    private function _loadModules()
-    {
-        $modules = array();
-        $config  = Mage::getConfig();
-        foreach ($config->getNode('modules')->children() as $moduleName => $item) {
-            $active       = ($item->active == 'true') ? true : false;
-            $codePool     = (string) $config->getModuleConfig($item->getName())->codePool;
-            $path         = $config->getOptions()->getCodeDir() . DS . $codePool . DS . uc_words($item->getName(), DS);
-            $pathExists   = file_exists($path);
-            $pathExists   = $pathExists ? true : false;
-            $configExists = file_exists($path . '/etc/config.xml');
-            $configExists = $configExists ? true : false;
-
-            $dependencies = '-';
-            if ($item->depends) {
-                $depends = array();
-                foreach ($item->depends->children() as $depend) {
-                    $depends[] = $depend->getName();
-                }
-                if (is_array($depends) && count($depends) > 0) {
-                    $dependencies = implode(', ', $depends);
-                }
-            }
-
-            $modules[$item->getName()] = array(
-                'name'          => $item->getName(),
-                'active'        => $active,
-                'code_pool'     => $codePool,
-                'path'          => $path,
-                'path_exists'   => $pathExists,
-                'config_exists' => $configExists,
-                'dependencies'  => $dependencies
-            );
-        }
-        return $modules;
     }
 }

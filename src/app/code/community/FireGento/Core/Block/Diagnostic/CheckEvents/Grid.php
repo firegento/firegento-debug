@@ -54,26 +54,7 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
      */
     protected function _prepareCollection()
     {
-        // Get the value to sort
-        $sortValue = $this->getRequest()->getParam('sort', 'event');
-        $sortValue = strtolower($sortValue);
-
-        // Get the direction to sort
-        $sortDir = $this->getRequest()->getParam('dir', 'ASC');
-        $sortDir = strtoupper($sortDir);
-
-        // Get events and sort them
-        $events = $this->_loadModules();
-        $events = Mage::helper('firegento')->sortMultiDimArr($events, $sortValue, $sortDir);
-
-        // Add all modules to the collection
-        $collection = new Varien_Data_Collection();        
-        foreach ($events as $key => $val) {
-            $item = new Varien_Object($val);
-            $collection->addItem($item);
-        }
-
-        // Set the collection in the grid and return :-)
+        $collection = Mage::helper('firegento/firegento')->getEventsCollection();
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -119,54 +100,5 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
     public function getRowUrl($row)
     {
         return false;
-    }
-
-    /**
-     * Return all events
-     * 
-     * @return array All events
-     */
-    private function _loadModules()
-    {        
-        $fileName = 'config.xml';
-        $modules  = Mage::getConfig()->getNode('modules')->children();
-
-        $rewrites = array();
-        foreach ($modules as $modName => $module) {
-            if ($module->is('active')) {
-                $configFile = Mage::getConfig()->getModuleDir('etc', $modName).DS.$fileName;
-
-                $xml = file_get_contents($configFile);
-                $xml = simplexml_load_string($xml);
-
-                if ($xml instanceof SimpleXMLElement) {
-                    $rewrites[$modName] = $xml->xpath('//events');
-                }
-            }
-        }
-
-        $return = array();
-        foreach ($rewrites as $rewriteNodes) {
-            foreach ($rewriteNodes as $n) {
-                $nParent   = $n->xpath('..');
-                $module    = (string) $nParent[0]->getName();
-                $nParent2  = $nParent[0]->xpath('..');
-                $component = (string) $nParent2[0]->getName();
-                $pathNodes = $n->children();
-
-                foreach ($pathNodes as $pathNode) {
-                    $eventName = (string) $pathNode->getName();
-                    $instance  = $pathNode->xpath('observers/node()/class');
-                    $instance  = (string)current($instance);
-                    $instance  = Mage::getConfig()->getModelClassName($instance);
-
-                    $return[uniqid()] = array(
-                        'event'    => $eventName,
-                        'location' => $instance
-                    );
-                }
-            }
-        }
-        return $return;
     }
 }

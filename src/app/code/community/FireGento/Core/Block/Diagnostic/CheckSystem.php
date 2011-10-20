@@ -39,21 +39,7 @@ class FireGento_Core_Block_Diagnostic_CheckSystem
      */
     public function checkCaches()
     {
-        $active   = 0;
-        $inactive = 0;
-        foreach (Mage::app()->getCacheInstance()->getTypes() as $type) {
-            $tmp = $type->getData();
-            if ($tmp['status']) {
-                $active++; 
-            } else {
-                $inactive++;
-            }
-        }
-        return $this->__(
-            '%s caches active, %s caches inactive',
-            $active,
-            $inactive
-        );
+        return Mage::helper('firegento/firegento')->checkCaches();
     }
 
     /**
@@ -63,28 +49,7 @@ class FireGento_Core_Block_Diagnostic_CheckSystem
      */
     public function checkIndizes()
     {
-        $ready      = 0;
-        $processing = 0;
-        $reindex    = 0;
-
-        $collection = Mage::getResourceModel('index/process_collection');
-        foreach ($collection as $item) {
-            $tmp = $item->getData();
-            if ($tmp['status'] == 'pending') {
-                $ready++;
-            } elseif ($tmp['status'] == 'working') {
-                $processing++;
-            } else {
-                $reindex++;
-            }
-        }
-
-        return $this->__(
-            '%s indexes are ready, %s indexes are working, %s indexes need reindex',
-            $ready,
-            $processing,
-            $reindex
-        );
+        return Mage::helper('firegento/firegento')->checkIndizes();
     }
 
     /**
@@ -94,63 +59,6 @@ class FireGento_Core_Block_Diagnostic_CheckSystem
      */
     public function checkSystem()
     {
-        return $this->_extensionCheck(
-            array(
-                'curl',
-                'dom',
-                'gd',
-                'hash',
-                'iconv',
-                'mcrypt',
-                'pcre',
-                'pdo',
-                'pdo_mysql',
-                'simplexml'
-            )
-        );
-    }
-
-    /**
-     * Checks some kind of essential properties
-     * 
-     * @param string $extensions Extensions to check
-     * 
-     * @return array Array with failed and passed checks
-     */
-    protected function _extensionCheck($extensions)
-    {
-        $fail = array();
-        $pass = array();
-
-        if (version_compare(phpversion(), '5.2.0', '<')) {
-            $fail[] = 'You need <strong>PHP 5.2.0</strong> (or greater)';
-        } else {
-            $pass[] = 'You have <strong>PHP 5.2.0</strong> (or greater)';
-        }
-
-        if (!ini_get('safe_mode')) {
-            $pass[] = 'Safe Mode is <strong>off</strong>';
-
-            $con     = Mage::getSingleton('core/resource')->getConnection('core_read');
-            $version = $con->getServerVersion();
-
-            if (version_compare($version, '4.1.20', '<')) {
-                $fail[] = 'You need <strong>MySQL 4.1.20</strong> (or greater)';
-            } else {
-                $pass[] = 'You have <strong>MySQL 4.1.20</strong> (or greater)';
-            }
-        } else { 
-            $fail[] = 'Safe Mode is <strong>on</strong>';  
-        }
-
-        foreach ($extensions as $extension) {
-            if (!extension_loaded($extension)) {
-                $fail[] = 'You are missing the <strong>'.$extension.'</strong> extension';
-            } else {
-                $pass[] = 'You have the <strong>'.$extension.'</strong> extension';
-            }
-        }
-
-        return array('pass' => $pass, 'fail' => $fail);
+        return Mage::helper('firegento/firegento')->checkSystem();
     }
 }
