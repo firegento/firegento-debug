@@ -1,2 +1,0 @@
-content firegento chrome/content/firegento/ xpcnativewrappers=no
-overlay chrome://firebug/content/firebugOverlay.xul         chrome://firegento/content/firegento.xul
