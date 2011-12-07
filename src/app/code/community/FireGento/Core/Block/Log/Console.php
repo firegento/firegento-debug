@@ -1,15 +1,15 @@
 <?php
-/**                                                                       
+/**
  * This file is part of the FIREGENTO project.
- * 
- * FireGento_Core is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License version 3 as 
+ *
+ * FireGento_Core is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
- * 
- * This script is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ *
+ * This script is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * PHP version 5
  *
  * @category  FireGento
@@ -33,7 +33,7 @@ class FireGento_Core_Block_Log_Console extends Mage_Core_Block_Template
 {
     /**
      * Constructor for Block
-     * 
+     *
      * @return void
      */
     public function __construct()
@@ -41,20 +41,27 @@ class FireGento_Core_Block_Log_Console extends Mage_Core_Block_Template
         $this->_controller = 'log_console';
         $this->_blockGroup = 'firegento';
         $this->_headerText = Mage::helper('firegento')->__('Log Console');
-        $this->setTemplate('firegento/core/log/console.phtml');    
+        $this->setTemplate('firegento/core/log/console.phtml');
     }
 
     /**
      * Returns the log files of the var/log directory
-     * 
+     *
      * @return array File List
      */
     public function getLogFiles()
     {
+        // Check if path exists
+        $path = Mage::getBaseDir('var') . DS . 'log' . DS;
+        if (!file_exists($path)) {
+            return array();
+        }
+
+        // Return file list
         $io = new Varien_Io_File();
         $io->open(
             array(
-                'path' => Mage::getBaseDir('var') . DS . 'log' . DS
+                'path' => $path
             )
         );
         return $io->ls(Varien_Io_File::GREP_FILES);
@@ -62,7 +69,7 @@ class FireGento_Core_Block_Log_Console extends Mage_Core_Block_Template
 
     /**
      * Adds the secure key to the url
-     * 
+     *
      * @return string Secure Url
      */
     public function getSecureUrl($fileName=null)
