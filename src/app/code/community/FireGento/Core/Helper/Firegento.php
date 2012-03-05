@@ -1,15 +1,15 @@
 <?php
-/**                                                                       
+/**
  * This file is part of the FIREGENTO project.
- * 
- * FireGento_Core is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License version 3 as 
+ *
+ * FireGento_Core is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
- * 
- * This script is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ *
+ * This script is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * PHP version 5
  *
  * @category  FireGento
@@ -33,12 +33,12 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
 {
     /**
      * Retrieve a collection of all rewrites
-     * 
+     *
      * @return Varien_Data_Collection Collection
      */
     public function getRewriteCollection()
     {
-        $collection = new Varien_Data_Collection();        
+        $collection = new Varien_Data_Collection();
         $rewrites   = $this->_loadRewrites();
 
         foreach ($rewrites as $rewriteNodes) {
@@ -82,24 +82,25 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
 
     /**
      * Return all rewrites
-     * 
+     *
      * @return array All rwrites
      */
     protected function _loadRewrites()
-    {        
+    {
         $fileName = 'config.xml';
         $modules  = Mage::getConfig()->getNode('modules')->children();
 
         $return = array();
         foreach ($modules as $modName => $module) {
             if ($module->is('active')) {
-                $configFile = Mage::getConfig()->getModuleDir('etc', $modName).DS.$fileName;
+                $configFile = Mage::getConfig()->getModuleDir('etc', $modName) . DS . $fileName;
+                if (file_exists($configFile)) {
+                    $xml = file_get_contents($configFile);
+                    $xml = simplexml_load_string($xml);
 
-                $xml = file_get_contents($configFile);
-                $xml = simplexml_load_string($xml);
-
-                if ($xml instanceof SimpleXMLElement) {
-                    $return[$modName] = $xml->xpath('//rewrite');
+                    if ($xml instanceof SimpleXMLElement) {
+                        $return[$modName] = $xml->xpath('//rewrite');
+                    }
                 }
             }
         }
@@ -108,7 +109,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
 
     /**
      * Retrieve a collection of all modules
-     * 
+     *
      * @return Varien_Data_Collection Collection
      */
     public function getModulesCollection()
@@ -122,7 +123,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
         $modules = $this->_loadModules();
         $modules = $this->sortMultiDimArr($modules, $sortValue, $sortDir);
 
-        $collection = new Varien_Data_Collection();        
+        $collection = new Varien_Data_Collection();
         foreach ($modules as $key => $val) {
             $item = new Varien_Object($val);
             $collection->addItem($item);
@@ -131,9 +132,9 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
     }
 
     /**
-     * Loads the module configurations and checks for some criteria and 
+     * Loads the module configurations and checks for some criteria and
      * returns an array with the current modules in the Magento instance.
-     * 
+     *
      * @return array Modules
      */
     protected function _loadModules()
@@ -175,7 +176,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
 
     /**
      * Retrieve a collection of all events
-     * 
+     *
      * @return Varien_Data_Collection Collection
      */
     public function getEventsCollection()
@@ -189,7 +190,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
         $events = $this->_loadEvents();
         $events = $this->sortMultiDimArr($events, $sortValue, $sortDir);
 
-        $collection = new Varien_Data_Collection();        
+        $collection = new Varien_Data_Collection();
         foreach ($events as $key => $val) {
             $item = new Varien_Object($val);
             $collection->addItem($item);
@@ -199,11 +200,11 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
 
     /**
      * Return all events
-     * 
+     *
      * @return array All events
      */
     protected function _loadEvents()
-    {        
+    {
         $fileName = 'config.xml';
         $modules  = Mage::getConfig()->getNode('modules')->children();
 
@@ -211,12 +212,13 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
         foreach ($modules as $modName => $module) {
             if ($module->is('active')) {
                 $configFile = Mage::getConfig()->getModuleDir('etc', $modName).DS.$fileName;
+                if (file_exists($configFile)) {
+                    $xml = file_get_contents($configFile);
+                    $xml = simplexml_load_string($xml);
 
-                $xml = file_get_contents($configFile);
-                $xml = simplexml_load_string($xml);
-
-                if ($xml instanceof SimpleXMLElement) {
-                    $rewrites[$modName] = $xml->xpath('//events');
+                    if ($xml instanceof SimpleXMLElement) {
+                        $rewrites[$modName] = $xml->xpath('//events');
+                    }
                 }
             }
         }
@@ -248,7 +250,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
 
     /**
      * Checks if one or more caches are active
-     * 
+     *
      * @return string Cache Message
      */
     public function checkCaches()
@@ -258,7 +260,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
         foreach (Mage::app()->getCacheInstance()->getTypes() as $type) {
             $tmp = $type->getData();
             if ($tmp['status']) {
-                $active++; 
+                $active++;
             } else {
                 $inactive++;
             }
@@ -272,7 +274,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
 
     /**
      * Checks if all indexes are up-to-date
-     * 
+     *
      * @return string Indexes Message
      */
     public function checkIndizes()
@@ -303,7 +305,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
 
     /**
      * Returns a small system check report with some essential properties
-     * 
+     *
      * @return array Extension Check Result
      */
     public function checkSystem()
@@ -326,9 +328,9 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
 
     /**
      * Checks some kind of essential properties
-     * 
+     *
      * @param string $extensions Extensions to check
-     * 
+     *
      * @return array Array with failed and passed checks
      */
     protected function _extensionCheck($extensions)
@@ -353,8 +355,8 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
             } else {
                 $pass[] = 'You have <strong>MySQL 4.1.20</strong> (or greater)';
             }
-        } else { 
-            $fail[] = 'Safe Mode is <strong>on</strong>';  
+        } else {
+            $fail[] = 'Safe Mode is <strong>on</strong>';
         }
 
         foreach ($extensions as $extension) {

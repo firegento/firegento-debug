@@ -1,13 +1,13 @@
 <?php
-/**                                                                       
+/**
  * This file is part of the FIREGENTO project.
- * 
- * FireGento_Core is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License version 3 as 
+ *
+ * FireGento_Core is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
- * 
- * This script is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ *
+ * This script is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * @author    FireGento Team <team@firegento.com>
@@ -18,25 +18,25 @@ require_once 'app/Mage.php';
 umask(0);
 Mage::app('admin');
 
-
 $fileName = 'config.xml';
 $modules  = Mage::getConfig()->getNode('modules')->children();
 
 $return = array();
 foreach ($modules as $modName => $module) {
     if ($module->is('active')) {
-        $configFile = Mage::getConfig()->getModuleDir('etc', $modName).DS.$fileName;
+        $configFile = Mage::getConfig()->getModuleDir('etc', $modName) . DS . $fileName;
+        if (file_exists($configFile)) {
+            $xml = file_get_contents($configFile);
+            $xml = simplexml_load_string($xml);
 
-        $xml = file_get_contents($configFile);
-        $xml = simplexml_load_string($xml);
-
-        if ($xml instanceof SimpleXMLElement) {
-            $return[$modName] = $xml->xpath('//rewrite');
+            if ($xml instanceof SimpleXMLElement) {
+                $return[$modName] = $xml->xpath('//rewrite');
+            }
         }
     }
 }
 
-$collection = new Varien_Data_Collection();        
+$collection = new Varien_Data_Collection();
 foreach ($return as $rewriteNodes) {
     foreach ($rewriteNodes as $n) {
         $nParent   = $n->xpath('..');
