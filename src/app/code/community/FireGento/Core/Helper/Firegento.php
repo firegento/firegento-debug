@@ -149,6 +149,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
             $pathExists   = $pathExists ? true : false;
             $configExists = file_exists($path . '/etc/config.xml');
             $configExists = $configExists ? true : false;
+            $version      = (string) $config->getModuleConfig($item->getName())->version;
 
             $dependencies = '-';
             if ($item->depends) {
@@ -168,6 +169,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
                 'path'          => $path,
                 'path_exists'   => $pathExists,
                 'config_exists' => $configExists,
+                'version'       => $version,
                 'dependencies'  => $dependencies
             );
         }

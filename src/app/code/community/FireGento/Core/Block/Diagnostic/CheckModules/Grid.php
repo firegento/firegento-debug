@@ -1,15 +1,15 @@
 <?php
-/**                                                                       
+/**
  * This file is part of the FIREGENTO project.
- * 
- * FireGento_Core is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License version 3 as 
+ *
+ * FireGento_Core is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
- * 
- * This script is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ *
+ * This script is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * PHP version 5
  *
  * @category  FireGento
@@ -31,10 +31,10 @@
  */
 class FireGento_Core_Block_Diagnostic_CheckModules_Grid
     extends Mage_Adminhtml_Block_Widget_Grid
-{   
+{
     /**
      * Class constructor
-     * 
+     *
      * @return void
      */
     public function __construct()
@@ -49,7 +49,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
 
     /**
      * Prepare grid collection
-     * 
+     *
      * @return FireGento_Core_Block_Diagnostic_CheckRewrites_Grid Grid object
      */
     protected function _prepareCollection()
@@ -61,7 +61,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
 
     /**
      * Prepare grid columns
-     * 
+     *
      * @return FireGento_Core_Block_Diagnostic_CheckRewrites_Grid Grid object
      */
     protected function _prepareColumns()
@@ -128,6 +128,15 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
                 'type'           => 'options',
                 'options'        => array(0 => $this->__('No'), 1 => $this->__('Yes')),
                 'frame_callback' => array($this, 'decorateConfigExists')
+            )
+        );
+        $this->addColumn(
+            'version',
+            array(
+                'header' => $this->__('Version'),
+                'align'  => 'left',
+                'index'  => 'version',
+                'width'  => '100px',
             )
         );
         $this->addColumn(
@@ -204,7 +213,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
      * Get row edit url
      *
      * @param Mage_Catalog_Model_Product|Varien_Object $row Current row
-     * 
+     *
      * @return string|boolean Row url | false = no url
      */
     public function getRowUrl($row)
