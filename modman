@@ -1,0 +1,10 @@
+src/app/code/community/FireGento/Core	app/code/community/FireGento/Core
+src/app/design/adminhtml/default/default/layout/firegento_core.xml	app/design/adminhtml/default/default/layout/firegento_core.xml
+src/app/design/adminhtml/default/default/layout/template/firegento/core	app/design/adminhtml/default/default/layout/template/firegento/core  
+app/etc/modules/Firegento_Core.xml	app/etc/modules/Firegento_Core.xml
+src/app/locale/de_CH/FireGento_Core.csv	app/locale/de_CH/FireGento_Core.csv
+src/app/locale/de_DE/FireGento_Core.csv	app/locale/de_DE/FireGento_Core.csv
+src/app/locale/en_US/FireGento_Core.csv	app/locale/en_US/FireGento_Core.csv
+src/lib/FireGento/FireLogger	lib/FireGento/FireLogger
+src/lib/FireGento/FirePHP	lib/FireGento/FirePHP
+
