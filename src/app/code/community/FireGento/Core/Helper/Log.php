@@ -99,7 +99,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
     {
         $flagFirePhp    = $this->isFirephpAllowed();
         $flagPhpVersion = version_compare(phpversion(), '5.0.0', '>');
-        if (isFirephpAllowed && $flagPhpVersion) {
+        if ($flagFirePhp && $flagPhpVersion) {
             Mage::getSingleton('firegento/log_firephp')->log($message);
         }
         return $this;
