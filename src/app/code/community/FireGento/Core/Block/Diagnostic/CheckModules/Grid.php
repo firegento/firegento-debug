@@ -56,6 +56,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
     {
         $collection = Mage::helper('firegento/firegento')->getModulesCollection();
         $this->setCollection($collection);
+
         return parent::_prepareCollection();
     }
 
@@ -149,16 +150,16 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
                 'sortable' => false
             )
         );
+
         return parent::_prepareColumns();
     }
 
     /**
      * Decorate the active column values
      *
-     * @param string                                   $value Check result
-     * @param Mage_Catalog_Model_Product|Varien_Object $row   Current row
-     *
-     * @return string Cell content
+     * @param  string                                   $value Check result
+     * @param  Mage_Catalog_Model_Product|Varien_Object $row   Current row
+     * @return string                                   Cell content
      */
     public function decorateTrueFalse($value, $row)
     {
@@ -168,16 +169,16 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
         } else {
             $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
         }
+
         return $cell;
     }
 
     /**
      * Decorate the path_exists column values
      *
-     * @param string                                   $value Check result
-     * @param Mage_Catalog_Model_Product|Varien_Object $row   Current row
-     *
-     * @return string Cell content
+     * @param  string                                   $value Check result
+     * @param  Mage_Catalog_Model_Product|Varien_Object $row   Current row
+     * @return string                                   Cell content
      */
     public function decoratePathExists($value, $row)
     {
@@ -187,16 +188,16 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
         } else {
             $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
         }
+
         return $cell;
     }
 
     /**
      * Decorate the config_exists column values
      *
-     * @param string                                   $value Check result
-     * @param Mage_Catalog_Model_Product|Varien_Object $row   Current row
-     *
-     * @return string Cell content
+     * @param  string                                   $value Check result
+     * @param  Mage_Catalog_Model_Product|Varien_Object $row   Current row
+     * @return string                                   Cell content
      */
     public function decorateConfigExists($value, $row)
     {
@@ -206,15 +207,15 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
         } else {
             $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
         }
+
         return $cell;
     }
 
     /**
      * Get row edit url
      *
-     * @param Mage_Catalog_Model_Product|Varien_Object $row Current row
-     *
-     * @return string|boolean Row url | false = no url
+     * @param  Mage_Catalog_Model_Product|Varien_Object $row Current row
+     * @return string|boolean                           Row url | false = no url
      */
     public function getRowUrl($row)
     {

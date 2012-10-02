@@ -1,15 +1,15 @@
 <?php
-/**                                                                       
+/**
  * This file is part of the FIREGENTO project.
- * 
- * FireGento_Core is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License version 3 as 
+ *
+ * FireGento_Core is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
- * 
- * This script is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ *
+ * This script is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * PHP version 5
  *
  * @category  FireGento
@@ -34,7 +34,7 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
 {
     /**
      * Class constructor
-     * 
+     *
      * @return void
      */
     public function __construct()
@@ -47,19 +47,20 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
 
     /**
      * Prepare grid collection
-     * 
+     *
      * @return FireGento_Core_Block_Diagnostic_CheckRewrites_Grid Grid object
      */
     protected function _prepareCollection()
     {
         $collection = Mage::helper('firegento/firegento')->getRewriteCollection();
         $this->setCollection($collection);
+
         return parent::_prepareCollection();
     }
 
     /**
      * Prepare grid columns
-     * 
+     *
      * @return FireGento_Core_Block_Diagnostic_CheckRewrites_Grid Grid object
      */
     protected function _prepareColumns()
@@ -106,16 +107,16 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
                 'frame_callback' => array($this, 'decorateStatus')
             )
         );
+
         return parent::_prepareColumns();
     }
 
     /**
      * Decorate status column values
      *
-     * @param string                                   $value Check result
-     * @param Mage_Catalog_Model_Product|Varien_Object $row   Current row
-     *
-     * @return string Cell content
+     * @param  string                                   $value Check result
+     * @param  Mage_Catalog_Model_Product|Varien_Object $row   Current row
+     * @return string                                   Cell content
      */
     public function decorateStatus($value, $row)
     {
@@ -125,15 +126,15 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
         } else {
             $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
         }
+
         return $cell;
     }
 
     /**
      * Get row edit url
      *
-     * @param Mage_Catalog_Model_Product|Varien_Object $row Current row
-     * 
-     * @return string|boolean Row url | false = no url
+     * @param  Mage_Catalog_Model_Product|Varien_Object $row Current row
+     * @return string|boolean                           Row url | false = no url
      */
     public function getRowUrl($row)
     {

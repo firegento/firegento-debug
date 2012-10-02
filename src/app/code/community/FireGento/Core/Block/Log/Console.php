@@ -64,6 +64,7 @@ class FireGento_Core_Block_Log_Console extends Mage_Core_Block_Template
                 'path' => $path
             )
         );
+
         return $io->ls(Varien_Io_File::GREP_FILES);
     }
 
@@ -81,6 +82,7 @@ class FireGento_Core_Block_Log_Console extends Mage_Core_Block_Template
         if (!is_null($fileName)) {
             $params['file'] = $fileName;
         }
+
         return $this->getUrl('*/*/*', $params);
     }
 }

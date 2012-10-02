@@ -36,10 +36,10 @@ class FireGento_Core_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * Seen and modified from: http://www.firsttube.com/read/sorting-a-multi-dimensional-array-with-php/
      *
-     * @param array  $arr Array to sort
-     * @param string $key Field to sort
-     * @param string $dir Direction to sort
-     * @return array Sorted array
+     * @param  array  $arr Array to sort
+     * @param  string $key Field to sort
+     * @param  string $dir Direction to sort
+     * @return array  Sorted array
      */
     public function sortMultiDimArr($arr, $key, $dir='ASC')
     {
@@ -55,6 +55,7 @@ class FireGento_Core_Helper_Data extends Mage_Core_Helper_Abstract
         foreach ($b as $key => $val) {
             $c[] = $arr[$key];
         }
+
         return $c;
     }
 }

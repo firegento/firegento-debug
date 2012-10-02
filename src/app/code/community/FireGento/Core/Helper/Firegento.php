@@ -43,10 +43,10 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
 
         foreach ($rewrites as $rewriteNodes) {
             foreach ($rewriteNodes as $n) {
-                $nParent   = $n->xpath('..');
-                $module    = (string) $nParent[0]->getName();
-                $nParent2  = $nParent[0]->xpath('..');
-                $component = (string) $nParent2[0]->getName();
+                $nParent    = $n->xpath('..');
+                $module     = (string) $nParent[0]->getName();
+                $nSubParent = $nParent[0]->xpath('..');
+                $component  = (string) $nSubParent[0]->getName();
 
                 if (!in_array($component, array('blocks', 'helpers', 'models'))) {
                     continue;
@@ -77,6 +77,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
                 }
             }
         }
+
         return $collection;
     }
 
@@ -104,6 +105,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
                 }
             }
         }
+
         return $return;
     }
 
@@ -128,6 +130,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
             $item = new Varien_Object($val);
             $collection->addItem($item);
         }
+
         return $collection;
     }
 
@@ -173,6 +176,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
                 'dependencies'  => $dependencies
             );
         }
+
         return $modules;
     }
 
@@ -201,6 +205,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
             $item = new Varien_Object($val);
             $collection->addItem($item);
         }
+
         return $collection;
     }
 
@@ -232,19 +237,19 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
         $return = array();
         foreach ($events as $eventNodes) {
             foreach ($eventNodes as $n) {
-                $nParent   = $n->xpath('..');
-                $module    = (string) $nParent[0]->getName();
-                $nParent2  = $nParent[0]->xpath('..');
-                $component = (string) $nParent2[0]->getName();
-                $pathNodes = $n->children();
+                $nParent    = $n->xpath('..');
+                $module     = (string) $nParent[0]->getName();
+                $nSubParent = $nParent[0]->xpath('..');
+                $component  = (string) $nSubParent[0]->getName();
+                $pathNodes  = $n->children();
 
                 foreach ($pathNodes as $pathNode) {
                     $eventName = (string) $pathNode->getName();
                     $instance  = $pathNode->xpath('observers/node()/class');
-                    $instance  = (string)current($instance);
+                    $instance  = (string) current($instance);
                     $instance  = Mage::getConfig()->getModelClassName($instance);
 
-                    if (!array_key_exists($eventName, $return)){
+                    if (!array_key_exists($eventName, $return)) {
                         $return[$eventName] = array();
                     }
                     if (!in_array($instance, $return[$eventName])) {
@@ -274,6 +279,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
                 $inactive++;
             }
         }
+
         return $this->__(
             '%s caches active, %s caches inactive',
             $active,
@@ -338,8 +344,8 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
     /**
      * Checks some kind of essential properties
      *
-     * @param string $extensions Extensions to check
-     * @return array Array with failed and passed checks
+     * @param  string $extensions Extensions to check
+     * @return array  Array with failed and passed checks
      */
     protected function _extensionCheck($extensions)
     {

@@ -56,6 +56,7 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
     {
         $collection = Mage::helper('firegento/firegento')->getEventsCollection();
         $this->setCollection($collection);
+
         return parent::_prepareCollection();
     }
 
@@ -88,15 +89,15 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
                 'renderer' => 'firegento/diagnostic_checkEvents_renderer_location'
             )
         );
+
         return parent::_prepareColumns();
     }
 
     /**
      * Get row edit url
      *
-     * @param Mage_Catalog_Model_Product|Varien_Object $row Current row
-     *
-     * @return string|boolean Row url | false = no url
+     * @param  Mage_Catalog_Model_Product|Varien_Object $row Current row
+     * @return string|boolean                           Row url | false = no url
      */
     public function getRowUrl($row)
     {

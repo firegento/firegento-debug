@@ -36,7 +36,6 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Renderer_Location
      * Returns the value for the column
      *
      * @see Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract::render()
-     *
      * @return string HTML
      */
     public function render(Varien_Object $row)
@@ -47,6 +46,7 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Renderer_Location
         } else {
             $html = '';
         }
+
         return $html;
     }
 }

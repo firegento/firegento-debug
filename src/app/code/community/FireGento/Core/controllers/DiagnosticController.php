@@ -1,15 +1,15 @@
 <?php
-/**                                                                       
+/**
  * This file is part of the FIREGENTO project.
- * 
- * FireGento_Core is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License version 3 as 
+ *
+ * FireGento_Core is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
- * 
- * This script is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ *
+ * This script is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * PHP version 5
  *
  * @category  FireGento
@@ -34,9 +34,7 @@ class FireGento_Core_DiagnosticController
 {
     /**
      * indexAction
-     * 
-     * Does nothing.
-     * 
+     *
      * @return void
      */
     public function indexAction()
@@ -49,10 +47,10 @@ class FireGento_Core_DiagnosticController
 
     /**
      * checkModulesAction
-     * 
+     *
      * Checks all modules in the Magento system and display them
      * in a grid.
-     * 
+     *
      * @return void
      */
     public function checkModulesAction()
@@ -65,10 +63,10 @@ class FireGento_Core_DiagnosticController
 
     /**
      * checkRewritesAction
-     * 
+     *
      * Checks for rewrites in the Magento system and display them
      * in a grid.
-     * 
+     *
      * @return void
      */
     public function checkRewritesAction()
@@ -81,10 +79,10 @@ class FireGento_Core_DiagnosticController
 
     /**
      * checkEventsAction
-     * 
+     *
      * Checks for events in the Magento system and display all of them
      * in a grid and the class name of the specific observer.
-     * 
+     *
      * @return void
      */
     public function checkEventsAction()
@@ -97,10 +95,10 @@ class FireGento_Core_DiagnosticController
 
     /**
      * checkSystemAction
-     * 
+     *
      * Displays the status of important Magento settings which can be
      * a potential error cause.
-     * 
+     *
      * @return void
      */
     public function checkSystemAction()
@@ -112,10 +110,8 @@ class FireGento_Core_DiagnosticController
     }
 
     /**
-     * phpinfoAction
-     * 
      * Displays a phpinfo() output.
-     * 
+     *
      * @return void
      */
     public function phpinfoAction()

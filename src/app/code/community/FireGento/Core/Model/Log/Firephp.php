@@ -1,15 +1,15 @@
 <?php
-/**                                                                       
+/**
  * This file is part of the FIREGENTO project.
- * 
- * FireGento_Core is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License version 3 as 
+ *
+ * FireGento_Core is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
- * 
- * This script is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ *
+ * This script is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * PHP version 5
  *
  * @category  FireGento
@@ -34,7 +34,7 @@ class FireGento_Core_Model_Log_Firephp extends FirePHP
 {
     /**
      * Class Constructor
-     * 
+     *
      * @return void
      */
     public function __construct()
@@ -46,9 +46,8 @@ class FireGento_Core_Model_Log_Firephp extends FirePHP
 
     /**
      * Logs the message in the firebug console
-     * 
+     *
      * @param mixed Log Message
-     * 
      * @see FirePHP::log()
      * @return bool True/False
      */

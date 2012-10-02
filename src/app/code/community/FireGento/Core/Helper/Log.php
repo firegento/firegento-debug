@@ -1,15 +1,15 @@
 <?php
-/**                                                                       
+/**
  * This file is part of the FIREGENTO project.
- * 
- * FireGento_Core is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License version 3 as 
+ *
+ * FireGento_Core is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
- * 
- * This script is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ *
+ * This script is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- * 
+ *
  * PHP version 5
  *
  * @category  FireGento
@@ -38,9 +38,8 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
 
     /**
      * Logs the given message in the specified log file..
-     * 
-     * @param mixed $message Log Message
-     * 
+     *
+     * @param  mixed                     $message Log Message
      * @return FireGento_Core_Helper_Log Self.
      */
     public function log($message)
@@ -50,6 +49,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
         if ($logFile && strlen($logFile) > 0) {
             Mage::log($message, Zend_Log::DEBUG, $logFile, $forceLog);
         }
+
         return $this;
     }
 
@@ -57,9 +57,8 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
      * Checks if the given message is an instance of Varien_Object and calls
      * the debug()-Method. This is very useful for large objects like
      * sales/quote, sales/order, ... for instance.
-     * 
-     * @param mixed $message Log Message
-     * 
+     *
+     * @param  mixed                     $message Log Message
      * @return FireGento_Core_Helper_Log Self.
      */
     public function debug($message)
@@ -68,14 +67,14 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
             $message = $message->debug();
         }
         $this->log($message);
+
         return $this;
     }
 
     /**
      * Logs the message in the Firefox addon..
-     * 
-     * @param mixed $message Log Message
-     * 
+     *
+     * @param  mixed                     $message Log Message
      * @return FireGento_Core_Helper_Log Self.
      */
     public function firelogger($message)
@@ -85,14 +84,14 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
         if ($flagFirelogger && $flagPhpVersion) {
             Mage::getSingleton('firegento/log_firelogger')->log($message);
         }
+
         return $this;
     }
 
     /**
      * Logs the message in the Firefox addon..
-     * 
-     * @param mixed $message Log Message
-     * 
+     *
+     * @param  mixed                     $message Log Message
      * @return FireGento_Core_Helper_Log Self.
      */
     public function firephp($message)
@@ -102,12 +101,13 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
         if ($flagFirePhp && $flagPhpVersion) {
             Mage::getSingleton('firegento/log_firephp')->log($message);
         }
+
         return $this;
     }
 
     /**
      * Checks if firelogger is allowed
-     * 
+     *
      * @return bool Allowed/Not allowed
      */
     public function isFireloggerAllowed()
@@ -117,7 +117,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
 
     /**
      * Checks if firephp is allowed
-     * 
+     *
      * @return bool Allowed/Not allowed
      */
     public function isFirephpAllowed()
