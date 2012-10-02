@@ -161,7 +161,8 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
                     $depends[] = $depend->getName();
                 }
                 if (is_array($depends) && count($depends) > 0) {
-                    $dependencies = implode(', ', $depends);
+                    asort($depends);
+                    $dependencies = implode("\n", $depends);
                 }
             }
 

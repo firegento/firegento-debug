@@ -86,7 +86,7 @@ class FireGento_Core_Block_Diagnostic_CheckEvents_Grid
                 'index'    => 'location',
                 'width'    => '50%',
                 'sortable' => true,
-                'renderer' => 'firegento/diagnostic_checkEvents_renderer_location'
+                'renderer' => 'firegento/diagnostic_renderer_paragraph'
             )
         );
 

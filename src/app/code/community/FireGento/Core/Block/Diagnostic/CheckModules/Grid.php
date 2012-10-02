@@ -147,7 +147,8 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
                 'align'    => 'left',
                 'index'    => 'dependencies',
                 'width'    => '350px',
-                'sortable' => false
+                'sortable' => false,
+                'renderer' => 'firegento/diagnostic_renderer_paragraph'
             )
         );
 

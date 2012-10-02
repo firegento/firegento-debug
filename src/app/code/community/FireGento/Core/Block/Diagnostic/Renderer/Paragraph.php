@@ -29,7 +29,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.0.0
  */
-class FireGento_Core_Block_Diagnostic_CheckEvents_Renderer_Location
+class FireGento_Core_Block_Diagnostic_Renderer_Paragraph
     extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract
 {
     /**
