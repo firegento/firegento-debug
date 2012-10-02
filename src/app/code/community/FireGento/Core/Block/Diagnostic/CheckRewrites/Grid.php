@@ -15,9 +15,9 @@
  * @category  FireGento
  * @package   FireGento_Core
  * @author    FireGento Team <team@firegento.com>
- * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
+ * @copyright 2012 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $$Id$$
+ * @version   1.0.0
  */
 /**
  * CheckRewrites Grid
@@ -25,9 +25,9 @@
  * @category  FireGento
  * @package   FireGento_Core
  * @author    FireGento Team <team@firegento.com>
- * @copyright 2011 FireGento Team (http://www.firegento.de). All rights served.
+ * @copyright 2012 FireGento Team (http://www.firegento.de). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   $$Id$$
+ * @version   1.0.0
  */
 class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
     extends Mage_Adminhtml_Block_Widget_Grid
