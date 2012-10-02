@@ -121,7 +121,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
         $sortDir = strtoupper($sortDir);
 
         $modules = $this->_loadModules();
-        $modules = $this->sortMultiDimArr($modules, $sortValue, $sortDir);
+        //$modules = $this->sortMultiDimArr($modules, $sortValue, $sortDir);
 
         $collection = new Varien_Data_Collection();
         foreach ($modules as $key => $val) {
@@ -190,10 +190,14 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
         $sortDir = strtoupper($sortDir);
 
         $events = $this->_loadEvents();
-        $events = $this->sortMultiDimArr($events, $sortValue, $sortDir);
+        //$events = $this->sortMultiDimArr($events, $sortValue, $sortDir);
 
         $collection = new Varien_Data_Collection();
-        foreach ($events as $key => $val) {
+        foreach ($events as $key => $values) {
+            $val = array(
+                'event'    => $key,
+                'location' => implode("\n", $values)
+            );
             $item = new Varien_Object($val);
             $collection->addItem($item);
         }
@@ -210,7 +214,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
         $fileName = 'config.xml';
         $modules  = Mage::getConfig()->getNode('modules')->children();
 
-        $rewrites = array();
+        $events = array();
         foreach ($modules as $modName => $module) {
             if ($module->is('active')) {
                 $configFile = Mage::getConfig()->getModuleDir('etc', $modName).DS.$fileName;
@@ -219,15 +223,15 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
                     $xml = simplexml_load_string($xml);
 
                     if ($xml instanceof SimpleXMLElement) {
-                        $rewrites[$modName] = $xml->xpath('//events');
+                        $events[$modName] = $xml->xpath('//events');
                     }
                 }
             }
         }
 
         $return = array();
-        foreach ($rewrites as $rewriteNodes) {
-            foreach ($rewriteNodes as $n) {
+        foreach ($events as $eventNodes) {
+            foreach ($eventNodes as $n) {
                 $nParent   = $n->xpath('..');
                 $module    = (string) $nParent[0]->getName();
                 $nParent2  = $nParent[0]->xpath('..');
@@ -240,13 +244,16 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
                     $instance  = (string)current($instance);
                     $instance  = Mage::getConfig()->getModelClassName($instance);
 
-                    $return[uniqid()] = array(
-                        'event'    => $eventName,
-                        'location' => $instance
-                    );
+                    if (!array_key_exists($eventName, $return)){
+                        $return[$eventName] = array();
+                    }
+                    if (!in_array($instance, $return[$eventName])) {
+                        $return[$eventName][] = $instance;
+                    }
                 }
             }
         }
+
         return $return;
     }
 
@@ -332,7 +339,6 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
      * Checks some kind of essential properties
      *
      * @param string $extensions Extensions to check
-     *
      * @return array Array with failed and passed checks
      */
     protected function _extensionCheck($extensions)

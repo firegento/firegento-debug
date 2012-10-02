@@ -20,7 +20,7 @@
  * @version   1.0.0
  */
 /**
- * Data Helper for different helper functionalities
+ * CheckEvents Location Renderer
  *
  * @category  FireGento
  * @package   FireGento_Core
@@ -29,32 +29,24 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.0.0
  */
-class FireGento_Core_Helper_Data extends Mage_Core_Helper_Abstract
+class FireGento_Core_Block_Diagnostic_CheckEvents_Renderer_Location
+    extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract
 {
     /**
-     * Sorts a multi-dimensional array with the given values
+     * Returns the value for the column
      *
-     * Seen and modified from: http://www.firsttube.com/read/sorting-a-multi-dimensional-array-with-php/
+     * @see Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract::render()
      *
-     * @param array  $arr Array to sort
-     * @param string $key Field to sort
-     * @param string $dir Direction to sort
-     * @return array Sorted array
+     * @return string HTML
      */
-    public function sortMultiDimArr($arr, $key, $dir='ASC')
+    public function render(Varien_Object $row)
     {
-        foreach ($arr as $k => $v) {
-            $b[$k] = strtolower($v[$key]);
-        }
-
-        if ($dir == 'ASC') {
-            asort($b);
+        $value = $row->getData($this->getColumn()->getIndex());
+        if ($value) {
+            $html = nl2br($value);
         } else {
-            arsort($b);
+            $html = '';
         }
-        foreach ($b as $key => $val) {
-            $c[] = $arr[$key];
-        }
-        return $c;
+        return $html;
     }
 }
