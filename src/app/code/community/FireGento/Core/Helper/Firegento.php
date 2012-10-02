@@ -123,7 +123,7 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
         $sortDir = strtoupper($sortDir);
 
         $modules = $this->_loadModules();
-        //$modules = $this->sortMultiDimArr($modules, $sortValue, $sortDir);
+        $modules = $this->sortMultiDimArr($modules, $sortValue, $sortDir);
 
         $collection = new Varien_Data_Collection();
         foreach ($modules as $key => $val) {
@@ -194,14 +194,18 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
         $sortDir = strtoupper($sortDir);
 
         $events = $this->_loadEvents();
-        //$events = $this->sortMultiDimArr($events, $sortValue, $sortDir);
 
         $collection = new Varien_Data_Collection();
         foreach ($events as $key => $values) {
+            if (is_array($values)) {
+                asort($values);
+            }
+
             $val = array(
                 'event'    => $key,
                 'location' => implode("\n", $values)
             );
+
             $item = new Varien_Object($val);
             $collection->addItem($item);
         }
