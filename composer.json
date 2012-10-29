@@ -4,6 +4,12 @@
    "type": "magento-module",
    "description": "Diagnostic extension for Magento. Checks modules, rewrites, and displays the log files in the backend.",
    "homepage": "https://github.com/firegento/firegento",
+   "authors": [
+        {
+            "name": "Rouven Alexander Rieker",
+            "email": "therouv@googlemail.com"
+        }
+   ],
    "require": {
       "magento-hackathon/magento-composer-installer": "dev-master"
    }
