@@ -202,13 +202,11 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
      */
     public function decorateTrueFalse($value, $row)
     {
-        $class = '';
         if ($row->getActive()) {
             $cell = '<span class="grid-severity-notice"><span>'.$value.'</span></span>';
         } else {
             $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
         }
-
         return $cell;
     }
 
@@ -221,13 +219,11 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
      */
     public function decoratePathExists($value, $row)
     {
-        $class = '';
         if ($row->getPathExists()) {
             $cell = '<span class="grid-severity-notice"><span>'.$value.'</span></span>';
         } else {
             $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
         }
-
         return $cell;
     }
 
@@ -240,13 +236,11 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
      */
     public function decorateConfigExists($value, $row)
     {
-        $class = '';
         if ($row->getConfigExists()) {
             $cell = '<span class="grid-severity-notice"><span>'.$value.'</span></span>';
         } else {
             $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
         }
-
         return $cell;
     }
 

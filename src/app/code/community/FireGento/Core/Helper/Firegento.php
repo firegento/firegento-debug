@@ -32,9 +32,10 @@
 class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
 {
     /**
+     * Activate/Deactivate a Magento module
      *
-     * Enter description here ...
-     * @param unknown_type $name
+     * @param  string $name
+     * @return string
      */
     public function deactivateModule($name)
     {
@@ -43,7 +44,6 @@ class FireGento_Core_Helper_Firegento extends FireGento_Core_Helper_Data
             if ($moduleName == $name) {
                 continue;
             }
-
             if ($item->depends) {
                 $depends = array();
                 foreach ($item->depends->children() as $depend) {
