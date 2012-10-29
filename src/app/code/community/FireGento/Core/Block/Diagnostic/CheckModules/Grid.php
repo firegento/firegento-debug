@@ -190,6 +190,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
         if ($row->getCodePool() == 'core') {
             return '';
         }
+
         return $value;
     }
 
@@ -207,6 +208,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
         } else {
             $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
         }
+
         return $cell;
     }
 
@@ -224,6 +226,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
         } else {
             $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
         }
+
         return $cell;
     }
 
@@ -241,6 +244,7 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
         } else {
             $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
         }
+
         return $cell;
     }
 
