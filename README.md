@@ -43,8 +43,8 @@ Any contribution is highly appreciated. The best way to contribute code is to op
 
 Developer
 ---------
-[http://firegento.com](http://firegento.com)
-[@firegento](https://twitter.com/firegento)
+- Website: [http://firegento.com](http://firegento.com)
+- Twitter: [@firegento](https://twitter.com/firegento)
 
 Licence
 -------
