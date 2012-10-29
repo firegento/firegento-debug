@@ -46,3 +46,12 @@
 "<strong>Important:</strong> Requires PHP 5.3 or higher!<br />Firefox-Addon: http://firelogger.binaryage.com/#php","<strong>Wichtig:</strong> Benötigt PHP 5.3 oder höher!<br />Firefox-Addon: http://firelogger.binaryage.com/#php"
 "Enable FirePHP","FirePHP aktivieren"
 "<strong>Important:</strong> Requires PHP 5.0 or higher!<br />Firefox-Addon: https://addons.mozilla.org/en-US/firefox/addon/firephp/","<strong>Wichtig:</strong> Benötigt PHP 5.0 oder höher!<br />Firefox-Addon: https://addons.mozilla.org/en-US/firefox/addon/firephp/"
+
+"Activate/Deactivate","Aktivieren/Deaktivieren"
+"Activate","Aktivieren"
+"Deactivate","Deaktivieren"
+"The module ""%s"" has been successfully activated.","Das Modul ""%s"" wurde erfolgreich aktiviert."
+"The module ""%s"" has been successfully deactivated.","Das Modul ""%s"" wurde erfolgreich deaktiviert."
+"File %s is not writable.","Die Datei %s ist nicht beschreibbar."
+"Module %s is probably not installed. File %s does not exist.","Modul %s ist vermutlich nicht installiert. Datei %s existiert nicht."
+"Module can\'t be deactivated because it is a dependency of another module which is still active.","Modul kann leider nicht deaktiviert werden, da es eine Abhängigkeit von einem anderen Modul ist, welches noch aktiviert ist."

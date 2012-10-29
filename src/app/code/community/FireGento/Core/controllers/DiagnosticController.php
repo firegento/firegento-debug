@@ -46,6 +46,21 @@ class FireGento_Core_DiagnosticController
     }
 
     /**
+     * activationAction
+     *
+     * Activates/Deactivates an extension via the Magento adminhtml
+     *
+     * @return void
+     */
+    public function activationAction()
+    {
+        $name = $this->getRequest()->getParam('name', false);
+        $status = Mage::helper('firegento/firegento')->deactivateModule($name);
+        $this->_getSession()->addNotice($status);
+        $this->_redirect('*/*/checkModules');
+    }
+
+    /**
      * checkModulesAction
      *
      * Checks all modules in the Magento system and display them

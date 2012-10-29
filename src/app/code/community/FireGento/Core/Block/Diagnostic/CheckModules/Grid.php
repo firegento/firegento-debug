@@ -151,16 +151,54 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
                 'renderer' => 'firegento/diagnostic_renderer_paragraph'
             )
         );
+        $this->addColumn(
+            'action',
+            array(
+                'header'  => Mage::helper('sales')->__('Action'),
+                'width'   => '50px',
+                'type'    => 'action',
+                'getter'  => 'getName',
+                'actions' => array(
+                    array(
+                        'caption' => $this->__('Activate/Deactivate'),
+                        'url'     => array('base' => '*/*/activation'),
+                        'field'   => 'name',
+                        'confirm' => $this->__('ATTENTION! Are you sure you want to deactivate this module? This can cause major problems, if you are not careful enough! ATTENTION!')
+                    )
+                ),
+                'filter'         => false,
+                'sortable'       => false,
+                'index'          => 'name',
+                'is_system'      => true,
+                'frame_callback' => array($this, 'checkActivationLink')
+            )
+        );
 
         return parent::_prepareColumns();
     }
 
     /**
+     * Check the activation link and replace the string "Deactivate" with
+     * "Activate" if the module is deactivated.
+     *
+     * @param  string        $value Link
+     * @param  Varien_Object $row   Current row
+     * @return string        Cell content
+     */
+    public function checkActivationLink($value, $row)
+    {
+        if ($row->getCodePool() == 'core') {
+            return '';
+        }
+        return $value;
+    }
+
+    /**
      * Decorate the active column values
      *
-     * @param  string                                   $value Check result
-     * @param  Mage_Catalog_Model_Product|Varien_Object $row   Current row
-     * @return string                                   Cell content
+     * @param  string        $value Check result
+     * @param  Varien_Object $row   Current row
+     * @return string        Cell content
      */
     public function decorateTrueFalse($value, $row)
     {
@@ -177,9 +215,9 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
     /**
      * Decorate the path_exists column values
      *
-     * @param  string                                   $value Check result
-     * @param  Mage_Catalog_Model_Product|Varien_Object $row   Current row
-     * @return string                                   Cell content
+     * @param  string        $value Check result
+     * @param  Varien_Object $row   Current row
+     * @return string        Cell content
      */
     public function decoratePathExists($value, $row)
     {
@@ -196,9 +234,9 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
     /**
      * Decorate the config_exists column values
      *
-     * @param  string                                   $value Check result
-     * @param  Mage_Catalog_Model_Product|Varien_Object $row   Current row
-     * @return string                                   Cell content
+     * @param  string        $value Check result
+     * @param  Varien_Object $row   Current row
+     * @return string        Cell content
      */
     public function decorateConfigExists($value, $row)
     {
@@ -215,8 +253,8 @@ class FireGento_Core_Block_Diagnostic_CheckModules_Grid
     /**
      * Get row edit url
      *
-     * @param  Mage_Catalog_Model_Product|Varien_Object $row Current row
-     * @return string|boolean                           Row url | false = no url
+     * @param  Varien_Object  $row Current row
+     * @return string|boolean Row url | false = no url
      */
     public function getRowUrl($row)
     {
