@@ -2,7 +2,7 @@
    "name": "firegento/core",
    "license": ["GPL-3.0"],
    "type": "magento-module",
-   "minimum-stability": "dev",
+   "description": "Firegento core module",
    "require": {
       "magento-hackathon/magento-composer-installer": "dev-master"
    }
