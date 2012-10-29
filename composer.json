@@ -2,7 +2,8 @@
    "name": "firegento/core",
    "license": ["GPL-3.0"],
    "type": "magento-module",
-   "description": "Firegento core module",
+   "description": "Diagnostic extension for Magento. Checks modules, rewrites, and displays the log files in the backend.",
+   "homepage": "https://github.com/firegento/firegento",
    "require": {
       "magento-hackathon/magento-composer-installer": "dev-master"
    }
