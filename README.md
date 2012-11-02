@@ -4,7 +4,7 @@ This extension provides some debbuging functionality for Magento.
 
 Facts
 -----
-- version: 1.1.0
+- version: 1.1.1
 - [extension on GitHub](https://github.com/firegento/firegento)
 
 Description
@@ -16,7 +16,7 @@ This includes:
 - Check all installed modules for rewrite conflicts
 - Show all triggered events/observers
 - Show all log files in the Magento backend in "terminal-like" style
-- Provide interfaces for [FirePHP](http://www.firephp.org/) and [Firelogger](http://firelogger.binaryage.com/)
+- Provide logging interfaces for [ChromePhp](http://www.chromephp.com/), [FirePHP](http://www.firephp.org/) and [Firelogger](http://firelogger.binaryage.com/)
 
 Requirements
 ------------
