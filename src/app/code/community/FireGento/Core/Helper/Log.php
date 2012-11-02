@@ -33,6 +33,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
 {
     const XML_PATH_FIREGENTO_LOG_FILE   = 'firegento/log/log_file';
     const XML_PATH_FIREGENTO_FORCE_LOG  = 'firegento/log/force_log';
+    const XML_PATH_FIREGENTO_CHROMEPHP    = 'firegento/log/chromephp';
     const XML_PATH_FIREGENTO_FIRELOGGER = 'firegento/log/firelogger';
     const XML_PATH_FIREGENTO_FIREPHP    = 'firegento/log/firephp';
 
@@ -72,6 +73,23 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * Logs the message in the Chrome addon..
+     *
+     * @param  mixed                     $message Log Message
+     * @return FireGento_Core_Helper_Log Self.
+     */
+    public function chromephp($message)
+    {
+        $flagChromePhp  = $this->isChromePhpAllowed();
+        $flagPhpVersion = version_compare(phpversion(), '5.0.0', '>');
+        if ($flagChromePhp && $flagPhpVersion) {
+            Mage::getSingleton('firegento/log_chromephp')->log($message);
+        }
+
+        return $this;
+    }
+
+    /**
      * Logs the message in the Firefox addon..
      *
      * @param  mixed                     $message Log Message
@@ -103,6 +121,16 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
         }
 
         return $this;
+    }
+
+    /**
+     * Checks if firephp is allowed
+     *
+     * @return bool Allowed/Not allowed
+     */
+    public function isChromePhpAllowed()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_FIREGENTO_CHROMEPHP);
     }
 
     /**

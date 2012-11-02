@@ -5,6 +5,7 @@ src/app/etc/modules/Firegento_Core.xml	app/etc/modules/Firegento_Core.xml
 src/app/locale/de_CH/FireGento_Core.csv	app/locale/de_CH/FireGento_Core.csv
 src/app/locale/de_DE/FireGento_Core.csv	app/locale/de_DE/FireGento_Core.csv
 src/app/locale/en_US/FireGento_Core.csv	app/locale/en_US/FireGento_Core.csv
+src/lib/FireGento/ChromePhp	lib/FireGento/ChromePhp
 src/lib/FireGento/FireLogger	lib/FireGento/FireLogger
 src/lib/FireGento/FirePHP	lib/FireGento/FirePHP
 

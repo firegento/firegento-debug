@@ -42,6 +42,8 @@
 "File is located in {{base_dir}}/var/log","Datei befindet sich in {{base_dir}}/var/log"
 "Force Logging","Logging erzwingen"
 "Force logging even if the Magento setting is "no"?","Logging erzwingen auch wenn die Magento-Einstellung auf "nein" ist?"
+"Enable ChromePhp","ChromePhp aktivieren"
+"<strong>Important:</strong> Requires PHP 5.0 or higher!<br />Chrome-Addon: https://chrome.google.com/webstore/detail/chromephp/noaneddfkdjfnfdakjjmocngnfkfehhd","<strong>Wichtig:</strong> Benötigt PHP 5.0 oder höher!<br />Chrome-Addon: https://chrome.google.com/webstore/detail/chromephp/noaneddfkdjfnfdakjjmocngnfkfehhd"
 "Enable FireLogger","FireLogger aktivieren"
 "<strong>Important:</strong> Requires PHP 5.3 or higher!<br />Firefox-Addon: http://firelogger.binaryage.com/#php","<strong>Wichtig:</strong> Benötigt PHP 5.3 oder höher!<br />Firefox-Addon: http://firelogger.binaryage.com/#php"
 "Enable FirePHP","FirePHP aktivieren"
