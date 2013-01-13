@@ -17,7 +17,7 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   1.0.0
+ * @version   1.2.0
  */
 /**
  * Index Controller
@@ -27,7 +27,7 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   1.0.0
+ * @version   1.2.0
  */
 class FireGento_Debug_IndexController
     extends Mage_Adminhtml_Controller_Action

@@ -17,7 +17,7 @@
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   1.0.0
+ * @version   1.2.0
  */
 require_once 'FireGento/FireLogger/FireLogger.php';
 
@@ -44,7 +44,7 @@ if (!defined('FIRELOGGER_NO_DEFAULT_LOGGER')) {
  * @author    FireGento Team <team@firegento.com>
  * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
- * @version   1.0.0
+ * @version   1.2.0
  */
 class FireGento_Debug_Model_Log_Firelogger extends FireLogger
 {
