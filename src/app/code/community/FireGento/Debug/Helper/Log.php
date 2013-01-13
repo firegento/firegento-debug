@@ -2,7 +2,7 @@
 /**
  * This file is part of the FIREGENTO project.
  *
- * FireGento_Core is free software; you can redistribute it and/or
+ * FireGento_Debug is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
  *
@@ -13,9 +13,9 @@
  * PHP version 5
  *
  * @category  FireGento
- * @package   FireGento_Core
+ * @package   FireGento_Debug
  * @author    FireGento Team <team@firegento.com>
- * @copyright 2012 FireGento Team (http://www.firegento.de). All rights served.
+ * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.0.0
  */
@@ -23,13 +23,13 @@
  * Data Helper for different helper functionalities
  *
  * @category  FireGento
- * @package   FireGento_Core
+ * @package   FireGento_Debug
  * @author    FireGento Team <team@firegento.com>
- * @copyright 2012 FireGento Team (http://www.firegento.de). All rights served.
+ * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.0.0
  */
-class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
+class FireGento_Debug_Helper_Log extends Mage_Core_Helper_Abstract
 {
     const XML_PATH_FIREGENTO_LOG_FILE   = 'firegento/log/log_file';
     const XML_PATH_FIREGENTO_FORCE_LOG  = 'firegento/log/force_log';
@@ -41,7 +41,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
      * Logs the given message in the specified log file..
      *
      * @param  mixed                     $message Log Message
-     * @return FireGento_Core_Helper_Log Self.
+     * @return FireGento_Debug_Helper_Log Self.
      */
     public function log($message)
     {
@@ -60,7 +60,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
      * sales/quote, sales/order, ... for instance.
      *
      * @param  mixed                     $message Log Message
-     * @return FireGento_Core_Helper_Log Self.
+     * @return FireGento_Debug_Helper_Log Self.
      */
     public function debug($message)
     {
@@ -76,7 +76,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
      * Logs the message in the Chrome addon..
      *
      * @param  mixed                     $message Log Message
-     * @return FireGento_Core_Helper_Log Self.
+     * @return FireGento_Debug_Helper_Log Self.
      */
     public function chromephp($message)
     {
@@ -93,7 +93,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
      * Logs the message in the Firefox addon..
      *
      * @param  mixed                     $message Log Message
-     * @return FireGento_Core_Helper_Log Self.
+     * @return FireGento_Debug_Helper_Log Self.
      */
     public function firelogger($message)
     {
@@ -110,7 +110,7 @@ class FireGento_Core_Helper_Log extends Mage_Core_Helper_Abstract
      * Logs the message in the Firefox addon..
      *
      * @param  mixed                     $message Log Message
-     * @return FireGento_Core_Helper_Log Self.
+     * @return FireGento_Debug_Helper_Log Self.
      */
     public function firephp($message)
     {

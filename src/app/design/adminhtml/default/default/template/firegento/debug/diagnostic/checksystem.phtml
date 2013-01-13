@@ -1,17 +1,17 @@
-<?php 
-/**                                                                       
+<?php
+/**
  * This file is part of the FIREGENTO project.
- * 
- * FireGento_Core is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License version 3 as 
+ *
+ * FireGento_Debug is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
- * 
- * This script is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ *
+ * This script is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * @author    FireGento Team <team@firegento.com>
- * @copyright 2012 FireGento Team (http://www.firegento.de). All rights served.
+ * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  */
 ?>
@@ -24,7 +24,7 @@
 			</tr>
 		</table>
 	</div>
-	
+
 	<div class="entry-edit">
 		<div class="entry-edit-head">
 	    	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Config Settings') ?></h4>
@@ -61,7 +61,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="entry-edit">
 		<div class="entry-edit-head">
 	    	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('System Check') ?></h4>
@@ -88,14 +88,14 @@
 							</td>
 						</tr>
 					</tbody>
-				</table> 
+				</table>
 		    	<p>&nbsp</p>
 				<?php $checkResult = $this->checkSystem(); ?>
-				
+
 				<?php if(count($checkResult['fail']) > 0): ?>
 					<p><?php echo $this->__('<strong>Your server does not meet the following requirements in order to install Magento.</strong>'); ?></p>
 					<p><?php echo $this->__('The following requirements failed, please contact your hosting provider in order to receive assistance with meeting the system requirements for Magento:'); ?></p>
-					
+
 					<ul>
 						<?php
 						foreach($checkResult['fail'] as $fail) {

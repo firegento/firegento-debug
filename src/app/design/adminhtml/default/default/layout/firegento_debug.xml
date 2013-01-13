@@ -3,7 +3,7 @@
 /**
  * This file is part of the FIREGENTO project.
  *
- * FireGento_Core is free software; you can redistribute it and/or
+ * FireGento_Debug is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
  *
@@ -12,14 +12,14 @@
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * @author    FireGento Team <team@firegento.com>
- * @copyright 2012 FireGento Team (http://www.firegento.de). All rights served.
+ * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  */
  -->
 <layout>
     <firegento_index_about>
         <reference name="content">
-            <block type="core/template" name="firegento.index.about" template="firegento/core/index/about.phtml" />
+            <block type="core/template" name="firegento.index.about" template="firegento/debug/index/about.phtml" />
         </reference>
     </firegento_index_about>
     <firegento_diagnostic_checkmodules>
@@ -39,12 +39,12 @@
     </firegento_diagnostic_checkevents>
     <firegento_diagnostic_checksystem>
         <reference name="content">
-            <block type="firegento/diagnostic_checkSystem" name="firegento.diagnostic.checksystem" template="firegento/core/diagnostic/checksystem.phtml" />
+            <block type="firegento/diagnostic_checkSystem" name="firegento.diagnostic.checksystem" template="firegento/debug/diagnostic/checksystem.phtml" />
         </reference>
     </firegento_diagnostic_checksystem>
     <firegento_diagnostic_phpinfo>
         <reference name="content">
-            <block type="firegento/diagnostic_phpinfo" name="firegento.diagnostic.phpinfo" template="firegento/core/diagnostic/phpinfo.phtml" />
+            <block type="firegento/diagnostic_phpinfo" name="firegento.diagnostic.phpinfo" template="firegento/debug/diagnostic/phpinfo.phtml" />
         </reference>
     </firegento_diagnostic_phpinfo>
 </layout>

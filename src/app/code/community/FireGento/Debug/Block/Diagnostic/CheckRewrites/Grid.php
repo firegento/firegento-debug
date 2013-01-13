@@ -2,7 +2,7 @@
 /**
  * This file is part of the FIREGENTO project.
  *
- * FireGento_Core is free software; you can redistribute it and/or
+ * FireGento_Debug is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License version 3 as
  * published by the Free Software Foundation.
  *
@@ -13,9 +13,9 @@
  * PHP version 5
  *
  * @category  FireGento
- * @package   FireGento_Core
+ * @package   FireGento_Debug
  * @author    FireGento Team <team@firegento.com>
- * @copyright 2012 FireGento Team (http://www.firegento.de). All rights served.
+ * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.0.0
  */
@@ -23,13 +23,13 @@
  * CheckRewrites Grid
  *
  * @category  FireGento
- * @package   FireGento_Core
+ * @package   FireGento_Debug
  * @author    FireGento Team <team@firegento.com>
- * @copyright 2012 FireGento Team (http://www.firegento.de). All rights served.
+ * @copyright 2013 FireGento Team (http://firegento.com). All rights served.
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.0.0
  */
-class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
+class FireGento_Debug_Block_Diagnostic_CheckRewrites_Grid
     extends Mage_Adminhtml_Block_Widget_Grid
 {
     /**
@@ -48,7 +48,7 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
     /**
      * Prepare grid collection
      *
-     * @return FireGento_Core_Block_Diagnostic_CheckRewrites_Grid Grid object
+     * @return FireGento_Debug_Block_Diagnostic_CheckRewrites_Grid Grid object
      */
     protected function _prepareCollection()
     {
@@ -61,7 +61,7 @@ class FireGento_Core_Block_Diagnostic_CheckRewrites_Grid
     /**
      * Prepare grid columns
      *
-     * @return FireGento_Core_Block_Diagnostic_CheckRewrites_Grid Grid object
+     * @return FireGento_Debug_Block_Diagnostic_CheckRewrites_Grid Grid object
      */
     protected function _prepareColumns()
     {
