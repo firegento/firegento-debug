@@ -1,9 +1,9 @@
 {
-   "name": "firegento/core",
+   "name": "firegento/debug",
    "license": ["GPL-3.0"],
    "type": "magento-module",
    "description": "Diagnostic extension for Magento. Checks modules, rewrites, and displays the log files in the backend.",
-   "homepage": "https://github.com/firegento/firegento",
+   "homepage": "https://github.com/firegento/firegento-debug",
    "authors": [
         {
             "name": "Rouven Alexander Rieker",
