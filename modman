@@ -1,7 +1,7 @@
 src/app/code/community/FireGento/Debug					app/code/community/FireGento/Debug
 src/app/design/adminhtml/default/default/layout/firegento_debug.xml	app/design/adminhtml/default/default/layout/firegento_debug.xml
 src/app/design/adminhtml/default/default/template/firegento/debug	app/design/adminhtml/default/default/template/firegento/debug  
-src/app/etc/modules/Firegento_Debug.xml					app/etc/modules/Firegento_Debug.xml
+src/app/etc/modules/FireGento_Debug.xml					app/etc/modules/FireGento_Debug.xml
 src/app/locale/de_CH/FireGento_Debug.csv				app/locale/de_CH/FireGento_Debug.csv
 src/app/locale/de_DE/FireGento_Debug.csv				app/locale/de_DE/FireGento_Debug.csv
 src/app/locale/en_US/FireGento_Debug.csv				app/locale/en_US/FireGento_Debug.csv
