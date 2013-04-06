@@ -33,32 +33,131 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
     extends Mage_Adminhtml_Block_Template
 {
     /**
-     * Checks if one or more caches are active
-     *
-     * @return string Cache Message
+     * @var Varien_Object
      */
-    public function checkCaches()
+    protected $_system;
+
+    /**
+     * @return FireGento_Debug_Helper_Firegento
+     */
+    protected function _getHelper()
     {
-        return Mage::helper('firegento/firegento')->checkCaches();
+        return Mage::helper('firegento/firegento');
     }
 
     /**
-     * Checks if all indexes are up-to-date
-     *
-     * @return string Indexes Message
+     * @return Varien_Db_Adapter_Pdo_Mysql
      */
-    public function checkIndizes()
+    protected function _getDb()
     {
-        return Mage::helper('firegento/firegento')->checkIndizes();
+        return Mage::getSingleton('core/resource')->getConnection('core_read');
     }
 
     /**
-     * Returns a small system check report with some essential properties
-     *
-     * @return array Extension Check Result
+     * @return void
      */
-    public function checkSystem()
+    protected function _construct()
     {
-        return Mage::helper('firegento/firegento')->checkSystem();
+        $system = new Varien_Object();
+
+        /*
+         * MAGENTO
+         */
+        $magento = array(
+            'edition' => Mage::getEdition(),
+            'version' => Mage::getVersion(),
+            'developer_mode' => Mage::getIsDeveloperMode(),
+            'secret_key' => Mage::getStoreConfigFlag('admin/security/use_form_key'),
+            'flat_catalog_category' => Mage::getStoreConfigFlag('catalog/frontend/flat_catalog_category'),
+            'flat_catalog_product' => Mage::getStoreConfigFlag('catalog/frontend/flat_catalog_product'),
+            'cache_status' => $this->_getHelper()->checkCaches(),
+            'index_status' => $this->_getHelper()->checkIndizes()
+        );
+        $system->setData('magento', new Varien_Object($magento));
+
+        /*
+         * SERVER
+         */
+
+        $server = array(
+            'domain' => isset($_SERVER['HTTP_HOST']) ? str_replace('www.', '', $_SERVER['HTTP_HOST']) : null,
+            'ip' => $_SERVER['SERVER_ADDR'],
+            'dir' => Mage::getBaseDir(),
+            'info' => php_uname(),
+
+        );
+        $system->setData('server', new Varien_Object($server));
+
+        /*
+         * PHP
+         */
+
+        $php = array(
+            'version' => @phpversion(),
+            'server_api' => @php_sapi_name(),
+            'memory_limit' => @ini_get('memory_limit'),
+            'max_execution_time' => @ini_get('max_execution_time')
+        );
+        $system->setData('php', new Varien_Object($php));
+
+        /*
+         * MySQL
+         */
+
+        // Get MySQL Server API
+        $connection = $this->_getDb()->getConnection();
+        if ($connection instanceof PDO) {
+            $mysqlServerApi = $connection->getAttribute(PDO::ATTR_CLIENT_VERSION);
+        } else {
+            $mysqlServerApi = 'n/a';
+        }
+
+        // Get table prefix
+        $tablePrefix = (string) Mage::getConfig()->getTablePrefix();
+        if (empty($tablePrefix)) {
+            $tablePrefix = $this->__('Disabled');
+        }
+
+        // Get MySQL vars
+        $sqlQuery = "SHOW VARIABLES WHERE `Variable_name` IN ('connect_timeout','wait_timeout')";
+        $sqlResult = $this->_getDb()->fetchAll($sqlQuery);
+        $mysqlVars = array();
+        foreach ($sqlResult as $mysqlVar) {
+            $mysqlVars[$mysqlVar['Variable_name']] = $mysqlVar['Value'];
+        }
+
+        $mysql = array(
+            'version' => $this->_getDb()->getServerVersion(),
+            'server_api' => $mysqlServerApi,
+            'database_name' => (string) Mage::getConfig()->getNode('global/resources/default_setup/connection/dbname'),
+            'database_tables' => count($this->_getDb()->listTables()),
+            'table_prefix' => $tablePrefix,
+            'connection_timeout' => $mysqlVars['connect_timeout'].' sec.',
+            'wait_timeout' => $mysqlVars['wait_timeout'].' sec.'
+        );
+        $system->setData('mysql', new Varien_Object($mysql));
+
+
+        $this->_system = $system;
+    }
+
+    /**
+     * @return Varien_Object
+     */
+    public function getSystem()
+    {
+        return $this->_system;
+    }
+
+    /**
+     * @param boolen $value
+     * @return string
+     */
+    public function renderBooleanField($value)
+    {
+        if ($value) {
+            return $this->__('Enabled');
+        }
+        return $this->__('Disabled');
     }
 }
