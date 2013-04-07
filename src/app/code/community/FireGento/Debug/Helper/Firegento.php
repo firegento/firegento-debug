@@ -257,22 +257,24 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
      */
     public function getEventsCollection()
     {
-        $sortValue = Mage::app()->getRequest()->getParam('sort', 'name');
+        $sortValue = Mage::app()->getRequest()->getParam('sort', 'event');
         $sortValue = strtolower($sortValue);
 
         $sortDir = Mage::app()->getRequest()->getParam('dir', 'ASC');
         $sortDir = strtoupper($sortDir);
 
         $events = $this->_loadEvents();
+        $events = $this->sortMultiDimArr($events, $sortValue, $sortDir);
 
         $collection = new Varien_Data_Collection();
-        foreach ($events as $key => $values) {
+        foreach ($events as $item) {
+            $values = $item['children'];
             if (is_array($values)) {
                 asort($values);
             }
 
             $val = array(
-                'event'    => $key,
+                'event'    => $item['event'],
                 'location' => implode("\n", $values)
             );
 
@@ -324,10 +326,13 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
                     $instance  = Mage::getConfig()->getModelClassName($instance);
 
                     if (!array_key_exists($eventName, $return)) {
-                        $return[$eventName] = array();
+                        $return[$eventName] = array(
+                            'event' => $eventName,
+                            'children' => array()
+                        );
                     }
                     if (!in_array($instance, $return[$eventName])) {
-                        $return[$eventName][] = $instance;
+                        $return[$eventName]['children'][] = $instance;
                     }
                 }
             }
