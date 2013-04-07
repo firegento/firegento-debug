@@ -1,0 +1,8 @@
+.col2-set {width:100%}
+.col2-set .col1{width:49%;float:left;}
+.col2-set .col2{width:49%;float:right;}
+.firegento-settings-table th.col1, .firegento-settings-table td.col1{width:200px;padding-left:5px !important;}
+.firegento-settings-table th.col2, .firegento-settings-table td.col2{width:200px;padding-left:5px !important;}
+.firegento-settings-table th.col3, .firegento-settings-table td.col3{width:200px;padding-left:5px !important;}
+.firegento-settings-table .requirement-passed{color:green !important;}
+.firegento-settings-table .requirement-failed{color:red !important;}

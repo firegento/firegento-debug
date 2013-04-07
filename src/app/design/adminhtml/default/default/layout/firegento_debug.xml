@@ -38,6 +38,9 @@
         </reference>
     </firegento_diagnostic_checkevents>
     <firegento_diagnostic_checksystem>
+        <reference name="head">
+            <action method="addCss"><stylesheet>firegento/debug/styles.css</stylesheet></action>
+        </reference>
         <reference name="content">
             <block type="firegento/diagnostic_checkSystem" name="firegento.diagnostic.checksystem" template="firegento/debug/diagnostic/checksystem.phtml" />
         </reference>
