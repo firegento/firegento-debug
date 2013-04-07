@@ -15,6 +15,11 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  */
 ?>
+<?php
+/**
+ * @var $this FireGento_Debug_Block_Diagnostic_CheckSystem
+ */
+?>
 <div id="page:main-container">
 	<div class="content-header">
 		<table cellspacing="0">
@@ -25,105 +30,189 @@
 		</table>
 	</div>
 
-	<div class="entry-edit">
-		<div class="entry-edit-head">
-	    	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Config Settings') ?></h4>
-		</div>
+    <div class="col2-set">
+        <div class="col1">
+            <div class="entry-edit">
+                <div class="entry-edit-head">
+                    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Magento Info') ?></h4>
+                </div>
 
-		<div class="fieldset " id="base_fieldset">
-		    <div class="hor-scroll">
-				<table class="form-list" cellspacing="0">
-					<colgroup class="label"></colgroup>
-					<colgroup class="value"></colgroup>
-					<tbody>
-						<tr id="row_current_magento_version">
-							<td class="label"><label for=""><?php echo $this->__('Current Magento Version')?></label></td>
-							<td class="value"><?php echo Mage::getVersion(); ?></td>
-						</tr>
-						<tr id="row_use_flat_catalog_category">
-							<td class="label"><label for=""><?php echo $this->__('Use Flat Catalog Category')?></label></td>
-							<td class="value"><?php echo (Mage::getStoreConfig('catalog/frontend/flat_catalog_category')) ? $this->__('Enabled') : $this->__('Disabled'); ?></td>
-						</tr>
-						<tr id="row_use_flat_catalog_product">
-							<td class="label"><label for=""><?php echo $this->__('Use Flat Catalog Product')?></label></td>
-							<td class="value"><?php echo (Mage::getStoreConfig('catalog/frontend/flat_catalog_product')) ? $this->__('Enabled') : $this->__('Disabled'); ?></td>
-						</tr>
-						<tr id="row_use_flat_catalog_product">
-							<td class="label"><label for=""><?php echo $this->__('Caches active?')?></label></td>
-							<td class="value"><?php echo $this->checkCaches(); ?></td>
-						</tr>
-						<tr id="row_use_flat_catalog_product">
-							<td class="label"><label for=""><?php echo $this->__('All Indizes up-to-date?')?></label></td>
-							<td class="value"><?php echo $this->checkIndizes(); ?></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+                <div class="fieldset">
+                    <div class="hor-scroll">
+                        <table class="form-list" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Edition:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getMagento()->getEdition()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Version:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getMagento()->getVersion()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Developer Mode:')?></label></td>
+                                <td class="value"><?php echo $this->renderBooleanField($this->getSystem()->getMagento()->getDeveloperMode()) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Add Secret Key to URLs:')?></label></td>
+                                <td class="value"><?php echo $this->renderBooleanField($this->getSystem()->getMagento()->getSecretKey())?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Use Flat Catalog Category:')?></label></td>
+                                <td class="value"><?php echo $this->renderBooleanField($this->getSystem()->getMagento()->getFlatCatalogCategory())?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Use Flat Catalog Product:')?></label></td>
+                                <td class="value"><?php echo $this->renderBooleanField($this->getSystem()->getMagento()->getFlatCatalogProduct())?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Cache status:')?></label></td>
+                                <td class="value">
+                                    <?php echo $this->getSystem()->getMagento()->getCacheStatus()?><br />
+                                    <a href="<?php echo $this->getUrl('adminhtml/cache/') ?>">&raquo; <?php echo $this->__('Cache Management')?></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Index status:')?></label></td>
+                                <td class="value">
+                                    <?php echo $this->getSystem()->getMagento()->getIndexStatus()?><br />
+                                    <a href="<?php echo $this->getUrl('adminhtml/process/list')?>">&raquo; <?php echo $this->__('Index Management')?></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="entry-edit">
+                <div class="entry-edit-head">
+                    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('PHP Info') ?></h4>
+                </div>
 
-	<div class="entry-edit">
-		<div class="entry-edit-head">
-	    	<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('System Check') ?></h4>
-		</div>
+                <div class="fieldset">
+                    <div class="hor-scroll">
+                        <table class="form-list" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Version:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getPhp()->getVersion()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Server API:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getPhp()->getServerApi()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Memory Limit:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getPhp()->getMemoryLimit()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Max. Execution Time:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getPhp()->getMaxExecutionTime()?></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="entry-edit">
+                <div class="entry-edit-head">
+                    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('MySQL Info') ?></h4>
+                </div>
 
-		<div class="fieldset " id="base_fieldset">
-		    <div class="hor-scroll">
-		    	<table class="form-list" cellspacing="0">
-					<colgroup class="label"></colgroup>
-					<colgroup class="value"></colgroup>
-					<tbody>
-						<tr id="row_current_magento_version">
-							<td class="label"><label for=""><?php echo $this->__('Maximum Execution Time')?></label></td>
-							<td class="value">
-							    <p><?php echo ini_get('max_execution_time')?> <?php echo $this->__('Seconds')?></p>
-							    <p class="note"><span><?php echo $this->__('Recommended is a execution time of min. %s seconds', '180')?></span></p>
-							</td>
-						</tr>
-						<tr id="row_use_flat_catalog_category">
-							<td class="label"><label for=""><?php echo $this->__('Memory Limit')?></label></td>
-							<td class="value">
-						        <p><?php echo ini_get('memory_limit')?></p>
-								<p class="note"><span><?php echo $this->__('Recommended is a memory limit of %s', '128M')?></span></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-		    	<p>&nbsp</p>
-				<?php $checkResult = $this->checkSystem(); ?>
+                <div class="fieldset">
+                    <div class="hor-scroll">
+                        <table class="form-list" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Version:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getMysql()->getVersion()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Server API:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getMysql()->getServerApi()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Database Name:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getMysql()->getDatabaseName()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Database Tables:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getMysql()->getDatabaseTables()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Database Table Prefix:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getMysql()->getTablePrefix()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Connection Timeout:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getMysql()->getConnectionTimeout()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Wait Timeout:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getMysql()->getWaitTimeout()?></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-				<?php if(count($checkResult['fail']) > 0): ?>
-					<p><?php echo $this->__('<strong>Your server does not meet the following requirements in order to install Magento.</strong>'); ?></p>
-					<p><?php echo $this->__('The following requirements failed, please contact your hosting provider in order to receive assistance with meeting the system requirements for Magento:'); ?></p>
+        <div class="col2">
+            <div class="entry-edit">
+                <div class="entry-edit-head">
+                    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Server Info') ?></h4>
+                </div>
 
-					<ul>
-						<?php
-						foreach($checkResult['fail'] as $fail) {
-							echo '<li>'.$fail.'</li>';
-						}
-						?>
-					</ul>
-					<p>&nbsp;</p>
-					<p><?php echo $this->__('The following requirements were successfully met:'); ?></p>
-					<ul>
-						<?php
-						foreach($checkResult['pass'] as $pass) {
-							echo '<li>'.$pass.'</li>';
-						}
-						?>
-					</ul>
-				<?php else: ?>
-					<p><?php echo $this->__('<strong>Congratulations!</strong> Your server meets the requirements for Magento.'); ?></p>
-					<ul>
-						<?php
-						foreach($checkResult['pass'] as $pass) {
-							echo '<li>'.$pass.'</li>';
-						}
-						?>
-					</ul>
-					<p>&nbsp;</p>
-				<?php endif; ?>
-			</div>
-		</div>
-	</div>
+                <div class="fieldset">
+                    <div class="hor-scroll">
+                        <table class="form-list" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Info:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getServer()->getInfo()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Domain:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getServer()->getDomain()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Server IP:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getServer()->getIp()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Server Directory:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getServer()->getDir()?></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="entry-edit">
+                <div class="entry-edit-head">
+                    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('System Requirements') ?></h4>
+                </div>
+
+                <?php $requirements = $this->getSystem()->getRequirements()->getData(); ?>
+                <div class="fieldset">
+                    <div class="hor-scroll">
+                        <table class="form-list firegento-settings-table" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th class="label col1"><?php echo $this->__('Requirement')?></th>
+                                    <th class="value col2"><?php echo $this->__('Recommended Value')?></th>
+                                    <th class="value col3"><?php echo $this->__('Current Value')?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($requirements as $requirement): ?>
+                                <tr>
+                                    <td class="label col1"><label><?php echo $this->__($requirement['label'])?></label></td>
+                                    <td class="value col2"><?php echo $requirement['recommended_value']?></td>
+                                    <td class="value col3 <?php echo $this->renderRequirementValue($requirement['result']) ?>">
+                                        <?php echo $requirement['current_value']?>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

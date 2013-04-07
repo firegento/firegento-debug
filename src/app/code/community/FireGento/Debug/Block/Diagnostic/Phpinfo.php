@@ -40,20 +40,18 @@ class FireGento_Debug_Block_Diagnostic_Phpinfo
     public function getPhpInfo()
     {
         ob_start();
-        phpinfo();
-        preg_match ('%<style type="text/css">(.*?)</style>.*?(<body>.*</body>)%s', ob_get_clean(), $matches);
-        echo "<div class='phpinfodisplay' style='overflow:hidden'><style type='text/css'>\n",
-            join( "\n",
-                array_map(
-                    create_function(
-                        '$i',
-                        'return ".phpinfodisplay " . preg_replace( "/,/", ",.phpinfodisplay ", $i );'
-                        ),
-                    preg_split( '/\n/', $matches[1] )
-                    )
-                ),
-            "</style>\n",
-            $matches[2],
-        "\n</div>\n";
+        phpinfo(-1);
+        $phpinfo = ob_get_contents();
+        ob_end_clean();
+
+        preg_match_all('#<body[^>]*>(.*)</body>#siU', $phpinfo, $output);
+        $output = preg_replace('#<table#', '<table class="adminlist" align="center"', $output[1][0]);
+        $output = preg_replace('#(\w),(\w)#', '\1, \2', $output);
+        $output = preg_replace('#border="0" cellpadding="3" width="600"#', 'border="1" cellspacing="1" cellpadding="4" width="100%"', $output);
+        $output = preg_replace('#<hr />#', '', $output);
+        $output = str_replace('<div class="center">', '', $output);
+        $output = str_replace('</div>', '', $output);
+
+        return $output;
     }
 }
