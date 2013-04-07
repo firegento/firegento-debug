@@ -137,6 +137,117 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
         );
         $system->setData('mysql', new Varien_Object($mysql));
 
+        /*
+         * System Requirements
+         */
+
+        $safeMode = (@ini_get('safe_mode')) ? true : false;
+        $memoryLimit = $php['memory_limit'];
+        $memoryLimit = substr($memoryLimit, 0, strlen($memoryLimit) -1);
+        $phpCurl = @extension_loaded('curl');
+        $phpDom = @extension_loaded('dom');
+        $phpGd = @extension_loaded('gd');
+        $phpHash = @extension_loaded('hash');
+        $phpIconv = @extension_loaded('iconv');
+        $phpMcrypt = @extension_loaded('mcrypt');
+        $phpPcre = @extension_loaded('pcre');
+        $phpPdo = @extension_loaded('pdo');
+        $phpPdoMysql = @extension_loaded('pdo_mysql');
+        $phpSimplexml = @extension_loaded('simplexml');
+
+        $requirements = array(
+            'php_version' => array(
+                'label' => 'PHP Version:',
+                'recommended_value' => '>= 5.3.0',
+                'current_value' => $php['version'],
+                'result' => version_compare($php['version'], '5.3.0', '>=')
+            ),
+            'mysql_version' => array(
+                'label' => 'MySQL Version:',
+                'recommended_value' => '>= 4.1.20',
+                'current_value' => $mysql['version'],
+                'result' => version_compare($mysql['version'], '4.1.20', '>='),
+            ),
+            'safe_mode' => array(
+                'label' => 'Safe Mode:',
+                'recommended_value' => $this->renderBooleanField(false),
+                'current_value' => $this->renderBooleanField($safeMode),
+                'result' => !$safeMode,
+            ),
+            'memory_limit' => array(
+                'label' => 'Memory Limit:',
+                'recommended_value' => '>= 256M',
+                'current_value' => $php['memory_limit'],
+                'result' => ($memoryLimit >= 256),
+            ),
+            'max_execution_time' => array(
+                'label' => 'Max. Execution Time:',
+                'recommended_value' => '>= 360 sec.',
+                'current_value' => $php['max_execution_time'],
+                'result' => ($php['max_execution_time'] >= 360),
+            ),
+            'curl' => array(
+                'label' => 'curl',
+                'recommended_value' => $this->renderBooleanField(true),
+                'current_value' => $this->renderBooleanField($phpCurl),
+                'result' => $phpCurl,
+            ),
+            'dom' => array(
+                'label' => 'dom',
+                'recommended_value' => $this->renderBooleanField(true),
+                'current_value' => $this->renderBooleanField($phpDom),
+                'result' => $phpDom,
+            ),
+            'gd' => array(
+                'label' => 'gd',
+                'recommended_value' => $this->renderBooleanField(true),
+                'current_value' => $this->renderBooleanField($phpGd),
+                'result' => $phpGd,
+            ),
+            'hash' => array(
+                'label' => 'hash',
+                'recommended_value' => $this->renderBooleanField(true),
+                'current_value' => $this->renderBooleanField($phpHash),
+                'result' => $phpHash,
+            ),
+            'iconv' => array(
+                'label' => 'iconv',
+                'recommended_value' => $this->renderBooleanField(true),
+                'current_value' => $this->renderBooleanField($phpIconv),
+                'result' => $phpIconv,
+            ),
+            'mcrypt' => array(
+                'label' => 'mcrypt',
+                'recommended_value' => $this->renderBooleanField(true),
+                'current_value' => $this->renderBooleanField($phpMcrypt),
+                'result' => $phpMcrypt,
+            ),
+            'pcre' => array(
+                'label' => 'pcre',
+                'recommended_value' => $this->renderBooleanField(true),
+                'current_value' => $this->renderBooleanField($phpPcre),
+                'result' => $phpPcre,
+            ),
+            'pdo' => array(
+                'label' => 'pdo',
+                'recommended_value' => $this->renderBooleanField(true),
+                'current_value' => $this->renderBooleanField($phpPdo),
+                'result' => $phpPdo,
+            ),
+            'pdo_mysql' => array(
+                'label' => 'pdo_mysql',
+                'recommended_value' => $this->renderBooleanField(true),
+                'current_value' => $this->renderBooleanField($phpPdoMysql),
+                'result' => $phpPdoMysql,
+            ),
+            'simplexml' => array(
+                'label' => 'simplexml',
+                'recommended_value' => $this->renderBooleanField(true),
+                'current_value' => $this->renderBooleanField($phpSimplexml),
+                'result' => $phpSimplexml,
+            )
+        );
+        $system->setData('requirements', new Varien_Object($requirements));
 
         $this->_system = $system;
     }
@@ -159,5 +270,17 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
             return $this->__('Enabled');
         }
         return $this->__('Disabled');
+    }
+
+    /**
+     * @param $result
+     * @return string
+     */
+    public function renderRequirementValue($result)
+    {
+        if ($result) {
+            return 'requirement-passed';
+        }
+        return 'requirement-failed';
     }
 }

@@ -37,7 +37,7 @@
                     <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Magento Info') ?></h4>
                 </div>
 
-                <div class="fieldset " id="base_fieldset">
+                <div class="fieldset">
                     <div class="hor-scroll">
                         <table class="form-list" cellspacing="0" cellpadding="0">
                             <tr>
@@ -84,38 +84,10 @@
             </div>
             <div class="entry-edit">
                 <div class="entry-edit-head">
-                    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Server Info') ?></h4>
-                </div>
-
-                <div class="fieldset " id="base_fieldset">
-                    <div class="hor-scroll">
-                        <table class="form-list" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td class="label"><label><?php echo $this->__('Info:')?></label></td>
-                                <td class="value"><?php echo $this->getSystem()->getServer()->getInfo()?></td>
-                            </tr>
-                            <tr>
-                                <td class="label"><label><?php echo $this->__('Domain:')?></label></td>
-                                <td class="value"><?php echo $this->getSystem()->getServer()->getDomain()?></td>
-                            </tr>
-                            <tr>
-                                <td class="label"><label><?php echo $this->__('Server IP:')?></label></td>
-                                <td class="value"><?php echo $this->getSystem()->getServer()->getIp()?></td>
-                            </tr>
-                            <tr>
-                                <td class="label"><label><?php echo $this->__('Directory:')?></label></td>
-                                <td class="value"><?php echo $this->getSystem()->getServer()->getDir()?></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="entry-edit">
-                <div class="entry-edit-head">
                     <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('PHP Info') ?></h4>
                 </div>
 
-                <div class="fieldset " id="base_fieldset">
+                <div class="fieldset">
                     <div class="hor-scroll">
                         <table class="form-list" cellspacing="0" cellpadding="0">
                             <tr>
@@ -143,7 +115,7 @@
                     <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('MySQL Info') ?></h4>
                 </div>
 
-                <div class="fieldset " id="base_fieldset">
+                <div class="fieldset">
                     <div class="hor-scroll">
                         <table class="form-list" cellspacing="0" cellpadding="0">
                             <tr>
@@ -183,11 +155,61 @@
         <div class="col2">
             <div class="entry-edit">
                 <div class="entry-edit-head">
+                    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Server Info') ?></h4>
+                </div>
+
+                <div class="fieldset">
+                    <div class="hor-scroll">
+                        <table class="form-list" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Info:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getServer()->getInfo()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Domain:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getServer()->getDomain()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Server IP:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getServer()->getIp()?></td>
+                            </tr>
+                            <tr>
+                                <td class="label"><label><?php echo $this->__('Directory:')?></label></td>
+                                <td class="value"><?php echo $this->getSystem()->getServer()->getDir()?></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="entry-edit">
+                <div class="entry-edit-head">
                     <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('System Requirements') ?></h4>
                 </div>
 
-                <div class="fieldset " id="base_fieldset">
-
+                <?php $requirements = $this->getSystem()->getRequirements()->getData(); ?>
+                <div class="fieldset">
+                    <div class="hor-scroll">
+                        <table class="form-list firegento-settings-table" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th class="label col1">Setting</th>
+                                    <th class="value col2">Recommended Setting</th>
+                                    <th class="value col3">Current Setting</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($requirements as $requirement): ?>
+                                <tr>
+                                    <td class="label col1"><label><?php echo $this->__($requirement['label'])?></label></td>
+                                    <td class="value col2"><?php echo $requirement['recommended_value']?></td>
+                                    <td class="value col3 <?php echo $this->renderRequirementValue($requirement['result']) ?>">
+                                        <?php echo $requirement['current_value']?>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
