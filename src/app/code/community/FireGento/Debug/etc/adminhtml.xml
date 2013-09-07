@@ -18,57 +18,99 @@
  -->
 <config>
 	<menu>
-	    <firegento translate="title" module="firegento">
-	        <title>FIREGENTO</title>
-	        <sort_order>500</sort_order>
-	        <children>
-	            <diagnostic translate="title" module="firegento">
-	                <title>Diagnostic</title>
-	                <sort_order>10</sort_order>
-	                <children>
-	                    <check_modules translate="title" module="firegento">
-	                        <title>Check Modules</title>
-	                        <action>firegento/diagnostic/checkModules</action>
-	                        <sort_order>10</sort_order>
-	                    </check_modules>
-	                    <check_rewrites translate="title" module="firegento">
-	                        <title>Check Rewrites</title>
-	                        <action>firegento/diagnostic/checkRewrites</action>
-	                        <sort_order>20</sort_order>
-	                    </check_rewrites>
-	                    <check_events translate="title" module="firegento">
-	                        <title>Check Events</title>
-	                        <action>firegento/diagnostic/checkEvents</action>
-	                        <sort_order>30</sort_order>
-	                    </check_events>
-	                    <check_system translate="title" module="firegento">
-	                        <title>Check System</title>
-	                        <action>firegento/diagnostic/checkSystem</action>
-	                        <sort_order>40</sort_order>
-	                    </check_system>
-	                    <phpinfo translate="title" module="firegento">
-	                        <title>phpinfo()</title>
-	                        <action>firegento/diagnostic/phpinfo</action>
-	                        <sort_order>50</sort_order>
-	                    </phpinfo>
-	                </children>
-	            </diagnostic>
-	            <logs>
-	                <title>Logs</title>
-	                <action>firegento/log/index</action>
-	                <sort_order>20</sort_order>
-	            </logs>
-	            <about_firegento translate="title" module="firegento">
-	                <title>About FireGento</title>
-	                <action>firegento/index/about</action>
-	                <sort_order>999</sort_order>
-	            </about_firegento>
-	            <configuration translate="title" module="firegento">
-	               <title>Configuration</title>
-	               <action>adminhtml/system_config/edit/section/firegento</action>
-	               <sort_order>1000</sort_order>
-	            </configuration>
-	        </children>
-	    </firegento>
+		<firegento translate="title" module="firegento">
+			<title>FIREGENTO</title>
+			<sort_order>500</sort_order>
+			<children>
+				<diagnostic translate="title" module="firegento">
+					<title>Diagnostic</title>
+					<sort_order>10</sort_order>
+					<children>
+						<check_modules translate="title" module="firegento">
+							<title>Check Modules</title>
+							<action>firegento/diagnostic/checkModules</action>
+							<sort_order>10</sort_order>
+						</check_modules>
+						<check_rewrites translate="title" module="firegento">
+							<title>Check Rewrites</title>
+							<action>firegento/diagnostic/checkRewrites</action>
+							<sort_order>20</sort_order>
+						</check_rewrites>
+						<check_events translate="title" module="firegento">
+							<title>Check Events</title>
+							<action>firegento/diagnostic/checkEvents</action>
+							<sort_order>30</sort_order>
+						</check_events>
+						<check_system translate="title" module="firegento">
+							<title>Check System</title>
+							<action>firegento/diagnostic/checkSystem</action>
+							<sort_order>40</sort_order>
+						</check_system>
+						<phpinfo translate="title" module="firegento">
+							<title>phpinfo()</title>
+							<action>firegento/diagnostic/phpinfo</action>
+							<sort_order>50</sort_order>
+						</phpinfo>
+					</children>
+				</diagnostic>
+				<logs>
+					<title>Logs</title>
+					<action>firegento/log/index</action>
+					<sort_order>20</sort_order>
+				</logs>
+				<about_firegento translate="title" module="firegento">
+					<title>About FireGento</title>
+					<action>firegento/index/about</action>
+					<sort_order>999</sort_order>
+				</about_firegento>
+				<configuration translate="title" module="firegento">
+					<title>Configuration</title>
+					<action>adminhtml/system_config/edit/section/firegento</action>
+					<sort_order>1000</sort_order>
+				</configuration>
+			</children>
+		</firegento>
 	</menu>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<firegento translate="title" module="firegento">
+						<title>FIREGENTO</title>
+						<children>
+							<diagnostic translate="title" module="firegento">
+								<title>Diagnostic</title>
+								<children>
+									<check_modules translate="title" module="firegento">
+										<title>Check Modules</title>
+									</check_modules>
+									<check_rewrites translate="title" module="firegento">
+										<title>Check Rewrites</title>
+									</check_rewrites>
+									<check_events translate="title" module="firegento">
+										<title>Check Events</title>
+									</check_events>
+									<check_system translate="title" module="firegento">
+										<title>Check System</title>
+									</check_system>
+									<phpinfo translate="title" module="firegento">
+										<title>phpinfo()</title>
+									</phpinfo>
+								</children>
+							</diagnostic>
+							<logs>
+								<title>Logs</title>
+							</logs>
+							<about_firegento translate="title" module="firegento">
+								<title>About FireGento</title>
+							</about_firegento>
+							<configuration translate="title" module="firegento">
+								<title>Configuration</title>
+							</configuration>
+						</children>
+					</firegento>
+				</children>
+			</admin>
+		</resources>
+	</acl>
 </config>
