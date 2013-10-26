@@ -31,8 +31,7 @@ Install the files using one of the following methods:
 - Install [composer](http://getcomposer.org/download/)
 - Create a composer.json into your project like the following sample:
 
-```
-json
+```json
 {
     ...
     "require": {
