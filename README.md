@@ -13,7 +13,7 @@ Description
 This extension provides some debugging functionality for Magento.
 This includes:
 
-- 
+- List all installed modules incl. their dependencies in the Magento backend
 - Activate/Deactivate non-core modules via the Magento backend
 - Check all installed modules for rewrite conflicts
 - Show all triggered events/observers
