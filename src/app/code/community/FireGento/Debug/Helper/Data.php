@@ -58,4 +58,20 @@ class FireGento_Debug_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $c;
     }
+
+
+    /**
+     * Get code pools options
+     *
+     * @return array  Sorted array
+     */
+    public function getHashCodePools()
+    {
+        $hash = array();
+        $hash['local'] = 'local';
+        $hash['community'] = 'community';
+        $hash['core'] = 'core';
+
+        return $hash;
+    }
 }
