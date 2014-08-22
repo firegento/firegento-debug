@@ -5,6 +5,7 @@ src/app/etc/modules/FireGento_Debug.xml                             app/etc/modu
 src/app/locale/de_CH/FireGento_Debug.csv                            app/locale/de_CH/FireGento_Debug.csv
 src/app/locale/de_DE/FireGento_Debug.csv                            app/locale/de_DE/FireGento_Debug.csv
 src/app/locale/en_US/FireGento_Debug.csv                            app/locale/en_US/FireGento_Debug.csv
+src/app/locale/fr_FR/FireGento_Debug.csv                            app/locale/fr_FR/FireGento_Debug.csv
 src/lib/FireGento/ChromePhp                                         lib/FireGento/ChromePhp
 src/lib/FireGento/FireLogger                                        lib/FireGento/FireLogger
 src/lib/FireGento/FirePHP                                           lib/FireGento/FirePHP

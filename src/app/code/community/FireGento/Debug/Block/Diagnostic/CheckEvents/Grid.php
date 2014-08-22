@@ -43,7 +43,7 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
         $this->setId('check_events_grid');
         $this->setDefaultSort('event');
         $this->setDefaultDir('ASC');
-        $this->_filterVisibility = false;
+        //$this->_filterVisibility = false;
         $this->_pagerVisibility  = false;
     }
 
@@ -68,6 +68,31 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
     protected function _prepareColumns()
     {
         $baseUrl = $this->getUrl();
+
+        $this->addColumn(
+                'module',
+                array(
+                        'header'   => $this->__('Module Name'),
+                        'align'    => 'left',
+                        'index'    => 'module',
+                        'sortable' => false,
+                        'filter' => false
+                )
+        );
+        $this->addColumn(
+                'code_pool',
+                array(
+                        'header'   => $this->__('Code Pool'),
+                        'align'    => 'left',
+                        'index'    => 'code_pool',
+                        'width'    => '80px',
+                        'sortable' => true,
+                        'type'  => 'options',
+                        'options'  => Mage::helper('firegento')->getHashCodePools(),
+                        'filter_condition_callback' => array($this, '_codePoolFilter'),
+                )
+        );
+
         $this->addColumn(
             'event',
             array(
@@ -76,6 +101,7 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
                 'index'    => 'event',
                 'width'    => '50%',
                 'sortable' => true,
+                'filter_condition_callback' => array($this, '_eventFilter'),
             )
         );
         $this->addColumn(
@@ -84,13 +110,62 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
                 'header'   => $this->__('Location'),
                 'align'    => 'left',
                 'index'    => 'location',
-                'width'    => '50%',
+                'width'    => '30%',
                 'sortable' => false,
-                'renderer' => 'firegento/diagnostic_renderer_paragraph'
+                'renderer' => 'firegento/diagnostic_renderer_paragraph',
+                'filter' => false
             )
         );
 
+
+
         return parent::_prepareColumns();
+    }
+
+    /**
+     * Filter code pool collection
+     *
+     * @param Varien_Data_Collection $collection
+     * @param Mage_Adminhtml_Block_Widget_Grid_Column $column
+     */
+    protected function _codePoolFilter($collection, $column)
+    {
+        if (!$value = $column->getFilter()->getValue()) {
+            return $this;
+        }
+
+        $collection = $this->getCollection();
+
+        foreach($collection as $itemKey=>$item) {
+            if($value!=$item->getCodePool()) {
+                $collection->removeItemByKey($itemKey);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Filter event collection
+     *
+     * @param Varien_Data_Collection $collection
+     * @param Mage_Adminhtml_Block_Widget_Grid_Column $column
+     */
+    protected function _eventFilter($collection, $column)
+    {
+        if (!$value = $column->getFilter()->getValue()) {
+            return $this;
+        }
+
+        $collection = $this->getCollection();
+
+        foreach($collection as $itemKey=>$item) {
+            if(strpos($item->getEvent(),$value)===false) {
+                $collection->removeItemByKey($itemKey);
+            }
+        }
+
+        return $this;
     }
 
     /**
