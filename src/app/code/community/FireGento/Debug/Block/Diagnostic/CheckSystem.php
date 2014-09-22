@@ -63,8 +63,12 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
         /*
          * MAGENTO
          */
+        $edition = '-';
+        if (method_exists(Mage, 'getEdition')) {
+            $edition = Mage::getEdition();
+        }
         $magento = array(
-            'edition' => Mage::getEdition(),
+            'edition' => $edition,
             'version' => Mage::getVersion(),
             'developer_mode' => Mage::getIsDeveloperMode(),
             'secret_key' => Mage::getStoreConfigFlag('admin/security/use_form_key'),
