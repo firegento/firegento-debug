@@ -275,7 +275,10 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
 
             $val = array(
                 'event'    => $item['event'],
-                'location' => implode("\n", $values)
+                'module'   => $item['module'],
+                'code_pool'=> $item['code_pool'],
+                'location' => implode("\n", $values),
+
             );
 
             $item = new Varien_Object($val);
@@ -293,11 +296,14 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
     protected function _loadEvents()
     {
         $fileName = 'config.xml';
-        $modules  = Mage::getConfig()->getNode('modules')->children();
+        //$modules  = Mage::getConfig()->getNode('modules')->children();
+
+        $modules = $this->_loadModules();
 
         $events = array();
         foreach ($modules as $modName => $module) {
-            if ($module->is('active')) {
+            //if ($module->is('active')) {
+            if (!empty($module['active'])) {
                 $configFile = Mage::getConfig()->getModuleDir('etc', $modName).DS.$fileName;
                 if (file_exists($configFile)) {
                     $xml = file_get_contents($configFile);
@@ -311,10 +317,9 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
         }
 
         $return = array();
-        foreach ($events as $eventNodes) {
+        foreach ($events as $module=>$eventNodes) {
             foreach ($eventNodes as $n) {
                 $nParent    = $n->xpath('..');
-                $module     = (string) $nParent[0]->getName();
                 $nSubParent = $nParent[0]->xpath('..');
                 $component  = (string) $nSubParent[0]->getName();
                 $pathNodes  = $n->children();
@@ -328,6 +333,8 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
                     if (!array_key_exists($eventName, $return)) {
                         $return[$eventName] = array(
                             'event' => $eventName,
+                            'module'=> $module,
+                            'code_pool'=> $modules[$module]['code_pool'],
                             'children' => array()
                         );
                     }
