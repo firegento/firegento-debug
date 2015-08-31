@@ -44,4 +44,9 @@ class FireGento_Debug_IndexController
         $this->_title($this->__('About FireGento') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
+
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('firegento/about_firegento');
+    }
 }

@@ -136,4 +136,9 @@ class FireGento_Debug_DiagnosticController
         $this->_title($this->__('phpinfo') . ' / '. 'FIREGENTO');
         $this->renderLayout();
     }
+
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('firegento/diagnostic');
+    }
 }
