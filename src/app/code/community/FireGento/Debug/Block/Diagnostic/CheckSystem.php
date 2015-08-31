@@ -64,7 +64,7 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
          * MAGENTO
          */
         $edition = '-';
-        if (method_exists(Mage, 'getEdition')) {
+        if (method_exists('Mage', 'getEdition')) {
             $edition = Mage::getEdition();
         }
         $magento = array(
