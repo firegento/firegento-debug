@@ -52,6 +52,6 @@ class FireGento_Debug_IndexController
      */
     protected function _isAllowed()
     {
-        return Mage::getSingleton('admin/session')->isAllowed('firegento/firegento_about');
+        return Mage::getSingleton('admin/session')->isAllowed('firegento/about_firegento');
     }
 }
