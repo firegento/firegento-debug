@@ -111,4 +111,14 @@ class FireGento_Debug_LogController extends Mage_Adminhtml_Controller_Action
         );
         Mage::log($array);
     }
+
+    /**
+     * ACL checking
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('firegento/logs');
+    }
 }
