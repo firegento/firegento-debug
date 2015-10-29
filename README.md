@@ -4,7 +4,7 @@ This extension provides some debbuging functionality for Magento.
 
 Facts
 -----
-- version: 1.4.0
+- version: 1.5.0
 - [extension on GitHub](https://github.com/firegento/firegento)
 
 

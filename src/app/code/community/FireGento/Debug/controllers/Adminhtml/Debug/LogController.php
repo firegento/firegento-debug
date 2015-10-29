@@ -19,6 +19,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
+
 /**
  * Log Controller
  *
@@ -29,7 +30,8 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
-class FireGento_Debug_LogController extends Mage_Adminhtml_Controller_Action
+class FireGento_Debug_Adminhtml_Debug_LogController
+    extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Sends the ajax response for the console output
@@ -46,26 +48,26 @@ class FireGento_Debug_LogController extends Mage_Adminhtml_Controller_Action
             return '';
         }
 
-        $handle   = fopen($filename, 'r');
+        $handle = fopen($filename, 'r');
         $filesize = filesize($filename);
 
         $firstTime = false;
 
         if ($startPos == 0) {
-            $firstTime    = true;
+            $firstTime = true;
             $lengthBefore = 1000;
             fseek($handle, -$lengthBefore, SEEK_END);
 
-            $text    = fread($handle, $filesize);
+            $text = fread($handle, $filesize);
             $updates = '[...]' . substr($text, strpos($text, "\n"), strlen($text));
-            $newPos  = ftell($handle);
+            $newPos = ftell($handle);
         } else {
             fseek($handle, $startPos, SEEK_SET);
             $updates = fread($handle, $filesize);
             $newPos = ftell($handle);
         }
 
-        if ($updates != NULL) {
+        if ($updates != null) {
             $response = Zend_Json::encode(array('text' => $updates, 'position' => $newPos, 'firsttime' => $firstTime));
             print $response;
         }
@@ -90,7 +92,7 @@ class FireGento_Debug_LogController extends Mage_Adminhtml_Controller_Action
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento');
-        $this->_title($this->__('Log') . ' / '. 'FIREGENTO');
+        $this->_title($this->__('Log') . ' / ' . 'FIREGENTO');
         $this->_addContent($this->getLayout()->createBlock('firegento/log_console'));
         $this->renderLayout();
     }
@@ -110,5 +112,15 @@ class FireGento_Debug_LogController extends Mage_Adminhtml_Controller_Action
             'action'     => 'testAction'
         );
         Mage::log($array);
+    }
+
+    /**
+     * ACL checking
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('firegento/logs');
     }
 }

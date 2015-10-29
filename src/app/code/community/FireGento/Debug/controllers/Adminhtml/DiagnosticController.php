@@ -19,6 +19,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
+
 /**
  * Diagnostic Controller
  *
@@ -29,7 +30,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
-class FireGento_Debug_DiagnosticController
+class FireGento_Debug_Adminhtml_DiagnosticController
     extends Mage_Adminhtml_Controller_Action
 {
     /**
@@ -41,7 +42,7 @@ class FireGento_Debug_DiagnosticController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento');
-        $this->_title($this->__('Index') . ' / '. 'FIREGENTO');
+        $this->_title($this->__('Index') . ' / ' . 'FIREGENTO');
         $this->renderLayout();
     }
 
@@ -72,7 +73,7 @@ class FireGento_Debug_DiagnosticController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento');
-        $this->_title($this->__('Check Modules') . ' / '. 'FIREGENTO');
+        $this->_title($this->__('Check Modules') . ' / ' . 'FIREGENTO');
         $this->renderLayout();
     }
 
@@ -88,7 +89,7 @@ class FireGento_Debug_DiagnosticController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento');
-        $this->_title($this->__('Check Rewrites') . ' / '. 'FIREGENTO');
+        $this->_title($this->__('Check Rewrites') . ' / ' . 'FIREGENTO');
         $this->renderLayout();
     }
 
@@ -104,7 +105,7 @@ class FireGento_Debug_DiagnosticController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento');
-        $this->_title($this->__('Check Events') . ' / '. 'FIREGENTO');
+        $this->_title($this->__('Check Events') . ' / ' . 'FIREGENTO');
         $this->renderLayout();
     }
 
@@ -120,7 +121,7 @@ class FireGento_Debug_DiagnosticController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento');
-        $this->_title($this->__('Check System') . ' / '. 'FIREGENTO');
+        $this->_title($this->__('Check System') . ' / ' . 'FIREGENTO');
         $this->renderLayout();
     }
 
@@ -133,7 +134,17 @@ class FireGento_Debug_DiagnosticController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento');
-        $this->_title($this->__('phpinfo') . ' / '. 'FIREGENTO');
+        $this->_title($this->__('phpinfo') . ' / ' . 'FIREGENTO');
         $this->renderLayout();
+    }
+
+    /**
+     * ACL checking
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('firegento/diagnostic');
     }
 }

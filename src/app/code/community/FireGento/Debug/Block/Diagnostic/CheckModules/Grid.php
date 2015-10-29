@@ -19,6 +19,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
+
 /**
  * CheckRewrites Grid
  *
@@ -34,8 +35,6 @@ class FireGento_Debug_Block_Diagnostic_CheckModules_Grid
 {
     /**
      * Class constructor
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -44,7 +43,7 @@ class FireGento_Debug_Block_Diagnostic_CheckModules_Grid
         $this->setDefaultSort('name');
         $this->setDefaultDir('ASC');
         $this->_filterVisibility = false;
-        $this->_pagerVisibility  = false;
+        $this->_pagerVisibility = false;
     }
 
     /**
@@ -154,11 +153,11 @@ class FireGento_Debug_Block_Diagnostic_CheckModules_Grid
         $this->addColumn(
             'action',
             array(
-                'header'  => Mage::helper('sales')->__('Action'),
-                'width'   => '50px',
-                'type'    => 'action',
-                'getter'  => 'getName',
-                'actions' => array(
+                'header'         => Mage::helper('sales')->__('Action'),
+                'width'          => '50px',
+                'type'           => 'action',
+                'getter'         => 'getName',
+                'actions'        => array(
                     array(
                         'caption' => $this->__('Activate/Deactivate'),
                         'url'     => array('base' => '*/*/activation'),
@@ -204,9 +203,9 @@ class FireGento_Debug_Block_Diagnostic_CheckModules_Grid
     public function decorateTrueFalse($value, $row)
     {
         if ($row->getActive()) {
-            $cell = '<span class="grid-severity-notice"><span>'.$value.'</span></span>';
+            $cell = '<span class="grid-severity-notice"><span>' . $value . '</span></span>';
         } else {
-            $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
+            $cell = '<span class="grid-severity-critical"><span>' . $value . '</span></span>';
         }
 
         return $cell;
@@ -222,9 +221,9 @@ class FireGento_Debug_Block_Diagnostic_CheckModules_Grid
     public function decoratePathExists($value, $row)
     {
         if ($row->getPathExists()) {
-            $cell = '<span class="grid-severity-notice"><span>'.$value.'</span></span>';
+            $cell = '<span class="grid-severity-notice"><span>' . $value . '</span></span>';
         } else {
-            $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
+            $cell = '<span class="grid-severity-critical"><span>' . $value . '</span></span>';
         }
 
         return $cell;
@@ -240,9 +239,9 @@ class FireGento_Debug_Block_Diagnostic_CheckModules_Grid
     public function decorateConfigExists($value, $row)
     {
         if ($row->getConfigExists()) {
-            $cell = '<span class="grid-severity-notice"><span>'.$value.'</span></span>';
+            $cell = '<span class="grid-severity-notice"><span>' . $value . '</span></span>';
         } else {
-            $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
+            $cell = '<span class="grid-severity-critical"><span>' . $value . '</span></span>';
         }
 
         return $cell;
@@ -251,7 +250,7 @@ class FireGento_Debug_Block_Diagnostic_CheckModules_Grid
     /**
      * Get row edit url
      *
-     * @param  Varien_Object  $row Current row
+     * @param  Varien_Object $row Current row
      * @return string|boolean Row url | false = no url
      */
     public function getRowUrl($row)

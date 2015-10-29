@@ -28,39 +28,39 @@
 					<children>
 						<check_modules translate="title" module="firegento">
 							<title>Check Modules</title>
-							<action>firegento/diagnostic/checkModules</action>
+							<action>adminhtml/diagnostic/checkModules</action>
 							<sort_order>10</sort_order>
 						</check_modules>
 						<check_rewrites translate="title" module="firegento">
 							<title>Check Rewrites</title>
-							<action>firegento/diagnostic/checkRewrites</action>
+							<action>adminhtml/diagnostic/checkRewrites</action>
 							<sort_order>20</sort_order>
 						</check_rewrites>
 						<check_events translate="title" module="firegento">
 							<title>Check Events</title>
-							<action>firegento/diagnostic/checkEvents</action>
+							<action>adminhtml/diagnostic/checkEvents</action>
 							<sort_order>30</sort_order>
 						</check_events>
 						<check_system translate="title" module="firegento">
 							<title>Check System</title>
-							<action>firegento/diagnostic/checkSystem</action>
+							<action>adminhtml/diagnostic/checkSystem</action>
 							<sort_order>40</sort_order>
 						</check_system>
 						<phpinfo translate="title" module="firegento">
 							<title>phpinfo()</title>
-							<action>firegento/diagnostic/phpinfo</action>
+							<action>adminhtml/diagnostic/phpinfo</action>
 							<sort_order>50</sort_order>
 						</phpinfo>
 					</children>
 				</diagnostic>
 				<logs>
 					<title>Logs</title>
-					<action>firegento/log/index</action>
+					<action>adminhtml/debug_log/index</action>
 					<sort_order>20</sort_order>
 				</logs>
 				<about_firegento translate="title" module="firegento">
 					<title>About FireGento</title>
-					<action>firegento/index/about</action>
+					<action>adminhtml/debug_index/about</action>
 					<sort_order>999</sort_order>
 				</about_firegento>
 				<configuration translate="title" module="firegento">

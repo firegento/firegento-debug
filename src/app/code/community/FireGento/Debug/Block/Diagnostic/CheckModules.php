@@ -19,6 +19,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
+
 /**
  * CheckModules Grid Container
  *
@@ -34,8 +35,6 @@ class FireGento_Debug_Block_Diagnostic_CheckModules
 {
     /**
      * Class constructor
-     *
-     * @return void;
      */
     public function __construct()
     {

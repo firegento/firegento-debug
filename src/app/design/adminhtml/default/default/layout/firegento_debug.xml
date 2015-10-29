@@ -17,37 +17,37 @@
  */
  -->
 <layout>
-    <firegento_index_about>
+    <adminhtml_debug_index_about>
         <reference name="content">
             <block type="core/template" name="firegento.index.about" template="firegento/debug/index/about.phtml" />
         </reference>
-    </firegento_index_about>
-    <firegento_diagnostic_checkmodules>
+    </adminhtml_debug_index_about>
+    <adminhtml_diagnostic_checkmodules>
         <reference name="content">
             <block type="firegento/diagnostic_checkModules" name="firegento.diagnostic.checkmodules" />
         </reference>
-    </firegento_diagnostic_checkmodules>
-    <firegento_diagnostic_checkrewrites>
+    </adminhtml_diagnostic_checkmodules>
+    <adminhtml_diagnostic_checkrewrites>
         <reference name="content">
             <block type="firegento/diagnostic_checkRewrites" name="firegento.diagnostic.checkrewrites" />
         </reference>
-    </firegento_diagnostic_checkrewrites>
-    <firegento_diagnostic_checkevents>
+    </adminhtml_diagnostic_checkrewrites>
+    <adminhtml_diagnostic_checkevents>
         <reference name="content">
             <block type="firegento/diagnostic_checkEvents" name="firegento.diagnostic.checkevents" />
         </reference>
-    </firegento_diagnostic_checkevents>
-    <firegento_diagnostic_checksystem>
+    </adminhtml_diagnostic_checkevents>
+    <adminhtml_diagnostic_checksystem>
         <reference name="head">
             <action method="addCss"><stylesheet>firegento/debug/styles.css</stylesheet></action>
         </reference>
         <reference name="content">
             <block type="firegento/diagnostic_checkSystem" name="firegento.diagnostic.checksystem" template="firegento/debug/diagnostic/checksystem.phtml" />
         </reference>
-    </firegento_diagnostic_checksystem>
-    <firegento_diagnostic_phpinfo>
+    </adminhtml_diagnostic_checksystem>
+    <adminhtml_diagnostic_phpinfo>
         <reference name="content">
             <block type="firegento/diagnostic_phpinfo" name="firegento.diagnostic.phpinfo" template="firegento/debug/diagnostic/phpinfo.phtml" />
         </reference>
-    </firegento_diagnostic_phpinfo>
+    </adminhtml_diagnostic_phpinfo>
 </layout>

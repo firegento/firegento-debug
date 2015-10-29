@@ -19,7 +19,7 @@
 <config>
     <modules>
         <FireGento_Debug>
-            <version>1.4.0</version>
+            <version>1.5.0</version>
         </FireGento_Debug>
     </modules>
     <global>
@@ -41,13 +41,13 @@
     </global>
     <admin>
         <routers>
-            <firegento>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>FireGento_Debug</module>
-                    <frontName>firegento</frontName>
+                    <modules>
+                        <firegento_debug before="Mage_Adminhtml">FireGento_Debug_Adminhtml</firegento_debug>
+                    </modules>
                 </args>
-            </firegento>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>

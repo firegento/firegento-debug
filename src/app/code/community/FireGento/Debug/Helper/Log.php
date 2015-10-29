@@ -19,6 +19,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
+
 /**
  * Data Helper for different helper functionalities
  *
@@ -31,21 +32,21 @@
  */
 class FireGento_Debug_Helper_Log extends Mage_Core_Helper_Abstract
 {
-    const XML_PATH_FIREGENTO_LOG_FILE   = 'firegento/log/log_file';
-    const XML_PATH_FIREGENTO_FORCE_LOG  = 'firegento/log/force_log';
-    const XML_PATH_FIREGENTO_CHROMEPHP    = 'firegento/log/chromephp';
+    const XML_PATH_FIREGENTO_LOG_FILE = 'firegento/log/log_file';
+    const XML_PATH_FIREGENTO_FORCE_LOG = 'firegento/log/force_log';
+    const XML_PATH_FIREGENTO_CHROMEPHP = 'firegento/log/chromephp';
     const XML_PATH_FIREGENTO_FIRELOGGER = 'firegento/log/firelogger';
-    const XML_PATH_FIREGENTO_FIREPHP    = 'firegento/log/firephp';
+    const XML_PATH_FIREGENTO_FIREPHP = 'firegento/log/firephp';
 
     /**
      * Logs the given message in the specified log file..
      *
-     * @param  mixed                     $message Log Message
+     * @param  mixed $message Log Message
      * @return FireGento_Debug_Helper_Log Self.
      */
     public function log($message)
     {
-        $logFile  = Mage::getStoreConfig(self::XML_PATH_FIREGENTO_LOG_FILE);
+        $logFile = Mage::getStoreConfig(self::XML_PATH_FIREGENTO_LOG_FILE);
         $forceLog = Mage::getStoreConfigFlag(self::XML_PATH_FIREGENTO_FORCE_LOG);
         if ($logFile && strlen($logFile) > 0) {
             Mage::log($message, Zend_Log::DEBUG, $logFile, $forceLog);
@@ -59,7 +60,7 @@ class FireGento_Debug_Helper_Log extends Mage_Core_Helper_Abstract
      * the debug()-Method. This is very useful for large objects like
      * sales/quote, sales/order, ... for instance.
      *
-     * @param  mixed                     $message Log Message
+     * @param  mixed $message Log Message
      * @return FireGento_Debug_Helper_Log Self.
      */
     public function debug($message)
@@ -75,12 +76,12 @@ class FireGento_Debug_Helper_Log extends Mage_Core_Helper_Abstract
     /**
      * Logs the message in the Chrome addon..
      *
-     * @param  mixed                     $message Log Message
+     * @param  mixed $message Log Message
      * @return FireGento_Debug_Helper_Log Self.
      */
     public function chromephp($message)
     {
-        $flagChromePhp  = $this->isChromePhpAllowed();
+        $flagChromePhp = $this->isChromePhpAllowed();
         $flagPhpVersion = version_compare(phpversion(), '5.0.0', '>');
         if ($flagChromePhp && $flagPhpVersion) {
             Mage::getSingleton('firegento/log_chromephp')->log($message);
@@ -92,7 +93,7 @@ class FireGento_Debug_Helper_Log extends Mage_Core_Helper_Abstract
     /**
      * Logs the message in the Firefox addon..
      *
-     * @param  mixed                     $message Log Message
+     * @param  mixed $message Log Message
      * @return FireGento_Debug_Helper_Log Self.
      */
     public function firelogger($message)
@@ -109,12 +110,12 @@ class FireGento_Debug_Helper_Log extends Mage_Core_Helper_Abstract
     /**
      * Logs the message in the Firefox addon..
      *
-     * @param  mixed                     $message Log Message
+     * @param  mixed $message Log Message
      * @return FireGento_Debug_Helper_Log Self.
      */
     public function firephp($message)
     {
-        $flagFirePhp    = $this->isFirephpAllowed();
+        $flagFirePhp = $this->isFirephpAllowed();
         $flagPhpVersion = version_compare(phpversion(), '5.0.0', '>');
         if ($flagFirePhp && $flagPhpVersion) {
             Mage::getSingleton('firegento/log_firephp')->log($message);

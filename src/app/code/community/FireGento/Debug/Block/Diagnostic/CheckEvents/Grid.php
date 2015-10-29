@@ -19,6 +19,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
+
 /**
  * CheckEvents Grid
  *
@@ -34,8 +35,6 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
 {
     /**
      * Class constructor
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -44,7 +43,7 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
         $this->setDefaultSort('event');
         $this->setDefaultDir('ASC');
         //$this->_filterVisibility = false;
-        $this->_pagerVisibility  = false;
+        $this->_pagerVisibility = false;
     }
 
     /**
@@ -70,37 +69,37 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
         $baseUrl = $this->getUrl();
 
         $this->addColumn(
-                'module',
-                array(
-                        'header'   => $this->__('Module Name'),
-                        'align'    => 'left',
-                        'index'    => 'module',
-                        'sortable' => false,
-                        'filter' => false
-                )
+            'module',
+            array(
+                'header'   => $this->__('Module Name'),
+                'align'    => 'left',
+                'index'    => 'module',
+                'sortable' => false,
+                'filter'   => false
+            )
         );
         $this->addColumn(
-                'code_pool',
-                array(
-                        'header'   => $this->__('Code Pool'),
-                        'align'    => 'left',
-                        'index'    => 'code_pool',
-                        'width'    => '80px',
-                        'sortable' => true,
-                        'type'  => 'options',
-                        'options'  => Mage::helper('firegento')->getHashCodePools(),
-                        'filter_condition_callback' => array($this, '_codePoolFilter'),
-                )
+            'code_pool',
+            array(
+                'header'                    => $this->__('Code Pool'),
+                'align'                     => 'left',
+                'index'                     => 'code_pool',
+                'width'                     => '80px',
+                'sortable'                  => true,
+                'type'                      => 'options',
+                'options'                   => Mage::helper('firegento')->getHashCodePools(),
+                'filter_condition_callback' => array($this, '_codePoolFilter'),
+            )
         );
 
         $this->addColumn(
             'event',
             array(
-                'header'   => $this->__('Event'),
-                'align'    => 'left',
-                'index'    => 'event',
-                'width'    => '50%',
-                'sortable' => true,
+                'header'                    => $this->__('Event'),
+                'align'                     => 'left',
+                'index'                     => 'event',
+                'width'                     => '50%',
+                'sortable'                  => true,
                 'filter_condition_callback' => array($this, '_eventFilter'),
             )
         );
@@ -113,10 +112,9 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
                 'width'    => '30%',
                 'sortable' => false,
                 'renderer' => 'firegento/diagnostic_renderer_paragraph',
-                'filter' => false
+                'filter'   => false
             )
         );
-
 
 
         return parent::_prepareColumns();
@@ -125,7 +123,7 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
     /**
      * Filter code pool collection
      *
-     * @param Varien_Data_Collection $collection
+     * @param Varien_Data_Collection                  $collection
      * @param Mage_Adminhtml_Block_Widget_Grid_Column $column
      */
     protected function _codePoolFilter($collection, $column)
@@ -136,8 +134,8 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
 
         $collection = $this->getCollection();
 
-        foreach($collection as $itemKey=>$item) {
-            if($value!=$item->getCodePool()) {
+        foreach ($collection as $itemKey => $item) {
+            if ($value != $item->getCodePool()) {
                 $collection->removeItemByKey($itemKey);
             }
         }
@@ -148,7 +146,7 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
     /**
      * Filter event collection
      *
-     * @param Varien_Data_Collection $collection
+     * @param Varien_Data_Collection                  $collection
      * @param Mage_Adminhtml_Block_Widget_Grid_Column $column
      */
     protected function _eventFilter($collection, $column)
@@ -159,8 +157,8 @@ class FireGento_Debug_Block_Diagnostic_CheckEvents_Grid
 
         $collection = $this->getCollection();
 
-        foreach($collection as $itemKey=>$item) {
-            if(strpos($item->getEvent(),$value)===false) {
+        foreach ($collection as $itemKey => $item) {
+            if (strpos($item->getEvent(), $value) === false) {
                 $collection->removeItemByKey($itemKey);
             }
         }

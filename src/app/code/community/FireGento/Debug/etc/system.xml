@@ -17,7 +17,7 @@
  */
  -->
 <config>
-	<sections>
+    <sections>
         <firegento translate="label" module="firegento">
             <label>FIREGENTO</label>
             <tab>advanced</tab>
@@ -87,5 +87,5 @@
                 </log>
             </groups>
         </firegento>
-	</sections>
+    </sections>
 </config>
