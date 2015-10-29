@@ -19,6 +19,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
+
 /**
  * Index Controller
  *
@@ -29,7 +30,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
-class FireGento_Debug_IndexController
+class FireGento_Debug_Adminhtml_Debug_IndexController
     extends Mage_Adminhtml_Controller_Action
 {
     /**
@@ -41,7 +42,7 @@ class FireGento_Debug_IndexController
     {
         $this->loadLayout();
         $this->_setActiveMenu('firegento');
-        $this->_title($this->__('About FireGento') . ' / '. 'FIREGENTO');
+        $this->_title($this->__('About FireGento') . ' / ' . 'FIREGENTO');
         $this->renderLayout();
     }
 

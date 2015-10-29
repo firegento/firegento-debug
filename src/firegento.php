@@ -19,7 +19,7 @@ umask(0);
 Mage::app('admin');
 
 $fileName = 'config.xml';
-$modules  = Mage::getConfig()->getNode('modules')->children();
+$modules = Mage::getConfig()->getNode('modules')->children();
 
 $return = array();
 foreach ($modules as $modName => $module) {
@@ -39,10 +39,10 @@ foreach ($modules as $modName => $module) {
 $collection = new Varien_Data_Collection();
 foreach ($return as $rewriteNodes) {
     foreach ($rewriteNodes as $n) {
-        $nParent   = $n->xpath('..');
-        $module    = (string) $nParent[0]->getName();
-        $nParent2  = $nParent[0]->xpath('..');
-        $component = (string) $nParent2[0]->getName();
+        $nParent = $n->xpath('..');
+        $module = (string)$nParent[0]->getName();
+        $nParent2 = $nParent[0]->xpath('..');
+        $component = (string)$nParent2[0]->getName();
 
         if (!in_array($component, array('blocks', 'helpers', 'models'))) {
             continue;
@@ -50,10 +50,10 @@ foreach ($return as $rewriteNodes) {
 
         $pathNodes = $n->children();
         foreach ($pathNodes as $pathNode) {
-            $path = (string) $pathNode->getName();
-            $completePath = $module.'/'.$path;
+            $path = (string)$pathNode->getName();
+            $completePath = $module . '/' . $path;
 
-            $rewriteClassName = (string) $pathNode;
+            $rewriteClassName = (string)$pathNode;
 
             $instance = Mage::getConfig()->getGroupedClassName(
                 substr($component, 0, -1),
@@ -63,10 +63,10 @@ foreach ($return as $rewriteNodes) {
             $collection->addItem(
                 new Varien_Object(
                     array(
-                    	'path' => $completePath,
+                        'path'          => $completePath,
                         'rewrite_class' => $rewriteClassName,
-                        'active_class' => $instance,
-                        'status' => ($instance == $rewriteClassName)
+                        'active_class'  => $instance,
+                        'status'        => ($instance == $rewriteClassName)
                     )
                 )
             );
@@ -86,13 +86,13 @@ foreach ($collection as $item) {
     }
 
     echo '<tr>
-    	<td>'.$i.'</td>
-    	<td>'.$item->getData('path').'</td>
-    	<td>'.$item->getData('rewrite_class').'</td>
-    	<td>'.$item->getData('active_class').'</td>
-    	<td>'.$status.'</td>
+    	<td>' . $i . '</td>
+    	<td>' . $item->getData('path') . '</td>
+    	<td>' . $item->getData('rewrite_class') . '</td>
+    	<td>' . $item->getData('active_class') . '</td>
+    	<td>' . $status . '</td>
     	</tr>';
-    	$i++;
+    $i++;
 }
 
 echo '</tbody></table></body></html>';

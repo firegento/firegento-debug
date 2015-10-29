@@ -44,7 +44,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <firegento_debug before="Mage_Adminhtml">FireGento_Debug</firegento_debug>
+                        <firegento_debug before="Mage_Adminhtml">FireGento_Debug_Adminhtml</firegento_debug>
                     </modules>
                 </args>
             </adminhtml>

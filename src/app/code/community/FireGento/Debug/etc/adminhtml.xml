@@ -55,12 +55,12 @@
 				</diagnostic>
 				<logs>
 					<title>Logs</title>
-					<action>adminhtml/log/index</action>
+					<action>adminhtml/debug_log/index</action>
 					<sort_order>20</sort_order>
 				</logs>
 				<about_firegento translate="title" module="firegento">
 					<title>About FireGento</title>
-					<action>adminhtml/index/about</action>
+					<action>adminhtml/debug_index/about</action>
 					<sort_order>999</sort_order>
 				</about_firegento>
 				<configuration translate="title" module="firegento">

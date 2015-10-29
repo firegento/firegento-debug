@@ -17,11 +17,11 @@
  */
  -->
 <layout>
-    <adminhtml_index_about>
+    <adminhtml_debug_index_about>
         <reference name="content">
             <block type="core/template" name="firegento.index.about" template="firegento/debug/index/about.phtml" />
         </reference>
-    </adminhtml_index_about>
+    </adminhtml_debug_index_about>
     <adminhtml_diagnostic_checkmodules>
         <reference name="content">
             <block type="firegento/diagnostic_checkModules" name="firegento.diagnostic.checkmodules" />

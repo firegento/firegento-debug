@@ -19,6 +19,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
+
 /**
  * Data Helper for different helper functionalities
  *
@@ -41,7 +42,7 @@ class FireGento_Debug_Helper_Data extends Mage_Core_Helper_Abstract
      * @param  string $dir Direction to sort
      * @return array  Sorted array
      */
-    public function sortMultiDimArr($arr, $key, $dir='ASC')
+    public function sortMultiDimArr($arr, $key, $dir = 'ASC')
     {
         foreach ($arr as $k => $v) {
             $b[$k] = strtolower($v[$key]);
