@@ -19,6 +19,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
+
 /**
  * CheckSystem Grid Container
  *
@@ -64,18 +65,18 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
          * MAGENTO
          */
         $edition = '-';
-        if (method_exists(Mage, 'getEdition')) {
+        if (method_exists('Mage', 'getEdition')) {
             $edition = Mage::getEdition();
         }
         $magento = array(
-            'edition' => $edition,
-            'version' => Mage::getVersion(),
-            'developer_mode' => Mage::getIsDeveloperMode(),
-            'secret_key' => Mage::getStoreConfigFlag('admin/security/use_form_key'),
+            'edition'               => $edition,
+            'version'               => Mage::getVersion(),
+            'developer_mode'        => Mage::getIsDeveloperMode(),
+            'secret_key'            => Mage::getStoreConfigFlag('admin/security/use_form_key'),
             'flat_catalog_category' => Mage::getStoreConfigFlag('catalog/frontend/flat_catalog_category'),
-            'flat_catalog_product' => Mage::getStoreConfigFlag('catalog/frontend/flat_catalog_product'),
-            'cache_status' => $this->_getHelper()->checkCaches(),
-            'index_status' => $this->_getHelper()->checkIndizes()
+            'flat_catalog_product'  => Mage::getStoreConfigFlag('catalog/frontend/flat_catalog_product'),
+            'cache_status'          => $this->_getHelper()->checkCaches(),
+            'index_status'          => $this->_getHelper()->checkIndizes()
         );
         $system->setData('magento', new Varien_Object($magento));
 
@@ -85,9 +86,9 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
 
         $server = array(
             'domain' => isset($_SERVER['HTTP_HOST']) ? str_replace('www.', '', $_SERVER['HTTP_HOST']) : null,
-            'ip' => $_SERVER['SERVER_ADDR'],
-            'dir' => Mage::getBaseDir(),
-            'info' => php_uname(),
+            'ip'     => $_SERVER['SERVER_ADDR'],
+            'dir'    => Mage::getBaseDir(),
+            'info'   => php_uname(),
 
         );
         $system->setData('server', new Varien_Object($server));
@@ -97,9 +98,9 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
          */
 
         $php = array(
-            'version' => @phpversion(),
-            'server_api' => @php_sapi_name(),
-            'memory_limit' => @ini_get('memory_limit'),
+            'version'            => @phpversion(),
+            'server_api'         => @php_sapi_name(),
+            'memory_limit'       => @ini_get('memory_limit'),
             'max_execution_time' => @ini_get('max_execution_time')
         );
         $system->setData('php', new Varien_Object($php));
@@ -117,7 +118,7 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
         }
 
         // Get table prefix
-        $tablePrefix = (string) Mage::getConfig()->getTablePrefix();
+        $tablePrefix = (string)Mage::getConfig()->getTablePrefix();
         if (empty($tablePrefix)) {
             $tablePrefix = $this->__('Disabled');
         }
@@ -131,13 +132,13 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
         }
 
         $mysql = array(
-            'version' => $this->_getDb()->getServerVersion(),
-            'server_api' => $mysqlServerApi,
-            'database_name' => (string) Mage::getConfig()->getNode('global/resources/default_setup/connection/dbname'),
-            'database_tables' => count($this->_getDb()->listTables()),
-            'table_prefix' => $tablePrefix,
-            'connection_timeout' => $mysqlVars['connect_timeout'].' sec.',
-            'wait_timeout' => $mysqlVars['wait_timeout'].' sec.'
+            'version'            => $this->_getDb()->getServerVersion(),
+            'server_api'         => $mysqlServerApi,
+            'database_name'      => (string)Mage::getConfig()->getNode('global/resources/default_setup/connection/dbname'),
+            'database_tables'    => count($this->_getDb()->listTables()),
+            'table_prefix'       => $tablePrefix,
+            'connection_timeout' => $mysqlVars['connect_timeout'] . ' sec.',
+            'wait_timeout'       => $mysqlVars['wait_timeout'] . ' sec.'
         );
         $system->setData('mysql', new Varien_Object($mysql));
 
@@ -147,7 +148,7 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
 
         $safeMode = (@ini_get('safe_mode')) ? true : false;
         $memoryLimit = $php['memory_limit'];
-        $memoryLimit = substr($memoryLimit, 0, strlen($memoryLimit) -1);
+        $memoryLimit = substr($memoryLimit, 0, strlen($memoryLimit) - 1);
         $phpCurl = @extension_loaded('curl');
         $phpDom = @extension_loaded('dom');
         $phpGd = @extension_loaded('gd');
@@ -160,95 +161,95 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
         $phpSimplexml = @extension_loaded('simplexml');
 
         $requirements = array(
-            'php_version' => array(
-                'label' => 'PHP Version:',
+            'php_version'        => array(
+                'label'             => 'PHP Version:',
                 'recommended_value' => '>= 5.3.0',
-                'current_value' => $php['version'],
-                'result' => version_compare($php['version'], '5.3.0', '>=')
+                'current_value'     => $php['version'],
+                'result'            => version_compare($php['version'], '5.3.0', '>=')
             ),
-            'mysql_version' => array(
-                'label' => 'MySQL Version:',
+            'mysql_version'      => array(
+                'label'             => 'MySQL Version:',
                 'recommended_value' => '>= 4.1.20',
-                'current_value' => $mysql['version'],
-                'result' => version_compare($mysql['version'], '4.1.20', '>='),
+                'current_value'     => $mysql['version'],
+                'result'            => version_compare($mysql['version'], '4.1.20', '>='),
             ),
-            'safe_mode' => array(
-                'label' => 'Safe Mode:',
+            'safe_mode'          => array(
+                'label'             => 'Safe Mode:',
                 'recommended_value' => $this->renderBooleanField(false),
-                'current_value' => $this->renderBooleanField($safeMode),
-                'result' => !$safeMode,
+                'current_value'     => $this->renderBooleanField($safeMode),
+                'result'            => !$safeMode,
             ),
-            'memory_limit' => array(
-                'label' => 'Memory Limit:',
+            'memory_limit'       => array(
+                'label'             => 'Memory Limit:',
                 'recommended_value' => '>= 256M',
-                'current_value' => $php['memory_limit'],
-                'result' => ($memoryLimit >= 256),
+                'current_value'     => $php['memory_limit'],
+                'result'            => ($memoryLimit >= 256),
             ),
             'max_execution_time' => array(
-                'label' => 'Max. Execution Time:',
+                'label'             => 'Max. Execution Time:',
                 'recommended_value' => '>= 360 sec.',
-                'current_value' => $php['max_execution_time'],
-                'result' => ($php['max_execution_time'] >= 360),
+                'current_value'     => $php['max_execution_time'],
+                'result'            => ($php['max_execution_time'] >= 360),
             ),
-            'curl' => array(
-                'label' => 'curl',
+            'curl'               => array(
+                'label'             => 'curl',
                 'recommended_value' => $this->renderBooleanField(true),
-                'current_value' => $this->renderBooleanField($phpCurl),
-                'result' => $phpCurl,
+                'current_value'     => $this->renderBooleanField($phpCurl),
+                'result'            => $phpCurl,
             ),
-            'dom' => array(
-                'label' => 'dom',
+            'dom'                => array(
+                'label'             => 'dom',
                 'recommended_value' => $this->renderBooleanField(true),
-                'current_value' => $this->renderBooleanField($phpDom),
-                'result' => $phpDom,
+                'current_value'     => $this->renderBooleanField($phpDom),
+                'result'            => $phpDom,
             ),
-            'gd' => array(
-                'label' => 'gd',
+            'gd'                 => array(
+                'label'             => 'gd',
                 'recommended_value' => $this->renderBooleanField(true),
-                'current_value' => $this->renderBooleanField($phpGd),
-                'result' => $phpGd,
+                'current_value'     => $this->renderBooleanField($phpGd),
+                'result'            => $phpGd,
             ),
-            'hash' => array(
-                'label' => 'hash',
+            'hash'               => array(
+                'label'             => 'hash',
                 'recommended_value' => $this->renderBooleanField(true),
-                'current_value' => $this->renderBooleanField($phpHash),
-                'result' => $phpHash,
+                'current_value'     => $this->renderBooleanField($phpHash),
+                'result'            => $phpHash,
             ),
-            'iconv' => array(
-                'label' => 'iconv',
+            'iconv'              => array(
+                'label'             => 'iconv',
                 'recommended_value' => $this->renderBooleanField(true),
-                'current_value' => $this->renderBooleanField($phpIconv),
-                'result' => $phpIconv,
+                'current_value'     => $this->renderBooleanField($phpIconv),
+                'result'            => $phpIconv,
             ),
-            'mcrypt' => array(
-                'label' => 'mcrypt',
+            'mcrypt'             => array(
+                'label'             => 'mcrypt',
                 'recommended_value' => $this->renderBooleanField(true),
-                'current_value' => $this->renderBooleanField($phpMcrypt),
-                'result' => $phpMcrypt,
+                'current_value'     => $this->renderBooleanField($phpMcrypt),
+                'result'            => $phpMcrypt,
             ),
-            'pcre' => array(
-                'label' => 'pcre',
+            'pcre'               => array(
+                'label'             => 'pcre',
                 'recommended_value' => $this->renderBooleanField(true),
-                'current_value' => $this->renderBooleanField($phpPcre),
-                'result' => $phpPcre,
+                'current_value'     => $this->renderBooleanField($phpPcre),
+                'result'            => $phpPcre,
             ),
-            'pdo' => array(
-                'label' => 'pdo',
+            'pdo'                => array(
+                'label'             => 'pdo',
                 'recommended_value' => $this->renderBooleanField(true),
-                'current_value' => $this->renderBooleanField($phpPdo),
-                'result' => $phpPdo,
+                'current_value'     => $this->renderBooleanField($phpPdo),
+                'result'            => $phpPdo,
             ),
-            'pdo_mysql' => array(
-                'label' => 'pdo_mysql',
+            'pdo_mysql'          => array(
+                'label'             => 'pdo_mysql',
                 'recommended_value' => $this->renderBooleanField(true),
-                'current_value' => $this->renderBooleanField($phpPdoMysql),
-                'result' => $phpPdoMysql,
+                'current_value'     => $this->renderBooleanField($phpPdoMysql),
+                'result'            => $phpPdoMysql,
             ),
-            'simplexml' => array(
-                'label' => 'simplexml',
+            'simplexml'          => array(
+                'label'             => 'simplexml',
                 'recommended_value' => $this->renderBooleanField(true),
-                'current_value' => $this->renderBooleanField($phpSimplexml),
-                'result' => $phpSimplexml,
+                'current_value'     => $this->renderBooleanField($phpSimplexml),
+                'result'            => $phpSimplexml,
             )
         );
         $system->setData('requirements', new Varien_Object($requirements));
@@ -265,7 +266,7 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
     }
 
     /**
-     * @param boolen $value
+     * @param boolean $value
      * @return string
      */
     public function renderBooleanField($value)
@@ -273,6 +274,7 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
         if ($value) {
             return $this->__('Enabled');
         }
+
         return $this->__('Disabled');
     }
 
@@ -285,6 +287,7 @@ class FireGento_Debug_Block_Diagnostic_CheckSystem
         if ($result) {
             return 'requirement-passed';
         }
+
         return 'requirement-failed';
     }
 }

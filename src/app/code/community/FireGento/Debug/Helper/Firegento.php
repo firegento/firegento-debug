@@ -19,6 +19,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
+
 /**
  * Firegento Helper
  *
@@ -48,7 +49,7 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
                 $depends = array();
                 foreach ($item->depends->children() as $depend) {
                     if ($depend->getName() == $name) {
-                        if ((string) Mage::getConfig()->getModuleConfig($moduleName)->is('active', 'true')) {
+                        if ((string)Mage::getConfig()->getModuleConfig($moduleName)->is('active', 'true')) {
                             $isDeactivationPossible = false;
                         }
                     }
@@ -58,11 +59,11 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
 
         if ($isDeactivationPossible) {
             $status = '';
-            $xmlPath = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'modules' . DS . $name .'.xml';
+            $xmlPath = Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'modules' . DS . $name . '.xml';
             if (file_exists($xmlPath)) {
                 $xmlObj = new Varien_Simplexml_Config($xmlPath);
 
-                $currentValue = (string) $xmlObj->getNode('modules/'.$name.'/active');
+                $currentValue = (string)$xmlObj->getNode('modules/' . $name . '/active');
                 if ($currentValue == 'true') {
                     $value = false;
                 } else {
@@ -70,7 +71,7 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
                 }
 
                 $xmlObj->setNode(
-                    'modules/'.$name.'/active',
+                    'modules/' . $name . '/active',
                     $value ? 'true' : 'false'
                 );
 
@@ -108,14 +109,14 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
     public function getRewriteCollection()
     {
         $collection = new Varien_Data_Collection();
-        $rewrites   = $this->_loadRewrites();
+        $rewrites = $this->_loadRewrites();
 
         foreach ($rewrites as $rewriteNodes) {
             foreach ($rewriteNodes as $n) {
-                $nParent    = $n->xpath('..');
-                $module     = (string) $nParent[0]->getName();
+                $nParent = $n->xpath('..');
+                $module = (string)$nParent[0]->getName();
                 $nSubParent = $nParent[0]->xpath('..');
-                $component  = (string) $nSubParent[0]->getName();
+                $component = (string)$nSubParent[0]->getName();
 
                 if (!in_array($component, array('blocks', 'helpers', 'models'))) {
                     continue;
@@ -123,10 +124,10 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
 
                 $pathNodes = $n->children();
                 foreach ($pathNodes as $pathNode) {
-                    $path = (string) $pathNode->getName();
-                    $completePath = $module.'/'.$path;
+                    $path = (string)$pathNode->getName();
+                    $completePath = $module . '/' . $path;
 
-                    $rewriteClassName = (string) $pathNode;
+                    $rewriteClassName = (string)$pathNode;
 
                     $instance = Mage::getConfig()->getGroupedClassName(
                         substr($component, 0, -1),
@@ -158,7 +159,7 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
     protected function _loadRewrites()
     {
         $fileName = 'config.xml';
-        $modules  = Mage::getConfig()->getNode('modules')->children();
+        $modules = Mage::getConfig()->getNode('modules')->children();
 
         $return = array();
         foreach ($modules as $modName => $module) {
@@ -212,16 +213,16 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
     protected function _loadModules()
     {
         $modules = array();
-        $config  = Mage::getConfig();
+        $config = Mage::getConfig();
         foreach ($config->getNode('modules')->children() as $moduleName => $item) {
-            $active       = ($item->active == 'true') ? true : false;
-            $codePool     = (string) $config->getModuleConfig($item->getName())->codePool;
-            $path         = $config->getOptions()->getCodeDir() . DS . $codePool . DS . uc_words($item->getName(), DS);
-            $pathExists   = file_exists($path);
-            $pathExists   = $pathExists ? true : false;
+            $active = ($item->active == 'true') ? true : false;
+            $codePool = (string)$config->getModuleConfig($item->getName())->codePool;
+            $path = $config->getOptions()->getCodeDir() . DS . $codePool . DS . uc_words($item->getName(), DS);
+            $pathExists = file_exists($path);
+            $pathExists = $pathExists ? true : false;
             $configExists = file_exists($path . '/etc/config.xml');
             $configExists = $configExists ? true : false;
-            $version      = (string) $config->getModuleConfig($item->getName())->version;
+            $version = (string)$config->getModuleConfig($item->getName())->version;
 
             $dependencies = '-';
             if ($item->depends) {
@@ -274,10 +275,10 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
             }
 
             $val = array(
-                'event'    => $item['event'],
-                'module'   => $item['module'],
-                'code_pool'=> $item['code_pool'],
-                'location' => implode("\n", $values),
+                'event'     => $item['event'],
+                'module'    => $item['module'],
+                'code_pool' => $item['code_pool'],
+                'location'  => implode("\n", $values),
 
             );
 
@@ -304,7 +305,7 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
         foreach ($modules as $modName => $module) {
             //if ($module->is('active')) {
             if (!empty($module['active'])) {
-                $configFile = Mage::getConfig()->getModuleDir('etc', $modName).DS.$fileName;
+                $configFile = Mage::getConfig()->getModuleDir('etc', $modName) . DS . $fileName;
                 if (file_exists($configFile)) {
                     $xml = file_get_contents($configFile);
                     $xml = simplexml_load_string($xml);
@@ -317,25 +318,25 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
         }
 
         $return = array();
-        foreach ($events as $module=>$eventNodes) {
+        foreach ($events as $module => $eventNodes) {
             foreach ($eventNodes as $n) {
-                $nParent    = $n->xpath('..');
+                $nParent = $n->xpath('..');
                 $nSubParent = $nParent[0]->xpath('..');
-                $component  = (string) $nSubParent[0]->getName();
-                $pathNodes  = $n->children();
+                $component = (string)$nSubParent[0]->getName();
+                $pathNodes = $n->children();
 
                 foreach ($pathNodes as $pathNode) {
-                    $eventName = (string) $pathNode->getName();
-                    $instance  = $pathNode->xpath('observers/node()/class');
-                    $instance  = (string) current($instance);
-                    $instance  = Mage::getConfig()->getModelClassName($instance);
+                    $eventName = (string)$pathNode->getName();
+                    $instance = $pathNode->xpath('observers/node()/class');
+                    $instance = (string)current($instance);
+                    $instance = Mage::getConfig()->getModelClassName($instance);
 
                     if (!array_key_exists($eventName, $return)) {
                         $return[$eventName] = array(
-                            'event' => $eventName,
-                            'module'=> $module,
-                            'code_pool'=> $modules[$module]['code_pool'],
-                            'children' => array()
+                            'event'     => $eventName,
+                            'module'    => $module,
+                            'code_pool' => $modules[$module]['code_pool'],
+                            'children'  => array()
                         );
                     }
                     if (!in_array($instance, $return[$eventName])) {
@@ -355,7 +356,7 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
      */
     public function checkCaches()
     {
-        $active   = 0;
+        $active = 0;
         $inactive = 0;
         foreach (Mage::app()->getCacheInstance()->getTypes() as $type) {
             $tmp = $type->getData();
@@ -380,9 +381,9 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
      */
     public function checkIndizes()
     {
-        $ready      = 0;
+        $ready = 0;
         $processing = 0;
-        $reindex    = 0;
+        $reindex = 0;
 
         $collection = Mage::getResourceModel('index/process_collection');
         foreach ($collection as $item) {
@@ -447,7 +448,7 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
         if (!ini_get('safe_mode')) {
             $pass[] = 'Safe Mode is <strong>off</strong>';
 
-            $con     = Mage::getSingleton('core/resource')->getConnection('core_read');
+            $con = Mage::getSingleton('core/resource')->getConnection('core_read');
             $version = $con->getServerVersion();
 
             if (version_compare($version, '4.1.20', '<')) {
@@ -461,9 +462,9 @@ class FireGento_Debug_Helper_Firegento extends FireGento_Debug_Helper_Data
 
         foreach ($extensions as $extension) {
             if (!extension_loaded($extension)) {
-                $fail[] = 'You are missing the <strong>'.$extension.'</strong> extension';
+                $fail[] = 'You are missing the <strong>' . $extension . '</strong> extension';
             } else {
-                $pass[] = 'You have the <strong>'.$extension.'</strong> extension';
+                $pass[] = 'You have the <strong>' . $extension . '</strong> extension';
             }
         }
 

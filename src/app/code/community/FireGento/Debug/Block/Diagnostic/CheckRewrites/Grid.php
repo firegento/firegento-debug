@@ -19,6 +19,7 @@
  * @license   http://opensource.org/licenses/gpl-3.0 GNU General Public License, version 3 (GPLv3)
  * @version   1.2.0
  */
+
 /**
  * CheckRewrites Grid
  *
@@ -34,15 +35,13 @@ class FireGento_Debug_Block_Diagnostic_CheckRewrites_Grid
 {
     /**
      * Class constructor
-     *
-     * @return void
      */
     public function __construct()
     {
         parent::__construct();
         $this->setId('check_rewrites_grid');
         $this->_filterVisibility = false;
-        $this->_pagerVisibility  = false;
+        $this->_pagerVisibility = false;
     }
 
     /**
@@ -122,9 +121,9 @@ class FireGento_Debug_Block_Diagnostic_CheckRewrites_Grid
     {
         $class = '';
         if ($row->getStatus()) {
-            $cell = '<span class="grid-severity-notice"><span>'.$value.'</span></span>';
+            $cell = '<span class="grid-severity-notice"><span>' . $value . '</span></span>';
         } else {
-            $cell = '<span class="grid-severity-critical"><span>'.$value.'</span></span>';
+            $cell = '<span class="grid-severity-critical"><span>' . $value . '</span></span>';
         }
 
         return $cell;

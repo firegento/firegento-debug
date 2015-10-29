@@ -20,6 +20,7 @@
  * @version   1.2.0
  */
 require_once 'FireGento/ChromePhp/ChromePhp.php';
+
 /**
  * FirePHP Class
  *

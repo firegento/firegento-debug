@@ -36,6 +36,7 @@ if (!defined('FIRELOGGER_NO_ERROR_HANDLER')) {
 if (!defined('FIRELOGGER_NO_DEFAULT_LOGGER')) {
     define('FIRELOGGER_NO_DEFAULT_LOGGER', true);
 }
+
 /**
  * FireLogger Class
  *
