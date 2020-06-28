@@ -1,0 +1,87 @@
+{
+  "projectName": "firegento-debug",
+  "projectOwner": "firegento",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "therouv",
+      "name": "Rouven Alexander Rieker",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/393419?v=4",
+      "profile": "https://rouven.io/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "tobi-pb",
+      "name": "Tobias Vogt",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/940631?v=4",
+      "profile": "http://www.webguys.de/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "pixelhed",
+      "name": "Andre Flitsch",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1169770?v=4",
+      "profile": "https://github.com/pixelhed",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "vpietri",
+      "name": "Vincent Pietri",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/8598479?v=4",
+      "profile": "http://www.vincent-pietri.fr/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "arosenhagen",
+      "name": "Achim Rosenhagen",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/50462?v=4",
+      "profile": "http://www.ffuenf.de/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Vinai",
+      "name": "Vinai Kopp",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/72463?v=4",
+      "profile": "http://vinaikopp.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "hackwell",
+      "name": "Jörg Weller",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/449424?v=4",
+      "profile": "http://www.flagbit.de/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "kkrieger85",
+      "name": "Kevin Krieger",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4435523?v=4",
+      "profile": "https://github.com/kkrieger85",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
