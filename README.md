@@ -1,6 +1,6 @@
 FireGento_Debug
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 =====================
 This extension provides some debbuging functionality for Magento.
@@ -220,6 +220,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://rouven.io/"><img src="https://avatars3.githubusercontent.com/u/393419?v=4" width="100px;" alt=""/><br /><sub><b>Rouven Alexander Rieker</b></sub></a><br /><a href="https://github.com/firegento/firegento-debug/commits?author=therouv" title="Code">💻</a></td>
     <td align="center"><a href="http://www.webguys.de/"><img src="https://avatars1.githubusercontent.com/u/940631?v=4" width="100px;" alt=""/><br /><sub><b>Tobias Vogt</b></sub></a><br /><a href="https://github.com/firegento/firegento-debug/commits?author=tobi-pb" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/pixelhed"><img src="https://avatars2.githubusercontent.com/u/1169770?v=4" width="100px;" alt=""/><br /><sub><b>Andre Flitsch</b></sub></a><br /><a href="https://github.com/firegento/firegento-debug/commits?author=pixelhed" title="Code">💻</a></td>
   </tr>
 </table>
 
