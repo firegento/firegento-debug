@@ -63,6 +63,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "hackwell",
+      "name": "Jörg Weller",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/449424?v=4",
+      "profile": "http://www.flagbit.de/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
