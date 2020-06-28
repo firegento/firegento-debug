@@ -1,18 +1,19 @@
-FireGento_Debug
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-=====================
+
+# FireGento_Debug
+
 This extension provides some debbuging functionality for Magento.
 
-Facts
------
+## Facts
+
 - version: 1.5.0
 - [extension on GitHub](https://github.com/firegento/firegento)
 
 
-Description
------------
+## Description
+
 This extension provides some debugging functionality for Magento.
 This includes:
 
@@ -26,6 +27,7 @@ This includes:
 
 ## Installation
 Install the files using one of the following methods:
+
 ### Via modman
 - Install [modman](https://github.com/colinmollenhour/modman)
 - Use the command from your Magento installation folder: `modman clone https://github.com/firegento/firegento-debug.git`
@@ -179,35 +181,22 @@ The log viewer allows you to select a log file to open, you will be able to see 
 
 
 
-Requirements
-------------
+## Requirements
+
 - PHP >= 5.3.0
 
-Compatibility
--------------
+## Compatibility
+
 - Magento >= 1.5
 - Versions below are not actively tested but should work without problems
 
-Support
--------
+## Support
+
 If you have any issues with this extension, open an issue on [GitHub](https://github.com/firegento/firegento-debug/issues).
 
-Contribution
-------------
+## Contribution
+
 Any contribution is highly appreciated. The best way to contribute code is to open a [pull request on GitHub](https://help.github.com/articles/using-pull-requests).
-
-Developer
----------
-- Website: [http://firegento.com](http://firegento.com)
-- Twitter: [@firegento](https://twitter.com/firegento)
-
-Licence
--------
-[GNU General Public License, version 3 (GPLv3)](http://opensource.org/licenses/gpl-3.0)
-
-Copyright
----------
-(c) 2013 FireGento
 
 ## Contributors ✨
 
@@ -236,3 +225,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## Developer
+
+- Website: [http://firegento.com](http://firegento.com)
+- Twitter: [@firegento](https://twitter.com/firegento)
+
+## Licence
+
+[GNU General Public License, version 3 (GPLv3)](http://opensource.org/licenses/gpl-3.0)
+
+## Copyright
+
+(c) 2013 FireGento
